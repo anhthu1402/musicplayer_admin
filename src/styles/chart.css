@@ -1,0 +1,15 @@
+.chart {
+    margin: 20px;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    width: 1000px;
+  }
+.chart > LineChart{
+  width:600; 
+  height: 400px; 
+    margin: 5 20 10 5;
+}
+  .chartTitle {
+    margin-bottom: 20px;
+  }

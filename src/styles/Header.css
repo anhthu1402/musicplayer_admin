@@ -1,0 +1,40 @@
+.searchBar {
+  width: 35vw;
+  height: 2.7rem;
+}
+.signInBtn {
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  justify-content: center;
+  background-color: #ff7394;
+  height: 3vw;
+  width: 10vw;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: 1.4vw;
+}
+.userName {
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  height: 3vw;
+  width: 10vw;
+  text-decoration: none;
+  font-size: 1.4vw;
+  color: black;
+}
+
+.signInBtn:hover {
+  background-color: #fba1b6;
+  cursor: pointer;
+  transition: 0.3s ease;
+  color: #373b3e;
+}
+.personal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

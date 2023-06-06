@@ -1,0 +1,75 @@
+.newSong {
+    flex: 4;
+    /* width: 800px; */
+  }
+  
+  /* .newSongForm {
+    /* flex-wrap: wrap;
+    display: flex; */
+    /* width: 800px; */
+
+  /* } */ */
+  
+  .newSongItem {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+
+  .newSongLink{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+  .newSongLink > label {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(151, 150, 150);
+  }
+  .newSongItem > label {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(151, 150, 150);
+  }
+  
+  .newSongItem > input {
+    height: 30px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
+  
+  .newSongGender > input {
+    margin-top: 15px;
+  }
+  
+  .newSongGender>label{
+      margin: 10px;
+      font-size: 18px;
+      color: #555;
+  }
+  
+  .newSongSelect{
+      height: 70px;
+      border-radius: 5px;
+  }
+  
+  .btn-primary{
+      width: 200px;
+      border: none;
+      background-color: darkblue;
+      color: white;
+      padding: 10px 20px;
+      font-weight: 600;
+      border-radius: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20px;
+      cursor: pointer;
+  }

@@ -1,0 +1,65 @@
+.newAlbum {
+    flex: 4;
+    /* width: 800px; */
+  }
+  
+  .newAlbumForm {
+    /* flex-wrap: wrap;
+    display: flex; */
+    /* width: 800px; */
+
+  }
+  
+  .newAlbumItem {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+  .newAlbumItem > label {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(151, 150, 150);
+  }
+  .newAlbumLink{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+  .newAlbumLink > label {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(151, 150, 150);
+  }
+
+  
+  .newAlbumItem > input {
+    height: 30px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
+  
+  .newAlbumSelect{
+      height: 40px;
+      border-radius: 5px;
+  }
+  
+  .btn-primary{
+      width: 200px;
+      border: none;
+      background-color: darkblue;
+      color: white;
+      padding: 10px 20px;
+      font-weight: 600;
+      border-radius: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20px;
+      cursor: pointer;
+  }

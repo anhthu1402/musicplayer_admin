@@ -1,0 +1,144 @@
+.signinContainer {
+    width: 90%;
+    max-width: 700px;
+    margin: auto;
+    justify-content: center;
+    margin-bottom: 90px;
+  }
+  .signinContainer h1 {
+    color: #ff7394;
+    font-weight: bolder;
+    font-size: xx-large;
+    margin: 5% auto;
+    text-align: center;
+  }
+  .signinGoogle {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background: #e4e4e4;
+    padding: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+  }
+  .signinGoogle .signinIcon {
+    margin-right: 10px;
+  }
+  .signinGoogle a,
+  .signinGoogle a:visited {
+    color: black;
+  }
+  .signinGoogle:hover,
+  .signinGoogle a:hover {
+    background: #ebebeb;
+    color: gray;
+  }
+  .dividingLine {
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+  }
+  .dividingLine span {
+    display: inline-block;
+  }
+  .dividingLine span:before,
+  .dividingLine span:after {
+    border-top: 1px groove rgb(204, 204, 204);
+    display: block;
+    content: " ";
+    width: 35%;
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+  }
+  .dividingLine span:after {
+    right: 0;
+    left: auto;
+  }
+  .signinForm {
+    margin-top: 20px;
+    width: 100%;
+  }
+  .signinForm .div1 {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: #f5f5f5;
+    padding: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+  }
+  .signinForm .div1 .signinIcon {
+    margin: auto 20px auto 10px;
+  }
+  .signinForm .div1 div {
+    width: 100%;
+  }
+  .signinForm .div1 p {
+    font-size: small;
+  }
+  .signinForm .div1 input,
+  .signinForm .div1 input:focus,
+  .signinForm .div1 input:active,
+  .signinForm .div1 input:-webkit-autofill,
+  .signinForm .div1 input:-webkit-autofill:hover,
+  .signinForm .div1 input:-webkit-autofill:focus,
+  .signinForm .div1 input:-webkit-autofill:active {
+    border: none;
+    width: 100%;
+    height: 23px;
+    background-color: transparent;
+    -webkit-box-shadow: 0 0 0 30px #f5f5f5 inset !important;
+    font-size: medium;
+    width: 100%;
+  }
+  .showHideIcon {
+    border: none;
+    background-color: transparent;
+  }
+  .signinForm .div3 {
+    margin: -10px 0 40px 0;
+  }
+  .signinForm .div3 div {
+    display: flex;
+  }
+  .signinForm .div3 div > p {
+    margin-left: 10px;
+  }
+  .signinForm .div3 > p {
+    float: right;
+    font-style: italic;
+  }
+  .signinForm .div3 a,
+  .signinForm .div3 a:visited {
+    color: #ff7394;
+  }
+  .signinForm .div3 a:hover {
+    color: #ffb0c3;
+  }
+  input.submitSignin {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background: #ff7394;
+    padding: 17px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: large;
+  }
+  .submitSignin {
+    cursor: pointer;
+  }
+  input.submitSignin a,
+  input.submitSignin a:visited {
+    color: white;
+  }
+  input.submitSignin:hover {
+    background-color: #ffb0c3;
+  }

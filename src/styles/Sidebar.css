@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka&family=Open+Sans&display=swap");
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background-color: #ffdde5;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #86a7ff;
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+}
+
+.sidebar-header h2 {
+  font-family: "Fredoka", sans-serif;
+  font-style: normal;
+  font-weight: 642;
+  line-height: 39px;
+  font-size: 1.8em;
+  color: #86a7ff;
+  font-stretch: 105;
+  text-shadow: white 2px 2px 0px, 2px 0 0 white;
+}
+
+.sidebar-header img {
+  margin-right: 1.2rem;
+}
+
+.sidebar-item {
+  padding: 1em 1em;
+  display: block;
+  transition: background-color 0.15s;
+  border-radius: 5px;
+}
+
+.sidebar-item:hover {
+  background-color: rgba(200, 139, 139, 0.1);
+}
+
+.sidebar-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 0.5rem;
+}
+.sidebar-link,
+.sidebar-item.plain span {
+  display: flex;
+  font-size: 1.2rem;
+  align-items: center;
+  flex-direction: row;
+  text-decoration: none;
+}
+
+.sidebar-item.plain span svg,
+.sidebar-title span svg {
+  margin-right: 1rem;
+}
+
+.sidebar-title .toggle-button {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.sidebar-item.open > .sidebar-title .toggle-button {
+  transform: rotate(180deg);
+}
+.sidebar-content {
+  padding-top: 0.25em;
+  height: 0;
+  overflow: hidden;
+}
+.sidebar-item.open > .sidebar-content {
+  height: auto;
+  padding-top: 0.5em;
+}
+
+.sidebar-item.plain {
+  color: black;
+  text-decoration: none;
+  padding-left: 1.5rem;
+}
+
+#active {
+  background-color: #fff0f4;
+  border-left: 6px solid #eea3a3;
+}
+.sidebar a:last-child {
+  bottom: 0;
+}

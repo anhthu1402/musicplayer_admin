@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;700&display=swap");
+.totalHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+.totalHeader h1 {
+  margin-right: 25px;
+  font-family: "Josefin Sans", sans-serif;
+}
+.totalHeader button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.totalSubHeader button {
+  background-color: transparent;
+  margin: 20px 0;
+  font-size: 1.2rem;
+  font-family: "Josefin Sans", sans-serif;
+  border: none;
+  cursor: pointer;
+}
+.totalSubHeader {
+  width: 180px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.indexPlaylist {
+  width: 80px;
+  margin-left: 110px;
+}
+.indexSong {
+  width: 70px;
+}
+
+
+.lp-tab-content,
+.lp-tab-content * {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.lp-tab-content {
+  width: 100%;
+}
+
+/* Style the tab */
+
+.lp-tab-content > .tab {
+  overflow: hidden;
+}
+
+/* Style the buttons that are used to open the tab content */
+
+.lp-tab-content > .tab > .tab-link {
+  background-color: inherit;
+  font-size: 1rem;
+  float: left;
+  border: none;
+  
+  outline: none;
+  cursor: pointer;
+  color: #444;
+  border-radius: 0;
+  margin: 0;
+  padding: 1rem 1rem;
+  transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+}
+
+/* Change background color of buttons on hover */
+
+.lp-tab-content > .tab > .tab-link:hover {
+
+}
+
+/* Create an active/current tablink class */
+
+.lp-tab-content > .tab > .tab-link.active {
+}
+
+.lp-tab-content > .tab-content-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Style the tab content */
+
+.lp-tab-content > .tab-content-wrapper > .tab-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 6px 12px;
+  background-color: #fff;
+  max-height: 0;
+  overflow: hidden;
+}
