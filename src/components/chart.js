@@ -1,23 +1,20 @@
-import "../styles/chart.css"
-import {
-    DollarCircleOutlined,
-    ShoppingCartOutlined,
-    ShoppingOutlined,
-    UserOutlined,
-  } from "@ant-design/icons";
+import "../styles/chart.css";
+// import {
+//     DollarCircleOutlined,
+//     ShoppingCartOutlined,
+//     ShoppingOutlined,
+//     UserOutlined,
+//   } from "@ant-design/icons";
 import { Card, Space, Statistic, Table, Typography } from "antd";
 import {
-    LineChart,
-    Line,
-    XAxis,
-    CartesianGrid,
-    Tooltip,
-    ResponsiveContainer,
-  } from "recharts";
-  import {
-    AreaChart,
-    Area,
-  } from "recharts";
+  LineChart,
+  Line,
+  XAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+import { AreaChart, Area } from "recharts";
 import { UsersData } from "./UserData";
 import {ArtistsData} from "./ArtistsData"
 import { NullableBooleanInputClasses } from "react-admin";
@@ -31,10 +28,25 @@ function DashboardCard({ title, value, icon }) {
       </Card>
     );
   }
-export default function Chart({ title, data, name, dataKey, grid }){
+function Chart({ title, data, name, dataKey, grid }){
     return (
         <div>
             {/* <Space direction="horizontal">
+=======
+  return (
+    <Card>
+      <Space direction="horizontal">
+        {icon}
+        <Statistic title={title} value={value} />
+      </Space>
+    </Card>
+  );
+}
+function Chart({ title, data, name, dataKey, grid }) {
+  return (
+    <div>
+      {/* <Space direction="horizontal">
+>>>>>>> d55d7f4a39cb0e39f77c5e4a9f919ff8fb9402da
                 <DashboardCard
                 icon={
                     <ShoppingCartOutlined
@@ -96,24 +108,28 @@ export default function Chart({ title, data, name, dataKey, grid }){
                 value={revenue}
                 />
             </Space> */}
-            <div className="chart">
-            <h3 className="chartTitle">{title}</h3>
-            <ResponsiveContainer width="100%" aspect={2/1}>
-                <LineChart data={data} >
-                    <XAxis dataKey={name} stroke="#5550bd" />
-                    <CartesianGrid stroke="#e0dfdf" strokeDasharray="5 5" />
-                    <Tooltip />
-                    <Line type="monotone" dataKey={dataKey} stroke="#483D88" strokeDasharray="3 4 5 2"  />
-                    {/* <Line type="monotone" dataKey={dataKey} stroke="#483D88" /> */}
-                    {/* {grid && <CartesianGrid stroke="#e0dfdf" strokeDasharray="5 100000" />} */}
-
-                </LineChart>
-            </ResponsiveContainer>
-        </div>
-        </div>
-        
-    )
+      <div className="chart">
+        <h3 className="chartTitle">{title}</h3>
+        <ResponsiveContainer width="100%" aspect={2 / 1}>
+          <LineChart data={data}>
+            <XAxis dataKey={name} stroke="#5550bd" />
+            <CartesianGrid stroke="#e0dfdf" strokeDasharray="5 5" />
+            <Tooltip />
+            <Line
+              type="monotone"
+              dataKey={dataKey}
+              stroke="#483D88"
+              strokeDasharray="3 4 5 2"
+            />
+            {/* <Line type="monotone" dataKey={dataKey} stroke="#483D88" /> */}
+            {/* {grid && <CartesianGrid stroke="#e0dfdf" strokeDasharray="5 100000" />} */}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
 }
+export default Chart
 // export const ChartLineArtist= () =>{
 //     const labels = [ArtistsData.artistName];
 //     const data={
@@ -142,13 +158,14 @@ export default function Chart({ title, data, name, dataKey, grid }){
 //     )
 // }
 
+
 // const Chart = ({ aspect, title, dataKey, data, name }) => {
 //     return (
 //       <div className="chart">
 //         <div className="title">{title}</div>
 //         <ResponsiveContainer width="100%" aspect={aspect}  >
 //           <AreaChart
-//             width={730}
+//             width<<<<<<<={730}
 //             height={250}
 //             data={data}
 //             margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
@@ -157,7 +174,7 @@ export default function Chart({ title, data, name, dataKey, grid }){
 //               <linearGradient id={dataKey} x1="0" y1="0" x2="0" y2="1">
 //                 <stop offset="5%" stopColor="#8884d8" stopOpacity={0.5} />
 //                 <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-               
+
 //               </linearGradient>
 //             </defs>
 //             <XAxis dataKey={name} stroke="gray"  />
@@ -177,5 +194,5 @@ export default function Chart({ title, data, name, dataKey, grid }){
 //       </div>
 //     );
 //   };
-  
+
 //   export default Chart;

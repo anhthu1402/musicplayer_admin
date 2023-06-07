@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css";
 import SideBar from "./components/SideBar";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Total from "./pages/Total";
@@ -13,15 +13,15 @@ import NewArtist from "./components/NewArtist";
 import NewSong from "./components/NewSong";
 import NewUser from "./components/NewUser";
 import NewAlbum from "./components/NewAlbum";
-import "./components/nsong.cshtml"
-import Switch from '@mui/material/Switch';
+import "./components/nsong.cshtml";
+import Switch from "@mui/material/Switch";
 import SignUp from "./components/SignUp";
 import DetailsUser from "./components/DetailUser";
 
 function App() {
   return (
     <div className="main">
-    <Router>
+      <Router>
         <SideBar />
       <div>
       {/* <Header className="header"/> */}
@@ -45,8 +45,7 @@ function App() {
       </div>
     </Router>
 
-  </div>
-
+  </div>   
   );
 }
 
