@@ -87,7 +87,7 @@ function NewSong() {
   return (
     <div className="newSong" >
       <h1 className="newSongTitle">Thêm bài hát mới</h1>
-      <form className="newSongForm" id="form-id">
+      <form className="newSongForm" id="form-id" action="~/admin/Ql_BaiHat/ThemBaiHat" method="POST">
         <div className="newSongItem">
           <label>Tên bài hát</label>
           <input type="text" placeholder="" />
@@ -97,7 +97,7 @@ function NewSong() {
           <select className="newSongSelect" name="active" id="active" multiple={3}>
                 {ArtistsData.map((child,index)=>{
                                 return (
-                                  <option key={index} item={child}>
+                                  <option key={index} item={child} value= {child.artistName}>
                                     {child.artistName}
                                   </option>
                 );})}

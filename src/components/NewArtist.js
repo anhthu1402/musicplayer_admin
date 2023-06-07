@@ -61,17 +61,17 @@ const NewArtist = ({ closeModal, onSubmit, defaultValue }) =>{
           <input type="file" id="linkimage" onChange={handleChange} value={formState.artistImage}/>
           <span asp-validation-for="artistImage" class="text-danger"></span>
         </div>
-        <div className="newArtistItem">
-          <label>Gender</label>
-          <div className="newArtistGender">
-            <input type="radio" name="gender" id="male" value="male" />
-            <label for="male">Male</label>
-            <input type="radio" name="gender" id="female" value="female" />
-            <label for="female">Female</label>
-            <input type="radio" name="gender" id="other" value="other" />
-            <label for="other">Other</label>
-          </div>
-        </div> 
+      {/* <div className="newArtistItem">
+        <label>Gender</label>
+        <div className="newArtistGender">
+          <input type="radio" name="gender" id="male" value="male" />
+          <label for="male">Male</label>
+          <input type="radio" name="gender" id="female" value="female" />
+          <label for="female">Female</label>
+          <input type="radio" name="gender" id="other" value="other" />
+          <label for="other">Other</label>
+        </div>
+      </div>  */}
         {errors && <div className="error">{`Please include: ${errors}`}</div>}  
         <button className="newArtistButton" onClick={handleSubmit}>Create</button>
       </form>

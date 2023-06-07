@@ -12,11 +12,15 @@ function NewAlbum() {
           <input type="text" placeholder="" />
         </div>
         <div className="newAlbumItem">
+          <label>Số lượng bài hát</label>
+          <input type="text" placeholder="" />
+        </div>
+        <div className="newAlbumItem">
           <label>Tên bài hát</label>
           <select className="newAlbumSelect" name="active" id="active">
                 {SongData.map((child,index)=>{
                                 return (
-                                  <option key={index} item={child}>
+                                  <option key={index} item={child} value={child.songName}>
                                     {child.songName}
                                   </option>
                 );})}
