@@ -28,7 +28,7 @@ function App() {
       <div style={{ margin: `20px 50px` }}>
         <Routes>
           <Route path="/total" exact Component={Total} />
-          <Route path="/dashboard" exact Component={Dashboard} />
+          <Route path="/" exact Component={Dashboard} />
           <Route path="/songs" exact Component={MSong}/>
           <Route path="/artists" exact Component={MArtist}/>
           <Route path="/albums" exact Component={MAlbum}/>

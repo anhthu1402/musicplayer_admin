@@ -22,7 +22,7 @@ export const SidebarData = [
   // },
   {
     title: "Dashboard",
-    path: "/dashboard",
+    path: "/",
     icon: <LineAxis />,
   },
   {

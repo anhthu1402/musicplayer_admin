@@ -19,6 +19,8 @@ import {
     Area,
   } from "recharts";
 import { UsersData } from "./UserData";
+import {ArtistsData} from "./ArtistsData"
+import { NullableBooleanInputClasses } from "react-admin";
 function DashboardCard({ title, value, icon }) {
     return (
       <Card>
@@ -29,7 +31,7 @@ function DashboardCard({ title, value, icon }) {
       </Card>
     );
   }
-function Chart({ title, data, name, dataKey, grid }){
+export default function Chart({ title, data, name, dataKey, grid }){
     return (
         <div>
             {/* <Space direction="horizontal">
@@ -112,7 +114,33 @@ function Chart({ title, data, name, dataKey, grid }){
         
     )
 }
-export default Chart
+// export const ChartLineArtist= () =>{
+//     const labels = [ArtistsData.artistName];
+//     const data={
+//         labels: labels,
+//         datasets: [
+//             {
+//                 label: "Lượt theo dõi",
+//                 backgroundcolor: "blue",
+//                 borderColor: 'blue',
+//                 data: [ArtistsData.numberOfFollower]
+//             }
+//         ]
+//     }
+//     const config  ={
+//         type:'line',
+//         data: data,
+//     }
+//     const canvas = document.getElementById('canvas')
+//     new chart = new Chart(canvas, config)
+//     return(
+//         <div>
+//             <div class="Title">Nghệ sĩ</div>
+//             <canvas id="canvas"></canvas>
+//         </div>
+      
+//     )
+// }
 
 // const Chart = ({ aspect, title, dataKey, data, name }) => {
 //     return (
