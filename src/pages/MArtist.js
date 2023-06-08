@@ -140,7 +140,10 @@ const MArtist = () => {
                       >
                         <Preview />
                       </IconButton> */}
-                      <button className="artistListView" onClick={(handleClickOpens,selectRow)=>setShowData({ fimage:selectRow.imageArtist, fname:selectRow.nameArtist,ffolow:selectRow.numberOfFollower})}>View</button>
+                      <Link to={`/artistDetail/${params.artistName}`} state={params.id}>
+                         <button className="artistListView" onClick={(handleClickOpens,selectRow)=>setShowData({ fimage:selectRow.imageArtist, fname:selectRow.nameArtist,ffolow:selectRow.numberOfFollower})}>View</button>
+                      </Link>
+                      
                       <button className="artistListEdit" onClick={() => handleEditRow()}>Edit</button>
                       <DeleteOutline className='artistListDelete'  onClick={() => handleDelete(params.row.id)}  />
                       {/* onClick={() => handleDelete(params.row, currentUser, dispatch)} */}

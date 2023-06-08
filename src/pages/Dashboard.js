@@ -10,8 +10,31 @@ import {UsersData} from "../components/UserData"
 import {ArtistsData} from "../components/ArtistsData"
 import {SongData} from "../components/SongData"
 import {AlbumData} from "../components/AlbumData"
+import { BarChart, Label, ResponsiveContainer, XAxis, YAxis, Bar, Tooltip } from "recharts";
+import {CanvasJSChart} from 'canvasjs-react-charts'
+import { DataArray, Dataset } from "@mui/icons-material";
+import { render } from "@testing-library/react";
 
 function Dashboard() {
+    
+    // var CanvasJS = CanvasJSReact.CanvasJS;
+    // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+    const [data, setData] = useState(ArtistsData);
+    // const rows= ArtistsData
+	// const options = {
+	// 		title: {
+	// 			text: "Basic Column Chart"
+	// 		},
+	// 		data: [
+	// 		{
+	// 			// Change type to "doughnut", "line", "splineArea", etc.
+	// 			type: "column",
+	// 			dataPoints: [
+    //                 {data}
+    //             ]
+    //         }
+	// 		]
+	// }
     return (
         <div className="dashboard">
             <div className="widgets">
@@ -21,9 +44,59 @@ function Dashboard() {
                 <Widget type="album" />
             </div>
             <div className="charts">
+                <div>
+                <h3 className="chartTitle" style={{marginLeft:"auto", marginRight:"auto", alignContent:"center"}}>Artist Analytics</h3>
+                <ResponsiveContainer width="100%" aspect={3/1} >
+                    <BarChart data={data} width={500} height={500}>
+                      <XAxis dataKey="artistName" />
+                      <YAxis/>
+                      <Tooltip/>
+                      <Bar dataKey="numberOfFollower" fill="#483D88"></Bar>
+                    </BarChart>
+                </ResponsiveContainer>
+                </div>
+                {/* <div className="k-card">
+                    <Chart
+                        style={{
+                        height: 350,
+                        }}
+                    >
+                        <ChartTitle text="Line Chart" />
+                        <ChartLegend position="top" orientation="horizontal" />
+                        <ChartCategoryAxis>
+                        <ChartCategoryAxisItem  startAngle={45} >
+                            {ArtistsData.map((index,child) => (
+                                <ChartSeriesItem
+                                key={index}
+                                type="line"
+                                tooltip={{
+                                    visible: true,
+                                }}
+                                data={child.artistName}
+                                // name={item.name}
+                                />
+                            ))}
+                        </ChartCategoryAxisItem>
+                        </ChartCategoryAxis>
+                        <ChartSeries>
+                        {ArtistsData.map((index,child) => (
+                            <ChartSeriesItem
+                            key={index}
+                            type="line"
+                            tooltip={{
+                                visible: true,
+                            }}
+                            data={child.numberOfFollower}
+                            // name={item.name}
+                            />
+                        ))}
+                        </ChartSeries>
+                    </Chart>
+                </div> */}
+                {/* <CanvasJSChart options = {options}/> */}
                 {/* <Chart data={UsersData} title="User Analytics" name="" grid dataKey="Active User"/> */}
                 {/* <Chart data={SongData} name="songName" grid dataKey="" title="Song Analytics"/> */}
-                <Chart data={ArtistsData} name="artistName" grid dataKey="numberOfFollower" title="Artist Analytics"  aspect={2 / 1} />
+                {/* <Chart data={ArtistsData} name="artistName" grid dataKey="numberOfFollower" title="Artist Analytics"  aspect={3 / 1} /> */}
                 {/* <Chart data={AlbumData} grid dataKey="" title="Album Analytics"/> */}
             </div>
         </div>

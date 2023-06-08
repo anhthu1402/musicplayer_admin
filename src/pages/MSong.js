@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Avatar, Box, Button, IconButton, Tooltip, Typography} from '@mui/material';
 import { DataGrid, gridClasses, GridToolbar, selectedGridRowsCountSelector } from '@mui/x-data-grid';
 import { SongData } from "../components/SongData";
-import SongItem from "../components/SongItem";
 import "../styles/msong.css";
 //import "./components/nsong.cshtml";
 import { Link } from 'react-router-dom';
@@ -171,7 +170,7 @@ const MSong = () => {
         <div className="songList">
             <div className='button'>
                 <h1 className=' songName'>Bài hát</h1>
-                <Link to="/newSong">
+                <Link to={"/newsong"}>
                     <button className='songButtton'>
                         {/* <span><AddIcon style={{size:'1rem'}}></AddIcon></span> */}
                         <span>Thêm mới</span>

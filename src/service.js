@@ -1,9 +1,13 @@
 import { PlaylistData } from "./components/PlaylistData";
 import { AlbumData } from "./components/AlbumData";
 import { UserData } from "./components/UserData";
+import { ArtistsData } from "./components/ArtistsData";
 
 export const getPlaylistDetail = (playlistId) => {
   return PlaylistData.find((playlist) => playlist.id === playlistId);
+};
+export const getArtistDetail = (artistId) => {
+  return ArtistsData.find((artist) => artist.id === artistId);
 };
 
 export const getAlbumDetail = (albumId) => {

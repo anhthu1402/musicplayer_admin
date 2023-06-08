@@ -17,7 +17,8 @@ import "./components/nsong.cshtml";
 import SignUp from "./components/SignUp";
 import DetailsUser from "./components/DetailUser";
 import { Switch } from "@mui/material";
-
+import UpLoadSong from "./components/UpLoadSong";
+import ArtistDetail from "./components/ArtistDetail";
 function App() {
   return (
     <div className="main">
@@ -37,8 +38,10 @@ function App() {
               <Route path="/signUp" exact element={SignUp} />
               <Route path="/newArtist" exact Component={NewArtist} />
               <Route path="/newSong" exact Component={NewSong} />
+              <Route path="/upload" exact element={UpLoadSong} />
               <Route path="/newUser" exact Component={NewUser} />
               <Route path="/users/:id" exact Component={DetailsUser} />
+              <Route path="/artistDetail/${item.artistName}" exact Component={ArtistDetail}/> 
               <Route path="/newAlbum" exact Component={NewAlbum} />
             </Routes>
           </div>
