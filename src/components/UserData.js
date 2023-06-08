@@ -2,74 +2,47 @@ export const UsersData = [
     {
         id: 1,
         userName: "linh",
-        fullName: "Trương Thị Mỹ Linh",
-        image: "onlylove.jpg",
-        sdt:"089978438",
-        mail: "linh@gmail.com",
+        password: "abcd123"
     },
     {
         id: 2,
         userName: "hahoang",
-        fullName: "Hoàng Thị Hà",
-        image: "onlylove.jpg",
-        sdt:"089978437",
-        mail: "hoangha@gmail.com",
+        password: "abcd123"
     },
     {
         id: 3,
-        fullName: "Aris Duni",
         userName: "aris",
-        image: "onlylove.jpg",
-        sdt:"089978439",
-        mail: "aris@email.com",
+        password: "abcd123"
     },
     {
         id: 4,
         userName: "linh",
-        fullName: "Trương Thị Mỹ Linh",
-        image: "onlylove.jpg",
-        sdt:"089978438",
-        mail: "linh@gmail.com",
+        password: "abcd123"
     },
     {
         id: 5,
         userName: "hahoang",
-        fullName: "Hoàng Thị Hà",
-        image: "onlylove.jpg",
-        sdt:"089978437",
-        mail: "hoangha@gmail.com",
+        password: "abcd123"
     },
     {
         id: 6,
-        fullName: "Aris Duni",
         userName: "aris",
-        image: "onlylove.jpg",
-        sdt:"089978439",
-        mail: "aris@email.com",
+        password: "abcd123"
     },
     {
         id: 7,
         userName: "linh",
-        fullName: "Trương Thị Mỹ Linh",
-        image: "onlylove.jpg",
-        sdt:"089978438",
-        mail: "linh@gmail.com",
+        password: "abcd123"
     },
     {
         id: 8,
         userName: "hahoang",
-        fullName: "Hoàng Thị Hà",
-        image: "onlylove.jpg",
-        sdt:"089978437",
-        mail: "hoangha@gmail.com",
+        password: "abcd123"
     },
     {
         id: 9,
-        fullName: "Aris Duni",
         userName: "aris",
-        image: "onlylove.jpg",
-        sdt:"089978439",
-        mail: "aris@email.com",
+        password: "abcd123"
     }
     
 ]

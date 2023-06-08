@@ -27,39 +27,19 @@ const MUser = () => {
     // }
     const handleDelete = (id) => {
         alert("Bạn chắc chắn xóa");
-        setData(data.filter((item) => item.id !== id));
-        
-      };
+        setData(data.filter((item) => item.id !== id));  
+    };
     const columns=[
         {
             field:"id",
             headerName: "ID",
-            width: 50,
-        },
-        {
-          field:"image",
-          headerName: "Hình ảnh",
-          width: 100,
-          editable: true,
-          renderCell: (params) => {
-              return(
-                  <div >
-                    <img className="userListImg"
-                      src={require("../assets/" + params.row.image)}
-                      alt={params.row.name}
-                      width={70}
-                      height={70}
-                    />
-                  </div>
-              )
-          }
-          
+            width: 150,
         },
         {
             field: "userName",
             headerName: "Tên người dùng",
-            width: 150,
-            editable: true,
+            width: 300,
+            // editable: true,
             renderCell: (params) => {
                 return(
                     <div className="userListUser">
@@ -70,61 +50,29 @@ const MUser = () => {
             
         }, 
         {
-            field: "fullName",
-            headerName: "Tên đầy đủ",
-            width: 200,
-            editable: true,
+            field: "password",
+            headerName: "Mật khẩu",
+            width: 300,
+            // editable: true,
             renderCell: (params) => {
                 return(
                     <div className="userListUser">
-                        {params.row.fullName}
+                        {params.row.password}
                     </div>
                 )
             }
             
         }, 
         {
-            field: "mail",
-            headerName: "Mail",
-            width: 200,
-            editable: true,
-            renderCell: (params) => {
-                return(
-                    <div>
-                        {params.row.mail}
-                    </div>
-                )
-            }
-            
-        },
-        {
-            field: "sdt",
-            headerName: "Số điện thoại",
-            width: 100,
-            editable: true,
-            renderCell: (params) => {
-                return(
-                    <div style={{textAlign:'center'}}>
-                        {params.row.sdt}
-                    </div>
-                )
-            }
-            
-        },
-        
-        {
             field:"action",
             headerName: "Action",
-            width: 250,
+            width: 300,
             renderCell: (params) => {
                 return(
                     <>
-                        <Link to={"/user/" + params.row.id}>
-                            <button className="userListEdit">Edit</button>
-                        </Link>
                         <DeleteOutline
                             className="userListDelete"
-                            onClick={() => handleDelete(params.row.id)}
+                            onClick={() => handleDelete(params.row.id)} 
                         />
                     </>
                 )
@@ -144,8 +92,9 @@ const MUser = () => {
             </div>
             <Box m="40px 0 0 0" height="75vh">
                 <DataGrid
-                    rows = {rows}
+                    rows = {data}
                     disableSelectionOnClick
+                    // getRowId={(rowSelection) => rows.id}
                     columns={columns}
                     pageSize={8}
                     initialState={{
@@ -155,6 +104,8 @@ const MUser = () => {
                     checkboxSelection
                     components={{ Toolbar: GridToolbar }}
                     // isCellEditable={(params)}
+                    // onRowSelectionModelChange={(data)=>{console.log(data);}}
+                    // rowSelection={handleDelete}
                     selectedGridRowsCountSelector={handleDelete}
                 />
             </Box>

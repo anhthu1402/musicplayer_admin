@@ -175,7 +175,7 @@ const MAlbum = () => {
             </div>
             <Box m="40px 0 0 0" height="75vh">
                 <DataGrid
-                    rows = {rows}
+                    rows = {data}
                     disableSelectionOnClick
                     columns={columns}
                     pageSize={8}
