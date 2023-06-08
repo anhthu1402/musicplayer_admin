@@ -1,16 +1,12 @@
 import React from "react";
 import InputSearch from "./InputSearch";
-import SettingsIcon from "@mui/icons-material/Settings";
 import "../styles/Header.css";
 import { Link } from "react-router-dom";
 import { Box, Button, TextField, Toolbar } from "@mui/material";
 import Popup from "reactjs-popup";
-// import "reactjs-popup/dist/index.css";
 import { useRef } from "react";
 import { EditOutlined, LogoutOutlined } from "@mui/icons-material";
 import { useState } from "react";
-import { useContext } from "react";
-// import NotificationContext from "../NotificationContext";
 import { changeUserName, showNotification } from "../service";
 
 function Header() {

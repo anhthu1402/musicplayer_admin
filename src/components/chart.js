@@ -15,23 +15,24 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { AreaChart, Area } from "recharts";
+
 import { UsersData } from "./UserData";
-import {ArtistsData} from "./ArtistsData"
+import { ArtistsData } from "./ArtistsData";
 import { NullableBooleanInputClasses } from "react-admin";
 function DashboardCard({ title, value, icon }) {
-    return (
-      <Card>
-        <Space direction="horizontal">
-          {icon}
-          <Statistic title={title} value={value} />
-        </Space>
-      </Card>
-    );
-  }
-function Chart({ title, data, name, dataKey, grid }){
-    return (
-        <div>
-            {/* <Space direction="horizontal">
+  return (
+    <Card>
+      <Space direction="horizontal">
+        {icon}
+        <Statistic title={title} value={value} />
+      </Space>
+    </Card>
+  );
+}
+function Chart({ title, data, name, dataKey, grid }) {
+  return (
+    <div>
+      {/* <Space direction="horizontal">
 =======
   return (
     <Card>
@@ -129,7 +130,7 @@ function Chart({ title, data, name, dataKey, grid }) {
     </div>
   );
 }
-export default Chart
+export default Chart;
 // export const ChartLineArtist= () =>{
 //     const labels = [ArtistsData.artistName];
 //     const data={
@@ -154,10 +155,9 @@ export default Chart
 //             <div class="Title">Nghệ sĩ</div>
 //             <canvas id="canvas"></canvas>
 //         </div>
-      
+
 //     )
 // }
-
 
 // const Chart = ({ aspect, title, dataKey, data, name }) => {
 //     return (
