@@ -15,9 +15,14 @@ import {
 const MAlbum = () => {
     const [data, setData] = useState(AlbumData);
     const rows = AlbumData;
-    const handleDelete =(id) => {
+    // const handleDelete =(id) => {
+    //     setData(data.filter((item) => item.id !== id));
+    // }
+    const handleDelete = (id) => {
+        alert("Bạn chắc chắn muốn xóa");
         setData(data.filter((item) => item.id !== id));
-    }
+    };
+   
     const columns=[
         {
             field:"id",
@@ -151,7 +156,7 @@ const MAlbum = () => {
                     <>
                         <button className="artistListView">View</button>
                         <button className="albumListEdit">Edit</button>
-                        <DeleteOutline className='albumListDelete'/>
+                        <DeleteOutline className='albumListDelete'onClick={() => handleDelete(params.row.id)}/>
                     </>
                 )
             }
@@ -180,6 +185,7 @@ const MAlbum = () => {
                       }}
                     checkboxSelection
                     components={{ Toolbar: GridToolbar }}
+                    selectedGridRowsCountSelector={handleDelete}
                 />
             </Box>
             

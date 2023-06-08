@@ -42,7 +42,7 @@ export const ArtistsData = [
     numberOfFollower: "927.713",
   },
   {
-    id: 7,
+    id: 8,
     artistName: "IU",
     artistImage: "ns1.jpg",
     numberOfFollower: "927.713",

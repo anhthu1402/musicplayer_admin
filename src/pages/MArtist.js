@@ -24,6 +24,12 @@ import {
   DateField,
   required,
 } from 'react-admin';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Alert from '@mui/material/Alert';
 //import { CreateDialog } from '@react-admin/ra-form-layout';
 
 // const ArtistForm = (props) => (
@@ -47,6 +53,8 @@ const MArtist = () => {
   const [data, setData] = useState(ArtistsData);
   const rows = ArtistsData;
   const [updateState, setUpdateState]=useState({});
+  const [showData, setShowData] = useState(ArtistsData);
+  const [opens, setOpens] = React.useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [rowToEdit, setRowToEdit] = useState(null);
   const handleEditRow = (idx) => {
@@ -54,8 +62,16 @@ const MArtist = () => {
 
     setModalOpen(true);
   };
+  const handleClickOpens=()=>{
+      setOpens(true);
+  }
+  const handleCloses=()=>{
+    setOpens(false);
+}
   const handleDelete = (id) => {
+    alert("Bạn chắc chắn xóa");
     setData(data.filter((item) => item.id !== id));
+    
   };
 
   const columns=[
@@ -74,7 +90,7 @@ const MArtist = () => {
                 <div style={{alignItems:'center'}}>
                   <img className="artistListImg" 
                     src={require("../assets/" + params.row.artistImage)}
-                    alt={params.row.artistImage}
+                    alt={params.row.artistName}
                     width={70}
                     height={70}
                   />
@@ -124,7 +140,7 @@ const MArtist = () => {
                       >
                         <Preview />
                       </IconButton> */}
-                      <button className="artistListView">View</button>
+                      <button className="artistListView" onClick={(handleClickOpens,selectRow)=>setShowData({ fimage:selectRow.imageArtist, fname:selectRow.nameArtist,ffolow:selectRow.numberOfFollower})}>View</button>
                       <button className="artistListEdit" onClick={() => handleEditRow()}>Edit</button>
                       <DeleteOutline className='artistListDelete'  onClick={() => handleDelete(params.row.id)}  />
                       {/* onClick={() => handleDelete(params.row, currentUser, dispatch)} */}
@@ -175,6 +191,42 @@ const MArtist = () => {
               defaultValue={rowToEdit !== null && rows[rowToEdit]}
             />
           )}
+          <Dialog
+          open={opens}
+          onClose={handleCloses}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          maxWidth={'lg'}>
+            <DialogTitle id="alert-dialog-title">
+              {"View Artist Data"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                <table id="viewTable" style={{border:"1px solid black", width:"800px"}}>
+                  <thead>
+                    <tr>
+                      <th>Ảnh</th>
+                      <th>Tên nghệ sĩ</th>
+                      <th>Lượt theo dõi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>{showData.fimage}</th>
+                      <th>{showData.fname}</th>
+                      <th>{showData.ffolow}</th>
+                    </tr>
+                  </tbody>
+                </table>
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleCloses}>Disagree</Button>
+              <Button onClick={handleCloses} autoFocus>
+                Agree
+              </Button>
+            </DialogActions>
+          </Dialog>
           </div>
       </div>
   )

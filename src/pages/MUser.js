@@ -18,13 +18,18 @@ import { useRecordSelection } from "react-admin";
 const MUser = () => {
     const [data, setData] = useState(UsersData);
     const rows = UsersData;
-    const handleDelete =(id) => {
-        // setData(data.filter((item) => item.id !== id));
-        // const newsId = item.id;
-        // this.setState(data => ({
-        //     news: data.news.filter(elm => elm.id !== newsId )
-        // }));
-    }
+    // const handleDelete =(id) => {
+    //     // setData(data.filter((item) => item.id !== id));
+    //     // const newsId = item.id;
+    //     // this.setState(data => ({
+    //     //     news: data.news.filter(elm => elm.id !== newsId )
+    //     // }));
+    // }
+    const handleDelete = (id) => {
+        alert("Bạn chắc chắn xóa");
+        setData(data.filter((item) => item.id !== id));
+        
+      };
     const columns=[
         {
             field:"id",
@@ -150,7 +155,7 @@ const MUser = () => {
                     checkboxSelection
                     components={{ Toolbar: GridToolbar }}
                     // isCellEditable={(params)}
-
+                    selectedGridRowsCountSelector={handleDelete}
                 />
             </Box>
             

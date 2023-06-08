@@ -16,12 +16,17 @@ import {
 const MSong = () => {
     const [data, setData] = useState(SongData);
     const rows = SongData
+    
     // const handleDelete =(id) => {
     //     setData(data.filter((item) => item.id !== id));
     // }
-    const handleDelete = (params) => {
-        selectedGridRowsCountSelector(rows.filter((_,id)=>id !== params));
-    }
+    // const handleDelete = (params) => {
+    //     selectedGridRowsCountSelector(rows.filter((_,id)=>id !== params));
+    // }
+    const handleDelete = (id) => {
+        alert("Bạn chắc chắn xóa");
+        setData(data.filter((item) => item.id !== id));
+    };
     const columns=[
         {
             field:"id",
@@ -141,7 +146,7 @@ const MSong = () => {
                         <Link to="/newSong">
                             <button className="songListEdit">Edit</button>
                         </Link>
-                        <DeleteOutline className='songListDelete' />
+                        <DeleteOutline className='songListDelete' onClick={() => handleDelete(params.row.id)}/>
                     </>
                 )
             }
@@ -178,7 +183,7 @@ const MSong = () => {
                     rows = {rows}
                     disableSelectionOnClick
                     columns={columns}
-                    rowsPerPageOptions={[5,10,20]}
+                    rowsPerPageOptions={[5]}
                     initialState={{
                         ...data.initialState,
                         pagination: { paginationModel: { pageSize: 8 } },
@@ -186,6 +191,7 @@ const MSong = () => {
                     pageSize={8}
                     checkboxSelection
                     components={{ Toolbar: GridToolbar }}
+                    selectedGridRowsCountSelector={handleDelete}
                 />
             </Box>
             
