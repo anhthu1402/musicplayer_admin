@@ -45,13 +45,13 @@ function Dashboard() {
             </div>
             <div className="charts">
                 <div>
-                <h3 className="chartTitle" style={{marginLeft:"auto", marginRight:"auto", alignContent:"center"}}>Artist Analytics</h3>
-                <ResponsiveContainer width="100%" aspect={3/1} >
-                    <BarChart data={data} width={500} height={500}>
-                      <XAxis dataKey="artistName" />
-                      <YAxis/>
-                      <Tooltip/>
-                      <Bar dataKey="numberOfFollower" fill="#483D88"></Bar>
+                <h3 className="chartTitle" >Artist Analytics</h3>
+                <ResponsiveContainer width="100%" aspect={1.5} >
+                    <BarChart data={data} >
+                        <XAxis dataKey="artistName" />
+                        <YAxis/>
+                        <Tooltip/>
+                        <Bar dataKey="numberOfFollower" fill="#ffbccc"></Bar>
                     </BarChart>
                 </ResponsiveContainer>
                 </div>

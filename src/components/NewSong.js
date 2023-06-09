@@ -11,7 +11,6 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
-// import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Select from 'react-select';
 import { Error, PersonRounded } from "@mui/icons-material";
 import Checkbox from '@mui/material/Checkbox';
@@ -20,88 +19,88 @@ import { SongData } from "./SongData";
 import "../styles/newsong.css"
 import { MultiSelect } from "react-multi-select-component";
 function NewSong() {
-  async function uploadFile(file) {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', 'UIT-music-player');
-    formData.append('cloud_name', 'ddtjntpxe');
-    const res = await fetch(
-      'https://api.cloudinary.com/v1_1/ddtjntpxe/upload',
-      {
-        method: 'POST',
-        body: formData,
-      }
-    );
-    const data = await res.json();
-    return data;
-  }
-  var LINKBH;
-  var ANHBH;
-  var LINKANHPN;
+//   async function uploadFile(file) {
+//     const formData = new FormData();
+//     formData.append('file', file);
+//     formData.append('upload_preset', 'UIT-music-player');
+//     formData.append('cloud_name', 'ddtjntpxe');
+//     const res = await fetch(
+//       'https://api.cloudinary.com/v1_1/ddtjntpxe/upload',
+//       {
+//         method: 'POST',
+//         body: formData,
+//       }
+//     );
+//     const data = await res.json();
+//     return data;
+//   }
+//   var LINKBH;
+//   var ANHBH;
+//   var LINKANHPN;
  
-  window.addEventListener("DOMContentLoaded", (event) => {
-    const audio = document.getElementById('linkaudio');
-    if (audio) {
-      audio.addEventListener('change', (e) => {
-        e.preventDefault();
-        Array.from(e.target.files).forEach(async (file) => {
-          if (file.size <= 52428800) {
-            const data = await uploadFile(file);
-            LINKBH = data.url;
-            document.getElementById('linkNhac').value = LINKBH;
-            console.log(document.getElementById('linkNhac').value);
-          } else {
-            alert('Size of this file is so big!!');
-          }
-        });
-      }, false);
-    }
-});
-  window.addEventListener("DOMContentLoaded", (event) => {
-    const image = document.getElementById('linkimage');
-    if (image) {
-      image.addEventListener('change', (e) => {
-        e.preventDefault();
-        Array.from(e.target.files).forEach(async (file) => {
-          if (file.size <= 52428800) {
-                const data = await uploadFile(file);
-                ANHBH = data.url;
-                document.getElementById('linkanhBH').value = ANHBH;
-                  console.log(document.getElementById('linkanhBH').value);
-          } else {
-            alert('Size of this file is so big!!');
-          }
-        });
-      },false);
-    }
-  });
-  window.addEventListener("DOMContentLoaded", (event) => {
-    const imagePN = document.getElementById('linkimagephatnhac');
-    if (imagePN) {
-      imagePN.addEventListener('change', (e) => {
-        e.preventDefault();
-        Array.from(e.target.files).forEach(async (file) => {
-            if (file.size <= 52428800) {
-                const data = await uploadFile(file);
-                console.log(data.url);
-                LINKANHPN = data.url;
-                document.getElementById('linkanhBHPN').value = LINKANHPN;
-                console.log(document.getElementById('linkanhBHPN').value);
-            } else {
-                alert('Size of this file is so big!!');
-            }
-        });
-    },false);
-  }});
-  window.addEventListener("DOMContentLoaded", (event) => {
-    const form = document.getElementById('form-id');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        //e.preventDefault();
-        console.log(e);
-      },false);
-    }
-  });
+//   window.addEventListener("DOMContentLoaded", (event) => {
+//     const audio = document.getElementById('linkaudio');
+//     if (audio) {
+//       audio.addEventListener('change', (e) => {
+//         e.preventDefault();
+//         Array.from(e.target.files).forEach(async (file) => {
+//           if (file.size <= 52428800) {
+//             const data = await uploadFile(file);
+//             LINKBH = data.url;
+//             document.getElementById('linkNhac').value = LINKBH;
+//             console.log(document.getElementById('linkNhac').value);
+//           } else {
+//             alert('Size of this file is so big!!');
+//           }
+//         });
+//       }, false);
+//     }
+// });
+//   window.addEventListener("DOMContentLoaded", (event) => {
+//     const image = document.getElementById('linkimage');
+//     if (image) {
+//       image.addEventListener('change', (e) => {
+//         e.preventDefault();
+//         Array.from(e.target.files).forEach(async (file) => {
+//           if (file.size <= 52428800) {
+//                 const data = await uploadFile(file);
+//                 ANHBH = data.url;
+//                 document.getElementById('linkanhBH').value = ANHBH;
+//                   console.log(document.getElementById('linkanhBH').value);
+//           } else {
+//             alert('Size of this file is so big!!');
+//           }
+//         });
+//       },false);
+//     }
+//   });
+//   window.addEventListener("DOMContentLoaded", (event) => {
+//     const imagePN = document.getElementById('linkimagephatnhac');
+//     if (imagePN) {
+//       imagePN.addEventListener('change', (e) => {
+//         e.preventDefault();
+//         Array.from(e.target.files).forEach(async (file) => {
+//             if (file.size <= 52428800) {
+//                 const data = await uploadFile(file);
+//                 console.log(data.url);
+//                 LINKANHPN = data.url;
+//                 document.getElementById('linkanhBHPN').value = LINKANHPN;
+//                 console.log(document.getElementById('linkanhBHPN').value);
+//             } else {
+//                 alert('Size of this file is so big!!');
+//             }
+//         });
+//     },false);
+//   }});
+//   window.addEventListener("DOMContentLoaded", (event) => {
+//     const form = document.getElementById('form-id');
+//     if (form) {
+//       form.addEventListener('submit', (e) => {
+//         //e.preventDefault();
+//         console.log(e);
+//       },false);
+//     }
+//   });
 
   
  
@@ -263,7 +262,7 @@ function NewSong() {
   //         : theme.typography.fontWeightMedium,
   //   };
   // }
-  const [personName, setPersonName] = React.useState(ArtistsData);
+  // const [personName, setPersonName] = React.useState(ArtistsData);
   // const handleChange = (event) => {
   //   const {
   //     target: { value },
@@ -280,26 +279,26 @@ function NewSong() {
     setError(error);
     setShowAlert(true);
   };
-  const handleSubmit = async(e) => {
-    e.preventDefault()
-    let selected = [...recipeRef.current.options]
-                .filter(option => option.selected)
-                .map(option => option.value)
-    console.log(new Date(), ' recipeType: ', selected)
-    console.log(new Date(), 'with ref: ', [...recipeRef.current.options]);
-    [...recipeRef.current.options].map(option => console.log(option,'; ',option.current.selected))
-    console.log([...recipeRef.current.options].filter(option => option.selected))
-    console.log([...recipeRef.current.options].filter(option=>option.selected).map(option => option.value))
-  }
+  // const handleSubmit = async(e) => {
+  //   e.preventDefault()
+  //   let selected = [...recipeRef.current.options]
+  //               .filter(option => option.selected)
+  //               .map(option => option.value)
+  //   console.log(new Date(), ' recipeType: ', selected)
+  //   console.log(new Date(), 'with ref: ', [...recipeRef.current.options]);
+  //   [...recipeRef.current.options].map(option => console.log(option,'; ',option.current.selected))
+  //   console.log([...recipeRef.current.options].filter(option => option.selected))
+  //   console.log([...recipeRef.current.options].filter(option=>option.selected).map(option => option.value))
+  // }
   const recipeRef = useRef();
   const songName = songnameRef.current.value;
   const artistName = artistnameRef.current.value;
   const loibaihat = loibaihatRef.current.value;
-  const thoiluong = thoiluongRef.current.value;
+  const thoiluong = timeLimit;
   const songHandler = () => {
     
     // const names= [{ArtistsData.artistName}];
-    if (!songName || !artistName) {
+    if (!songName) {
       return setAlertError("Vui lòng nhập đầy đủ thông tin!");
     }
     //sign in successfully
@@ -307,11 +306,11 @@ function NewSong() {
     setShowAlert(false);
     navigate("/songs");
   };
-  const name = data.artistName;
+  // const name = data.artistName;
   return (
     <div className="newSong" >
       <h1 className="newSongTitle">Thêm bài hát mới</h1>
-      <form className="newSongForm" id="form-id" action="~/admin/Ql_BaiHat/ThemBaiHat" method="POST" onSubmit={handleSubmit}>
+      <form className="newSongForm" id="form-id" action="~/admin/Ql_BaiHat/ThemBaiHat" method="POST" >
         <div className="newSongItem">
           <label>Tên bài hát</label>
           <TextField id="songname" label="Tên bài hát" variant="outlined" inputRef={songnameRef}/>
@@ -319,10 +318,11 @@ function NewSong() {
         </div>
         <div className="newSongItem">
           <label>Người trình bày</label>
-          <select name="artistname" id="recipeType" ref={recipeRef} multiple={true} size={3}> {/* Step 2 - Add the reference to `select` element */}
+          {/* <select name="artistname" id="artistname" ref={recipeRef} multiple={true} size={3}>  */}
+          <select name="artistname" id="artistname" > 
             {ArtistsData.map((child,index)=>{
                                   return (
-                                  <option key={index} item={child} value={child.artistName}>
+                                  <option key={index} item={child} >
                                     {child.artistName}
                                   </option>
             );})}
@@ -368,17 +368,16 @@ function NewSong() {
               label="Lời bài hát"
               multiline
               rows={4}
-              defaultValue=""
               inputRef={loibaihatRef}
             />
           <span asp-validation-for="LOIBAIHAT" class="text-danger"></span>
         </div>
-        <div className="newSongItem">
+        {/* <div className="newSongItem">
           <label asp-for="THOILUONG" class="control-label">Thời lượng bài hát</label>
-          {/* <input asp-for="THOILUONG" class="form-control" id="THOILUONG" name="THOILUONG" /> */}
+          <input asp-for="THOILUONG" class="form-control" id="THOILUONG" name="THOILUONG" />
           <TextField id="THOILUONG" label="Thời lượng" variant="outlined" inputRef={thoiluongRef}/>
           <span asp-validation-for="THOILUONG" class="text-danger"></span>
-        </div>
+        </div> */}
         
         <div className="newSongLink">
           <label asp-for="LINKBH" class="control-label">Link bài hát</label>

@@ -66,7 +66,7 @@ const Widget = ({ type }) => {
       data = {
         title: "Nghệ sĩ",
         isMoney: true,
-        link: "View net artists",
+        link: "View all artists",
         amount: "10",
         icon: (
           <PersonRounded

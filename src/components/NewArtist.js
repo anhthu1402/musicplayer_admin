@@ -1,6 +1,6 @@
 import "../styles/newartist.css";
 import React, { useState } from "react";
-
+import TextField from '@mui/material/TextField';
 const NewArtist = ({ closeModal, onSubmit, defaultValue }) =>{
   const [formState, setFormState] = useState(
     defaultValue || {
@@ -49,16 +49,16 @@ const NewArtist = ({ closeModal, onSubmit, defaultValue }) =>{
       <form className="newArtistForm">
         <div className="newArtistItem">
           <label htmlFor="artistName">Tên nghệ sĩ</label>
-          <input type="text" placeholder="" onChange={handleChange} value={formState.artistName} />
+          <TextField id="songname" label="Tên bài hát" variant="outlined" />
         </div>
         <div className="newArtistItem">
           <label>Giới thiệu</label>
-          <input type="text" placeholder="" />
+          <TextField  label="Giới thiệu" variant="outlined"  />
         </div>
         <div class="newArtistLink">
           <label asp-for="artistImage" htmlFor="artistImage" class="control-label">Ảnh nghệ sĩ</label>
           <input hidden asp-for="artistImage"  type="text" value="anh" id="linkanhNS" name="ANHNS" />
-          <input type="file" id="linkimage" onChange={handleChange} value={formState.artistImage}/>
+          <input type="file" id="linkimage"/>
           <span asp-validation-for="artistImage" class="text-danger"></span>
         </div>
       {/* <div className="newArtistItem">

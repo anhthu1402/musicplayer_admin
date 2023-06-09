@@ -18,7 +18,7 @@ function ArtistDetail() {
 //   const artistSongs = [];
   return (
     <div>
-      artist && (
+      {artist} && (
         <div className="artistDetail">
           <div className="header">
             <div className="headerDetail">
@@ -61,6 +61,7 @@ function ArtistDetail() {
             </div>
           </div>
     </div>
+  
     </div>
   );
 }

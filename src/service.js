@@ -105,6 +105,6 @@ export const changeUserName = (userId, name) => {
   console.log(userId, name);
 };
 
-export const changeUser = (id, userName) => {
-    console.log(id, userName);
-  };
+export const changeArtist = (playlistId, name) => {
+  console.log(playlistId, name);
+};

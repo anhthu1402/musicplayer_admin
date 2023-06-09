@@ -3,7 +3,7 @@ export const ArtistsData = [
     id: 1,
     artistName: "Trademark",
     artistImage: "ns1.jpg",
-    numberOfFollower: "97.713",
+    numberOfFollower: "197.713",
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const ArtistsData = [
     id: 3,
     artistName: "Cool",
     artistImage: "ns3.jpg",
-    numberOfFollower: "27.713",
+    numberOfFollower: "227.713",
   },
   {
     id: 4,
@@ -25,7 +25,7 @@ export const ArtistsData = [
   },
   {
     id: 5,
-    artistName: "911",
+    artistName: "V",
     artistImage: "ns6.jpg",
     numberOfFollower: "907.713",
   },
@@ -46,5 +46,11 @@ export const ArtistsData = [
     artistName: "IU",
     artistImage: "ns1.jpg",
     numberOfFollower: "927.713",
+  },
+  {
+    id: 9,
+    artistName: "911",
+    artistImage: "ns6.jpg",
+    numberOfFollower: "107.713",
   },
 ];
