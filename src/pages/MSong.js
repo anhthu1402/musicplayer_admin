@@ -3,6 +3,11 @@ import {
   Avatar,
   Box,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   IconButton,
   Tooltip,
   Typography,
@@ -24,20 +29,21 @@ const MSong = () => {
   const [data, setData] = useState(SongData);
   const rows = SongData;
 
-  // const handleDelete =(id) => {
-  //     setData(data.filter((item) => item.id !== id));
-  // }
-  // const handleDelete = (params) => {
-  //     selectedGridRowsCountSelector(rows.filter((_,id)=>id !== params));
-  // }
-
+  const [id, setId] = useState();
+  const [open, setOpen] = useState(false);
   const handleDelete = (id) => {
-    alert("Bạn chắc chắn xóa");
-    setData(data.filter((item) => item.id !== id));
+    setOpen(true);
+    setId(id);
   };
-  //   const handleEdit = (id) => {
-  //     navigate("/editSong/" + id);
-  //   };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleYes = () => {
+    //hàm xóa ở đây
+    console.log(id);
+    setData(data.filter((item) => item.id !== id));
+    setOpen(false);
+  };
   const columns = [
     {
       field: "id",
@@ -152,9 +158,9 @@ const MSong = () => {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/editSong" + params.row.id}>
+            {/* <Link to={"/editSong" + params.row.id}>
               <button className="songListView">View</button>
-            </Link>
+            </Link> */}
             <Link to={"/editSong/" + params.row.songName} state={params.row}>
               <button className="songListEdit">Edit</button>
             </Link>
@@ -167,21 +173,6 @@ const MSong = () => {
       },
     },
   ];
-  // const columnsArtist=[
-  //     {
-  //         field:"name",
-  //         headerName: "Bài hát",
-  //         width: 200,
-
-  //         renderCell: (params) => {
-  //             return(
-  //                 <div className="songListSong">
-  //                     {params.row.name}
-  //                 </div>
-  //             )
-  //         }
-
-  //     },]
   return (
     <div className="songList">
       <div className="button">
@@ -209,179 +200,28 @@ const MSong = () => {
           selectedGridRowsCountSelector={handleDelete}
         />
       </Box>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        maxWidth={"lg"}
+      >
+        <DialogTitle id="alert-dialog-title">{"Xóa bài hát"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Bạn có chắc muốn xóa bài hát này?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Không</Button>
+          <Button onClick={handleYes} autoFocus>
+            Xóa
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
-
-/* 
-function MSong() {
-    return (
-        <div className="msong">
-            <span className="song songName">Bài hát</span>
-            <ul className="songList">
-                <li className="songListItem">
-                    <img>{SongData.map((item,idex)=> item.songImage)}</img>
-                    <div className="song">
-                        <span className="songName">{SongData.map((item,idex)=> item. songName)}</span>
-                        <span className="songArtist">{SongData.item.artist.map((child, index)=> child.name)}</span>
-                    </div>
-                    <button className='EditSong'><Edit /></button>
-                    <button className='DeleteSong'><Delete /></button>
-                </li>
-            </ul>
-
-        </div>
-    )
-}
-*/
-/*
-class MSong extends React.Component {
-    editRow=(event,id) =>{
-        console.log('editRow',event,id);
-    };
-    deleteRow=(event,id) =>{
-        console.log('deleteRow',event,id);
-    };
-    constructor (props){
-        super(props);
-        const columns = [
-            {
-                field: 'id',
-                headerName: 'ID',
-                width: 100,
-            },
-            {
-                field: 'songImage',
-                headerName: 'Hình ảnh',
-                width: 100,
-            },
-            {
-                field: ' songName',
-                headerName: 'Tên bài hát',
-                width: 200,
-            },
-            {
-                field: 'artist.name',
-                headerName: 'Tên nghệ sĩ',
-                width: 200,
-            },
-            {
-            field: 'edit',
-            headerName: 'Chỉnh sửa',
-            width: 100,
-            renderCell: (params) =>(
-                <Button style={{marginTop: 10, cursor: 'hand'}}>
-                    <Edit onclick={()=>this.editRow(params.value)}></Edit>
-                </Button>
-            )
-            },
-            {
-                field: 'delete',
-                headerName: 'Xóa',
-                width: 100,
-                renderCell: (params) =>(
-                    <Button style={{marginTop: 10, cursor: 'hand'}}>
-                        <Delete onclick={()=>this.deleteRow(params.value)}></Delete>
-                    </Button>
-                )
-                },
-        ];
-        const rows = SongData;
-        this.state ={
-            columns: columns,
-            songs: [],
-            selectedSong: props.SongData,
-        }
-        return (
-            <Box sx={{ height: 400, width: '100%' }}>
-              <DataGrid
-                rows={rows}
-                columns={columns}
-                initialState
-                checkboxSelection
-                disableRowSelectionOnClick
-              />
-            </Box>
-          );
-    }
-}
-*/
-
-/*
-function MSong(){  
-const [songData, setSongData] = useState([]);
-    
-    const editRow=(event,id) =>{
-        console.log('editRow',event, id);
-    };
-    const deleteRow=(event, id) =>{
-        console.log('deleteRow',event, id);
-    };
-const columns = [
-    {
-        field: 'id',
-        headerName: 'ID',
-        width: 100,
-    },
-    {
-        field: 'songImage',
-        headerName: 'Hình ảnh',
-        width: 100,
-    },
-    {
-        field: ' songName',
-        headerName: 'Tên bài hát',
-        width: 200,
-    },
-    {
-        field: 'artist.name',
-        headerName: 'Tên nghệ sĩ',
-        width: 200,
-    },
-    {
-    field: 'edit',
-    headerName: 'Chỉnh sửa',
-    width: 100,
-    renderCell: (params) =>(
-        <Button style={{marginTop: 10, cursor: 'hand'}}>
-            <Edit onclick={()=>this.editRow(params.value)}></Edit>
-        </Button>
-    )
-    },
-    {
-        field: 'delete',
-        headerName: 'Xóa',
-        width: 100,
-        renderCell: (params) =>(
-            <Button style={{marginTop: 10, cursor: 'hand'}}>
-                <Delete onclick={()=>this.deleteRow(params.value)}></Delete>
-            </Button>
-        )
-        },
-    ];
-    const rows = SongData;
-
-
-    return (
-        <Box sx={{ height: 400, width: '100%' }}>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 5,
-                },
-              },
-            }}
-            pageSizeOptions={[5]}
-            checkboxSelection
-            disableRowSelectionOnClick
-          />
-        </Box>
-      );
-
-}
-*/
 
 export default MSong;

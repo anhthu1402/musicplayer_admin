@@ -17,8 +17,13 @@ import {
   AccountCircle,
   LineAxis,
 } from "@mui/icons-material";
-import AlbumSharpIcon from '@mui/icons-material/AlbumSharp';
-
+import AlbumSharpIcon from "@mui/icons-material/AlbumSharp";
+import { Link } from "react-router-dom";
+import { UsersData } from "./UserData";
+import { SongData } from "./SongData";
+import { ArtistsData } from "./ArtistsData";
+import { AlbumData } from "./AlbumData";
+import { PlaylistData } from "./PlaylistData";
 
 const Widget = ({ type }) => {
   let data;
@@ -32,8 +37,8 @@ const Widget = ({ type }) => {
       data = {
         title: "Người dùng",
         isMoney: false,
-        link: "See all users",
-        amount: "20",
+        linkTitle: "View all users",
+        amount: UsersData.length,
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -43,14 +48,15 @@ const Widget = ({ type }) => {
             }}
           />
         ),
+        link: "users",
       };
       break;
     case "song":
       data = {
         title: "Bài hát",
         isMoney: false,
-        link: "View all songs",
-        amount: "50",
+        linkTitle: "View all songs",
+        amount: SongData.length,
         icon: (
           <MusicNoteRounded
             className="icon"
@@ -60,28 +66,30 @@ const Widget = ({ type }) => {
             }}
           />
         ),
+        link: "songs",
       };
       break;
     case "artist":
       data = {
         title: "Nghệ sĩ",
-        isMoney: true,
-        link: "View all artists",
-        amount: "10",
+        isMoney: false,
+        linkTitle: "View all artists",
+        amount: ArtistsData.length,
         icon: (
           <PersonRounded
             className="icon"
             style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
           />
         ),
+        link: "artists",
       };
       break;
     case "album":
       data = {
         title: "Album",
-        isMoney: true,
-        amount: "8",
-        link: "See all albums",
+        isMoney: false,
+        amount: AlbumData.length,
+        linkTitle: "View all albums",
         icon: (
           <AlbumSharpIcon
             className="icon"
@@ -91,6 +99,25 @@ const Widget = ({ type }) => {
             }}
           />
         ),
+        link: "albums",
+      };
+      break;
+    case "playlist":
+      data = {
+        title: "Playlist",
+        isMoney: false,
+        amount: PlaylistData.length,
+        linkTitle: "View all playlists",
+        icon: (
+          <PlaylistPlayRounded
+            className="icon"
+            style={{
+              backgroundColor: "rgba(128, 0, 128, 0.2)",
+              color: "purple",
+            }}
+          />
+        ),
+        link: "playlists",
       };
       break;
     default:
@@ -104,13 +131,18 @@ const Widget = ({ type }) => {
         <span className="counter">
           {data.isMoney && "$"} {data.amount}
         </span>
-        <span className="link">{data.link}</span>
+        <Link
+          to={"/" + data.link}
+          onClick={() => (window.location.pathname = data.link)}
+        >
+          <span>{data.linkTitle}</span>
+        </Link>
       </div>
       <div className="right">
-        <div className="percentage positive">
+        {/* <div className="percentage positive">
           <KeyboardArrowUpIcon />
           {diff} %
-        </div>
+        </div> */}
         {data.icon}
       </div>
     </div>

@@ -16,15 +16,20 @@ const MArtist = () => {
   const [data, setData] = useState(ArtistsData);
   const rows = ArtistsData;
   const [showData, setShowData] = useState(ArtistsData);
-  const [opens, setOpens] = React.useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [rowToEdit, setRowToEdit] = useState(null);
-  const handleCloses = () => {
-    setOpens(false);
-  };
+  const [id, setId] = useState();
+  const [open, setOpen] = useState(false);
   const handleDelete = (id) => {
-    alert("Bạn chắc chắn xóa");
+    setOpen(true);
+    setId(id);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleYes = () => {
+    //hàm xóa ở đây
+    console.log(id);
     setData(data.filter((item) => item.id !== id));
+    setOpen(false);
   };
 
   const columns = [
@@ -80,7 +85,7 @@ const MArtist = () => {
       renderCell: (params) => {
         return (
           <>
-            <Link to={`/artistDetail/${params.artistName}`} state={params.id}>
+            {/* <Link to={`/artistDetail/${params.artistName}`} state={params.id}>
               <button
                 className="artistListView"
                 onClick={(handleClickOpens, selectRow) =>
@@ -93,7 +98,7 @@ const MArtist = () => {
               >
                 View
               </button>
-            </Link>
+            </Link> */}
 
             <Link to={"/editArtist/" + params.row.albumName} state={params.row}>
               <button className="artistListEdit">Edit</button>
@@ -133,48 +138,27 @@ const MArtist = () => {
             pageSize={8}
             checkboxSelection
             components={{ Toolbar: GridToolbar }}
-            // onRowSelectionModelChange={(data)=>{console.log(data);}}
             selectedGridRowsCountSelector={handleDelete}
           />
         </Box>
 
         <Dialog
-          open={opens}
-          onClose={handleCloses}
+          open={open}
+          onClose={handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
           maxWidth={"lg"}
         >
-          <DialogTitle id="alert-dialog-title">
-            {"View Artist Data"}
-          </DialogTitle>
+          <DialogTitle id="alert-dialog-title">{"Xóa nghệ sĩ"}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              <table
-                id="viewTable"
-                style={{ border: "1px solid black", width: "800px" }}
-              >
-                <thead>
-                  <tr>
-                    <th>Ảnh</th>
-                    <th>Tên nghệ sĩ</th>
-                    <th>Lượt theo dõi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>{showData.fimage}</th>
-                    <th>{showData.fname}</th>
-                    <th>{showData.ffolow}</th>
-                  </tr>
-                </tbody>
-              </table>
+              Bạn có chắc muốn xóa nghệ sĩ này?
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleCloses}>Disagree</Button>
-            <Button onClick={handleCloses} autoFocus>
-              Agree
+            <Button onClick={handleClose}>Không</Button>
+            <Button onClick={handleYes} autoFocus>
+              Xóa
             </Button>
           </DialogActions>
         </Dialog>

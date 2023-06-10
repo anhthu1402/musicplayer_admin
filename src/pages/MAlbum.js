@@ -3,6 +3,11 @@ import {
   Avatar,
   Box,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   IconButton,
   Tooltip,
   Typography,
@@ -18,12 +23,20 @@ import { DeleteOutline, Edit, Delete } from "@mui/icons-material";
 const MAlbum = () => {
   const [data, setData] = useState(AlbumData);
   const rows = AlbumData;
-  // const handleDelete =(id) => {
-  //     setData(data.filter((item) => item.id !== id));
-  // }
+  const [id, setId] = useState();
+  const [open, setOpen] = useState(false);
   const handleDelete = (id) => {
-    alert("Bạn chắc chắn muốn xóa");
+    setOpen(true);
+    setId(id);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleYes = () => {
+    //hàm xóa ở đây
+    console.log(id);
     setData(data.filter((item) => item.id !== id));
+    setOpen(false);
   };
 
   const columns = [
@@ -167,7 +180,7 @@ const MAlbum = () => {
       renderCell: (params) => {
         return (
           <>
-            <button className="artistListView">View</button>
+            {/* <button className="artistListView">View</button> */}
             <Link to={"/editAlbum/" + params.row.albumName} state={params.row}>
               <button className="albumListEdit">Edit</button>
             </Link>
@@ -206,6 +219,26 @@ const MAlbum = () => {
           selectedGridRowsCountSelector={handleDelete}
         />
       </Box>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        maxWidth={"lg"}
+      >
+        <DialogTitle id="alert-dialog-title">{"Xóa album"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Bạn có chắc muốn xóa album này?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Không</Button>
+          <Button onClick={handleYes} autoFocus>
+            Xóa
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

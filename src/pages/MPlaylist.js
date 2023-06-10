@@ -1,18 +1,37 @@
 import React, { useState } from "react";
-import { Box } from "@mui/material";
+import {
+  Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { AlbumData } from "../components/AlbumData";
 import "../styles/malbum.css";
 import { Link } from "react-router-dom";
 import { DeleteOutline } from "@mui/icons-material";
 import { PlaylistData } from "../components/PlaylistData";
+import { Button } from "antd";
 
 function MPlaylist() {
-  const handleDelete = (id) => {
-    alert("Bạn chắc chắn muốn xóa");
-    setData(data.filter((item) => item.id !== id));
-  };
   const [data, setData] = useState(PlaylistData);
+  const [id, setId] = useState();
+  const [open, setOpen] = useState(false);
+  const handleDelete = (id) => {
+    setOpen(true);
+    setId(id);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleYes = () => {
+    //hàm xóa ở đây
+    console.log(id);
+    setData(data.filter((item) => item.id !== id));
+    setOpen(false);
+  };
   const columns = [
     {
       field: "id",
@@ -107,7 +126,7 @@ function MPlaylist() {
       renderCell: (params) => {
         return (
           <>
-            <button className="artistListView">View</button>
+            {/* <button className="artistListView">View</button> */}
             <Link
               to={"/editPlaylist/" + params.row.playlistName}
               state={params.row}
@@ -148,6 +167,26 @@ function MPlaylist() {
           selectedGridRowsCountSelector={handleDelete}
         />
       </Box>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        maxWidth={"lg"}
+      >
+        <DialogTitle id="alert-dialog-title">{"Xóa playlist"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Bạn có chắc muốn xóa playlist này?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Không</Button>
+          <Button onClick={handleYes} autoFocus>
+            Xóa
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

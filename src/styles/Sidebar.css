@@ -43,6 +43,7 @@
   display: block;
   transition: background-color 0.15s;
   border-radius: 5px;
+  margin: 0.5em 0;
 }
 
 .sidebar-item:hover {

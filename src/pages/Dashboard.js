@@ -49,10 +49,11 @@ function Dashboard() {
         <Widget type="song" />
         <Widget type="artist" />
         <Widget type="album" />
+        <Widget type="playlist" />
       </div>
       <div className="charts" style={{ width: "80%" }}>
         <div>
-          <h3 className="chartTitle">Artist Analytics</h3>
+          <h3 className="chartTitle">Thống kê nghệ sĩ</h3>
           <ResponsiveContainer width="100%" aspect={1.5}>
             <BarChart data={data}>
               <XAxis dataKey="artistName" />

@@ -5,19 +5,9 @@ import { Link } from "react-router-dom";
 export default function SidebarItem({ item }) {
   const [open, setOpen] = useState(false);
   function isTotal(path) {
-    if (path === "/total?type=song") {
-      if (window.location.pathname === "/total") {
-        return 1;
-      } else return 0;
-    } else if (path === "/recently?type=song") {
-      if (window.location.pathname === "/recently") {
-        return 1;
-      } else return 0;
-    } else {
-      if (window.location.pathname === path) {
-        return 1;
-      } else return 0;
-    }
+    if (window.location.pathname === path) {
+      return 1;
+    } else return 0;
   }
 
   if (item.subNav) {
