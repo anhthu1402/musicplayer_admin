@@ -70,9 +70,16 @@
   display: inline-block;
   color: white;
 }
-.buttonAdd:hover {
+.buttonAdd:hover,
+.buttonStay:hover {
   background-color: #fba1b6 !important;
   cursor: pointer;
   transition: 0.3s ease;
   color: #373b3e;
+}
+.buttonStay {
+  cursor: pointer;
+  border: 1px solid #cccccc !important;
+  border-radius: 5px;
+  color: white;
 }

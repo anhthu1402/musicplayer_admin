@@ -26,6 +26,9 @@ import ArtistDetail from "./components/ArtistDetail";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import AppRoot from "./components/AppRoot";
+import EditSong from "./components/EditSong";
+import EditAlbum from "./components/EditAlbum";
+import EditArtist from "./components/EditArtist";
 function App() {
   const router = createBrowserRouter([
     {
@@ -95,6 +98,18 @@ function App() {
         {
           path: "newAlbum",
           element: <NewAlbum />,
+        },
+        {
+          path: "editSong/*",
+          element: <EditSong />,
+        },
+        {
+          path: "editAlbum/*",
+          element: <EditAlbum />,
+        },
+        {
+          path: "editArtist/*",
+          element: <EditArtist />,
         },
       ],
     },

@@ -54,6 +54,7 @@
   display: inline-block;
   color: white;
 }
+
 .buttonAdd:hover {
   background-color: #fba1b6 !important;
   cursor: pointer;

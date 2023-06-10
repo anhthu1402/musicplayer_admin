@@ -4,7 +4,7 @@ import { ArtistsData } from "./ArtistsData";
 import "../styles/newsong.css";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { Error, Check } from "@mui/icons-material";
@@ -16,7 +16,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker } from "@mui/x-date-pickers";
-const NewArtist = () => {
+
+function EditArtist() {
   const [imageUrl, setImageUrl] = useState("");
   const [loadImage, setLoadImage] = useState(false);
   const processFileImage = async (e) => {
@@ -83,6 +84,9 @@ const NewArtist = () => {
     }
   };
 
+  const location = useLocation();
+  const artist = location.state;
+
   const artistNameRef = useRef();
   const introduceRef = useRef();
   const navigate = useNavigate();
@@ -95,6 +99,12 @@ const NewArtist = () => {
   const setAlertError = (error) => {
     setError(error);
     setShowAlert(true);
+  };
+  const [remainImage, setRemainImage] = useState(false);
+  const handleRemainImage = () => {
+    setImageUrl(artist.artistImage);
+    setLoadImage(true);
+    setRemainImage(true);
   };
   useEffect(() => {
     if (loadImage) {
@@ -109,7 +119,7 @@ const NewArtist = () => {
     if (!artistName || !introduce) {
       return setAlertError("Vui lòng nhập đầy đủ thông tin!");
     }
-    if (!loadImage) {
+    if (!loadImage && !remainImage) {
       return setAlertError("File hình ảnh chưa được tải lên.");
     }
     //sign in successfully
@@ -121,13 +131,14 @@ const NewArtist = () => {
   };
   return (
     <div className="newArtist">
-      <h1 className="newArtistTitle">Thêm nghệ sĩ mới</h1>
+      <h1 className="newArtistTitle">Chỉnh sửa nghệ sĩ</h1>
       <form className="newArtistForm">
         <div className="newArtistItem">
           <label htmlFor="artistName">Tên nghệ sĩ</label>
           <TextField
             id="artistName"
             variant="outlined"
+            defaultValue={artist.artistName}
             inputRef={artistNameRef}
           />
         </div>
@@ -136,16 +147,35 @@ const NewArtist = () => {
           <TextField
             variant="outlined"
             inputRef={introduceRef}
+            defaultValue={artist.introduce}
             multiline
             rows={4}
           />
         </div>
-        <div class="newAlbumLink">
-          <label asp-for="ANHAL" class="control-label">
-            Ảnh nghệ sĩ
-          </label>
-          <input type="file" id="linkimage" onChange={processFileImage} />
-          <span asp-validation-for="ANHAL" class="text-danger"></span>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <div class="newAlbumLink">
+            <label asp-for="ANHAL" class="control-label">
+              Ảnh nghệ sĩ
+            </label>
+            <input type="file" id="linkimage" onChange={processFileImage} />
+            <span asp-validation-for="ANHAL" class="text-danger"></span>
+          </div>
+          <Button
+            variant="outlined"
+            className="buttonStay"
+            size="small"
+            onClick={handleRemainImage}
+          >
+            Giữ nguyên
+          </Button>
         </div>
         {showAlert && (
           <Alert
@@ -177,11 +207,12 @@ const NewArtist = () => {
             variant="contained"
             className="buttonAdd"
           >
-            Thêm nghệ sĩ mới
+            Cập nhật nghệ sĩ
           </Button>
         </div>
       </form>
     </div>
   );
-};
-export default NewArtist;
+}
+
+export default EditArtist;
