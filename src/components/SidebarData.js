@@ -11,8 +11,9 @@ import {
   TrendingUpRounded,
   AccountCircle,
   LineAxis,
+  PlaylistPlaySharp,
 } from "@mui/icons-material";
-import AlbumSharpIcon from '@mui/icons-material/AlbumSharp';
+import AlbumSharpIcon from "@mui/icons-material/AlbumSharp";
 
 export const SidebarData = [
   // {
@@ -36,6 +37,11 @@ export const SidebarData = [
     icon: <AlbumSharpIcon />,
   },
   {
+    title: "Quản lý Playlist",
+    path: "/playlists",
+    icon: <PlaylistPlaySharp />,
+  },
+  {
     title: "Quản lý nghệ sĩ",
     path: "/artists",
     icon: <PersonRounded />,
@@ -45,45 +51,4 @@ export const SidebarData = [
     path: "/users",
     icon: <AccountCircle />,
   },
-  /*
-  {
-    title: "Quản lý",
-    path: "/",
-    icon: <HomeRounded />,
-    iconOpened: <ExpandMore />,
-    iconClosed: <ExpandLess />,
-    subNav: [
-      {
-        title: "Bài hát",
-        path: "/home/songs",
-        icon: <MusicNoteRounded />,
-      },
-      {
-        title: "Nghệ sĩ",
-        path: "/home/artists",
-        icon: <PersonRounded />,
-      },
-      {
-        title: "Playlist",
-        path: "/home/playlists",
-        icon: <PlaylistPlayRounded />,
-      },
-      {
-        title: "User",
-        path: "/home/users",
-        icon: <AccountCircle />,
-      },
-    ],
-  },
-  */
-  // {
-  //   title: "BXH",
-  //   path: "/charts",
-  //   icon: <BarChartRounded />,
-  // },
-  // {
-  //   title: "Top 100",
-  //   path: "/top100",
-  //   icon: <TrendingUpRounded />,
-  // },
 ];

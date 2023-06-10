@@ -29,6 +29,9 @@ import AppRoot from "./components/AppRoot";
 import EditSong from "./components/EditSong";
 import EditAlbum from "./components/EditAlbum";
 import EditArtist from "./components/EditArtist";
+import MPlaylist from "./pages/MPlaylist";
+import EditPlaylist from "./components/EditPlaylist";
+import NewPlaylist from "./components/NewPlaylist";
 function App() {
   const router = createBrowserRouter([
     {
@@ -50,6 +53,10 @@ function App() {
         {
           path: "artists",
           element: <MArtist />,
+        },
+        {
+          path: "playlists",
+          element: <MPlaylist />,
         },
         {
           path: "signUp",
@@ -100,6 +107,10 @@ function App() {
           element: <NewAlbum />,
         },
         {
+          path: "newPlaylist",
+          element: <NewPlaylist />,
+        },
+        {
           path: "editSong/*",
           element: <EditSong />,
         },
@@ -110,6 +121,10 @@ function App() {
         {
           path: "editArtist/*",
           element: <EditArtist />,
+        },
+        {
+          path: "editPlaylist/*",
+          element: <EditPlaylist />,
         },
       ],
     },
