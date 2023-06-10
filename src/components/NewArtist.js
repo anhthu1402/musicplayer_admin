@@ -1,174 +1,187 @@
 import "../styles/newartist.css";
-import React, { useState } from "react";
-import TextField from '@mui/material/TextField';
-const NewArtist = ({ closeModal, onSubmit, defaultValue }) =>{
-  const [formState, setFormState] = useState(
-    defaultValue || {
-    id: "",
-    artistName: "",
-    artistImage: "",
-    followers:"0",
-    }
-  );
-  
-  const [errors, setErrors] = useState("");
-  const validateForm = () => {
-    if (formState.id && formState. artistName && formState.artistImage) {
-      setErrors("");
-      return true;
-    } else {
-      let errorFields = [];
-      for (const [key, value] of Object.entries(formState)) {
-        if (!value) {
-          errorFields.push(key);
+import "../styles/newalbum.css";
+import { ArtistsData } from "./ArtistsData";
+import "../styles/newsong.css";
+import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import { Error, Check } from "@mui/icons-material";
+import TextField from "@mui/material/TextField";
+import "../styles/newsong.css";
+import { Alert, Button, Select } from "@mui/material";
+import { CountryData } from "./CountryData";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { DatePicker } from "@mui/x-date-pickers";
+const NewArtist = () => {
+  const [imageUrl, setImageUrl] = useState("");
+  const [loadImage, setLoadImage] = useState(false);
+  const processFileImage = async (e) => {
+    var file = e.target.files[0];
+
+    var POST_URL = "https://api.cloudinary.com/v1_1/ddtjntpxe/upload";
+    processFile();
+    var uniqueId;
+
+    function processFile(e) {
+      console.log("changed");
+      uniqueId = "ddtjntpxe" + new Date().getTime();
+      var size = file.size;
+      var sliceSize = 10 * 1000000;
+      var start = 0;
+
+      setTimeout(loop, 500);
+
+      function loop() {
+        console.log("looping");
+        var end = start + sliceSize;
+
+        if (end > size) {
+          end = size;
+        }
+        var s = file.slice(start, end);
+        send(s, start, end - 1, size);
+        if (end < size) {
+          start += sliceSize;
+          setTimeout(loop, 500);
         }
       }
-      setErrors(errorFields.join(", "));
-      return false;
+    }
+
+    async function send(piece, start, end, size) {
+      // console.log("end", end);
+
+      var formdata = new FormData();
+
+      formdata.append("file", piece);
+      formdata.append("cloud_name", "ddtjntpxe");
+      formdata.append("upload_preset", "UIT-music-player");
+
+      const headers = {
+        Accept: "/",
+        "Content-Type": "multipart/form-data",
+      };
+      headers["X-Unique-Upload-Id"] = uniqueId;
+      headers["X-Requested-With"] = "XMLHttpRequest";
+      headers["Content-Range"] = "bytes " + start + "-" + end + "/" + size;
+      const requestConfig = {
+        url: POST_URL,
+        method: "POST",
+        data: formdata,
+        headers,
+      };
+      const response = await axios(requestConfig);
+      if (response?.data?.asset_id) {
+        //Here i am trying to print the output of the response after the video is posted in cloudinary
+        console.log(response.data.url, "response");
+        setImageUrl(response.data.url);
+        setLoadImage(true);
+      }
     }
   };
-  const handleChange = (e) => {
-    setFormState({ ...formState, [e.target.name]: e.target.value });
+
+  const artistNameRef = useRef();
+  const introduceRef = useRef();
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [showAlert, setShowAlert] = useState(error !== null ? true : false);
+  const [showAlertSuccess, setShowAlertSuccess] = useState(
+    success !== null ? true : false
+  );
+  const setAlertError = (error) => {
+    setError(error);
+    setShowAlert(true);
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!validateForm()) return;
-
-    onSubmit(formState);
-
-    closeModal();
+  useEffect(() => {
+    if (loadImage) {
+      setSuccess("File hình ảnh đã được tải lên.");
+      setShowAlertSuccess(true);
+      setShowAlert(false);
+    }
+  }, [loadImage, success, showAlertSuccess, showAlert]);
+  const albumHandler = () => {
+    const albumName = artistNameRef.current.value;
+    const introduce = introduceRef.current.value;
+    if (!albumName || !introduce) {
+      return setAlertError("Vui lòng nhập đầy đủ thông tin!");
+    }
+    if (!loadImage) {
+      return setAlertError("File hình ảnh chưa được tải lên.");
+    }
+    //sign in successfully
+    setShowAlertSuccess(false);
+    setError(null);
+    setShowAlert(false);
+    console.log(albumName, introduce, imageUrl);
+    navigate("/artists");
   };
   return (
-    <div className="newArtist" 
-    onClick={(e) => {
-      if (e.target.className === "modal-container") closeModal();
-    }}>
+    <div className="newArtist">
       <h1 className="newArtistTitle">Thêm nghệ sĩ mới</h1>
       <form className="newArtistForm">
         <div className="newArtistItem">
           <label htmlFor="artistName">Tên nghệ sĩ</label>
-          <TextField id="songname" label="Tên bài hát" variant="outlined" />
+          <TextField
+            id="artistName"
+            variant="outlined"
+            inputRef={artistNameRef}
+          />
         </div>
         <div className="newArtistItem">
           <label>Giới thiệu</label>
-          <TextField  label="Giới thiệu" variant="outlined"  />
+          <TextField
+            variant="outlined"
+            inputRef={introduceRef}
+            multiline
+            rows={4}
+          />
         </div>
-        <div class="newArtistLink">
-          <label asp-for="artistImage" htmlFor="artistImage" class="control-label">Ảnh nghệ sĩ</label>
-          <input hidden asp-for="artistImage"  type="text" value="anh" id="linkanhNS" name="ANHNS" />
-          <input type="file" id="linkimage"/>
-          <span asp-validation-for="artistImage" class="text-danger"></span>
+        <div class="newAlbumLink">
+          <label asp-for="ANHAL" class="control-label">
+            Ảnh nghệ sĩ
+          </label>
+          <input type="file" id="linkimage" onChange={processFileImage} />
+          <span asp-validation-for="ANHAL" class="text-danger"></span>
         </div>
-      {/* <div className="newArtistItem">
-        <label>Gender</label>
-        <div className="newArtistGender">
-          <input type="radio" name="gender" id="male" value="male" />
-          <label for="male">Male</label>
-          <input type="radio" name="gender" id="female" value="female" />
-          <label for="female">Female</label>
-          <input type="radio" name="gender" id="other" value="other" />
-          <label for="other">Other</label>
+        {showAlert && (
+          <Alert
+            icon={<Error fontSize="inherit" />}
+            severity="warning"
+            sx={{ margin: "20px 0" }}
+          >
+            {error}
+          </Alert>
+        )}
+        {showAlertSuccess && (
+          <Alert
+            icon={<Check fontSize="inherit" />}
+            severity="success"
+            sx={{ margin: "20px 0" }}
+          >
+            {success}
+          </Alert>
+        )}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            margin: "20px 0",
+          }}
+        >
+          <Button
+            onClick={albumHandler}
+            variant="contained"
+            className="buttonAdd"
+          >
+            Thêm nghệ sĩ mới
+          </Button>
         </div>
-      </div>  */}
-        {errors && <div className="error">{`Please include: ${errors}`}</div>}  
-        <button className="newArtistButton" onClick={handleSubmit}>Create</button>
       </form>
     </div>
   );
-}
-/*
-const NewArtist= () => {
-  const isNonMobile = useMediaQuery("(min-width:600px)");
-  const handleFormSubmit = (values) => {
-    console.log(values);
-  };
-  return (
-    <Box m="20px">
-      <Header title="CREATE ARTIST" subtitle="Create a New Artist" />
-      <Formik
-        onSubmit={handleFormSubmit}
-        initialValues={initialValues}
-        validationSchema={checkoutSchema}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-        }) => (
-          <form onSubmit={handleSubmit}>
-            <Box
-              display="grid"
-              gap="30px"
-              gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-              sx={{
-                "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
-              }}
-            >
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.name}
-                name="firstName"
-                error={!!touched.name && !!errors.name}
-                helperText={touched.name && errors.name}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <ImageField
-                fullWidth
-                variant="filled"
-                type="image"
-                label="Image"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.image}
-                name="image"
-                error={!!touched.image && !!errors.image}
-                helperText={touched.image && errors.image}
-                sx={{ gridColumn: "span 2" }}
-              />
-            </Box>
-            <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
-                Thêm
-              </Button>
-            </Box>
-          </form>
-        )}
-      </Formik>
-    </Box>
-  )
-}
-const checkoutSchema = yup.object().shape({
-  name: yup.string().required("required"),
-  image: Yup.mixed()
-                .required("You need to provide a file")
-                .test("fileSize", "The file is too large", (value) => {
-                    return value && value[0].sienter <= 2000000;
-                })
-                .test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, .pdf and .doc", (value) => {
-                    return value && (
-                        value[0].type === "image/jpeg" ||
-                        value[0].type === "image/bmp" ||
-                        value[0].type === "image/png" ||
-                        value[0].type === 'application/pdf' ||
-                        value[0].type === "application/msword"
-                    );
-                }),
-});
-const initialValues = {
-  name: "",
-  image:"",
 };
-*/
-export default NewArtist
-
-
+export default NewArtist;

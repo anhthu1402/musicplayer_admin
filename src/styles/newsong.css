@@ -5,13 +5,7 @@
   justify-content: center;
 }
 
-/* .newSongForm {
-    /* flex-wrap: wrap;
-    display: flex; */
-/* width: 800px; */
-
-/* } */
-*/ .newSongForm {
+.newSongForm {
   display: flex;
   flex-direction: column;
   align-items: center;

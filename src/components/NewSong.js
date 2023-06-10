@@ -10,13 +10,13 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { Error, Check } from "@mui/icons-material";
 import TextField from "@mui/material/TextField";
-import "../styles/newsong.css";
 import { Alert, Button, Select } from "@mui/material";
 import { CountryData } from "./CountryData";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AlbumData } from "./AlbumData";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -199,6 +199,7 @@ function NewSong() {
   const [personName, setPresonName] = useState([]);
   //Danh sách id nghệ sĩ
   const [personId, setPresonId] = useState([]);
+  const [albumId, setAlbumId] = useState();
   const [countryId, setCountryId] = useState();
   const [date, setDate] = useState("");
   const handleChange = (event) => {
@@ -219,7 +220,14 @@ function NewSong() {
   const songHandler = () => {
     const songName = songnameRef.current.value;
     const loibaihat = loibaihatRef.current.value;
-    if (!songName || !loibaihat || !personId || !countryId || !date) {
+    if (
+      !songName ||
+      !loibaihat ||
+      !personId ||
+      !countryId ||
+      !date ||
+      !albumId
+    ) {
       return setAlertError("Vui lòng nhập đầy đủ thông tin!");
     }
     if (!loadAudio && !loadImage) {
@@ -242,11 +250,10 @@ function NewSong() {
       loibaihat,
       audioUrl,
       imageUrl,
-      timeLimit
+      timeLimit,
+      albumId
     );
-    setTimeout(() => {
-      navigate("/songs");
-    }, 4000);
+    navigate("/songs");
   };
   return (
     <div className="newSong">
@@ -280,6 +287,25 @@ function NewSong() {
           </FormControl>
         </div>
         <div className="newSongItem">
+          <label>Album</label>
+          <FormControl>
+            <Select
+              id="select_album"
+              onChange={(e) => {
+                console.log(e.target.value);
+                setAlbumId(e.target.value);
+              }}
+              MenuProps={MenuProps}
+            >
+              {AlbumData.map((child, index) => (
+                <MenuItem key={child.id} item={child} value={child.id}>
+                  {child.albumName}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div className="newSongItem">
           <label>Quốc gia</label>
           <FormControl>
             <Select
@@ -299,9 +325,7 @@ function NewSong() {
           </FormControl>
         </div>
         <div className="newSongItem">
-          <label asp-for="LOIBAIHAT" class="control-label">
-            Ngày phát hành
-          </label>
+          <label class="control-label">Ngày phát hành</label>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker

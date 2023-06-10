@@ -1,65 +1,67 @@
 .newAlbum {
-    flex: 4;
-    /* width: 800px; */
-  }
-  
-  .newAlbumForm {
-    /* flex-wrap: wrap;
-    display: flex; */
-    /* width: 800px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-  }
-  
-  .newAlbumItem {
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    margin-right: 20px;
-  }
-  .newAlbumItem > label {
-    margin-bottom: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    color: rgb(151, 150, 150);
-  }
-  .newAlbumLink{
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    margin-right: 20px;
-  }
-  .newAlbumLink > label {
-    margin-bottom: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    color: rgb(151, 150, 150);
-  }
+.newAlbumForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  
-  .newAlbumItem > input {
-    height: 30px;
-    padding: 10px;
-    border: 1px solid gray;
-    border-radius: 5px;
-  }
-  
-  .newAlbumSelect{
-      height: 40px;
-      border-radius: 5px;
-  }
-  
-  .btn-primary{
-      width: 200px;
-      border: none;
-      background-color: darkblue;
-      color: white;
-      padding: 10px 20px;
-      font-weight: 600;
-      border-radius: 10px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 20px;
-      cursor: pointer;
-  }
+.newAlbumItem {
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+.newAlbumItem > label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(151, 150, 150);
+}
+.newAlbumLink {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+.newAlbumLink > label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(151, 150, 150);
+}
+
+.newAlbumItem > input {
+  height: 30px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.newAlbumSelect {
+  height: 40px;
+  border-radius: 5px;
+}
+
+.buttonAdd {
+  cursor: pointer;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 10px 15px !important;
+  margin: 5px;
+  background-color: #ff5f85 !important;
+  display: inline-block;
+  color: white;
+}
+.buttonAdd:hover {
+  background-color: #fba1b6 !important;
+  cursor: pointer;
+  transition: 0.3s ease;
+  color: #373b3e;
+}
