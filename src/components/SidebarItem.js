@@ -66,19 +66,14 @@ export default function SidebarItem({ item }) {
     );
   } else {
     return (
-      <a
-        href={item.path || "#"}
+      <Link to={item.path || "#"} 
         className="sidebar-item plain"
-        id={isTotal(item.path) ? "active" : "inactive"}
-      >
-        <Link to={item.path} className="sidebar-item plain"
-          id={isTotal(item.path) ? "active" : "inactive"}>
-            <span>
-              {item.icon}
-              {item.title}
-            </span>
-        </Link>
-      </a>
+        id={isTotal(item.path) ? "active" : "inactive"}>
+          <span>
+            {item.icon}
+            {item.title}
+          </span>
+      </Link>
     );
   }
 }
