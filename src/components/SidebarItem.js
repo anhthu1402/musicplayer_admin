@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
+import SidebarContext from "../SidebarContext";
 
 export default function SidebarItem({ item }) {
   const [open, setOpen] = useState(false);
@@ -9,7 +10,7 @@ export default function SidebarItem({ item }) {
       return 1;
     } else return 0;
   }
-
+  const sidebar = useContext(SidebarContext);
   if (item.subNav) {
     return (
       <div
@@ -19,6 +20,19 @@ export default function SidebarItem({ item }) {
             ? "active"
             : "inactive"
         }
+        style={
+          sidebar.pathName === item.title
+            ? { backgroundColor: "#FFF0F4" }
+            : { backgroundColor: "transparent" }
+        }
+        onClick={() => {
+          sessionStorage.setItem(
+            "sidebarPathPrev",
+            JSON.stringify(sidebar.pathName)
+          );
+          sessionStorage.setItem("sidebarPath", JSON.stringify(item.title));
+          sidebar.setPathName(item.title);
+        }}
       >
         <div className="sidebar-title">
           <span
@@ -57,10 +71,13 @@ export default function SidebarItem({ item }) {
         className="sidebar-item plain"
         id={isTotal(item.path) ? "active" : "inactive"}
       >
-        <span>
-          {item.icon}
-          {item.title}
-        </span>
+        <Link to={item.path} className="sidebar-item plain"
+          id={isTotal(item.path) ? "active" : "inactive"}>
+            <span>
+              {item.icon}
+              {item.title}
+            </span>
+        </Link>
       </a>
     );
   }
