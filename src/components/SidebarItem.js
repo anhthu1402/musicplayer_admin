@@ -52,8 +52,8 @@ export default function SidebarItem({ item }) {
     );
   } else {
     return (
-      <a
-        href={item.path || "#"}
+      <Link
+        to={item.path}
         className="sidebar-item plain"
         id={isTotal(item.path) ? "active" : "inactive"}
       >
@@ -61,7 +61,7 @@ export default function SidebarItem({ item }) {
           {item.icon}
           {item.title}
         </span>
-      </a>
+      </Link>
     );
   }
 }
