@@ -100,23 +100,24 @@ const MAlbum = () => {
           <div
             className="albumListArtist"
             style={{
-              display: "flex",
-              flexDirection: "row",
+              // display: "flex",
+              // flexDirection: 'row',
               justifyContent: "space-around",
+              
             }}
           >
             {params.row.artist.map((child, index) => {
               if (index < Object.keys(child).length - 1) {
                 return (
-                  <div key={index} item={child} className="artist">
-                    {child.artistName}
-                  </div>
+                  <span key={index} item={child} className="artist">
+                      {child.artistName} <text values=" "></text>
+                  </span>
                 );
               } else {
                 return (
-                  <div key={index} item={child} className="artist">
-                    , <span>{child.artistName}</span>
-                  </div>
+                  <span key={index} item={child} className="artist">
+                    , <span> {child.artistName}</span>
+                  </span>
                 );
               }
             })}
@@ -134,23 +135,23 @@ const MAlbum = () => {
           <div
             className="songs"
             style={{
-              display: "flex",
-              flexDirection: "row",
+              // display: "flex",
+              // flexDirection: "row",
               justifyContent: "space-around",
             }}
           >
             {params.row.songs.map((child, index) => {
               if (index < Object.keys(child).length - 1) {
                 return (
-                  <div key={index} item={child} className="songs">
-                    {child.songName}
-                  </div>
+                  <span key={index} item={child} className="songs">
+                    {child.songName} <span values=" "></span>
+                  </span>
                 );
               } else {
                 return (
-                  <div key={index} item={child} className="songs">
-                    , <span>{child.songName}</span>
-                  </div>
+                  <span key={index} item={child} className="songs">
+                    <span>{child.songName}</span>
+                  </span>
                 );
               }
             })}

@@ -36,7 +36,7 @@ function MPlaylist() {
     {
       field: "id",
       headerName: "ID",
-      width: 50,
+      width: 100,
     },
     {
       field: "image",
@@ -60,7 +60,7 @@ function MPlaylist() {
     {
       field: "albumName",
       headerName: "Tên Playlist",
-      width: 150,
+      width: 200,
       editable: true,
       renderCell: (params) => {
         return (
@@ -73,30 +73,30 @@ function MPlaylist() {
     {
       field: "songs",
       headerName: "Bài hát",
-      width: 200,
+      width: 300,
 
       renderCell: (params) => {
         return (
           <div
             className="songs"
             style={{
-              display: "flex",
-              flexDirection: "row",
+              // display: "flex",
+              // flexDirection: "row",
               justifyContent: "space-around",
             }}
           >
             {params.row.songPlaylist.map((child, index) => {
               if (index < Object.keys(child).length - 1) {
                 return (
-                  <div key={index} item={child} className="songs">
-                    {child.songName}
-                  </div>
+                  <span key={index} item={child} className="songs">
+                    {child.songName} <text values=" "></text>
+                  </span>
                 );
               } else {
                 return (
-                  <div key={index} item={child} className="songs">
+                  <span key={index} item={child} className="songs">
                     , <span>{child.songName}</span>
-                  </div>
+                  </span>
                 );
               }
             })}
@@ -107,7 +107,7 @@ function MPlaylist() {
     {
       field: "user",
       headerName: "Người tạo",
-      width: 80,
+      width: 150,
 
       renderCell: (params) => {
         return (

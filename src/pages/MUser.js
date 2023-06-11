@@ -41,12 +41,12 @@ const MUser = () => {
     {
       field: "id",
       headerName: "ID",
-      width: 150,
+      width: 200,
     },
     {
       field: "userName",
       headerName: "Tên người dùng",
-      width: 300,
+      width: 400,
       // editable: true,
       renderCell: (params) => {
         return <div className="userListUser">{params.row.userName}</div>;
@@ -64,7 +64,7 @@ const MUser = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 300,
+      width: 450,
       renderCell: (params) => {
         return (
           <>
