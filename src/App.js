@@ -47,6 +47,10 @@ function App() {
           element: <Total />,
         },
         {
+          path: "dashboard",
+          element: <Dashboard />,
+        },
+        {
           path: "songs",
           element: <MSong />,
         },
