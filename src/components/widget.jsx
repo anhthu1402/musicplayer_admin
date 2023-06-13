@@ -24,6 +24,8 @@ import { SongData } from "./SongData";
 import { ArtistsData } from "./ArtistsData";
 import { AlbumData } from "./AlbumData";
 import { PlaylistData } from "./PlaylistData";
+import { useContext } from "react";
+import SidebarContext from "../SidebarContext";
 
 const Widget = ({ type }) => {
   let data;
@@ -31,6 +33,7 @@ const Widget = ({ type }) => {
   //temporary
   // const amount = 100;
   const diff = 20;
+  const sidebar = useContext(SidebarContext);
 
   switch (type) {
     case "user":
@@ -48,6 +51,7 @@ const Widget = ({ type }) => {
             }}
           />
         ),
+        linkName: "Quản lý người dùng",
         link: "users",
       };
       break;
@@ -66,6 +70,7 @@ const Widget = ({ type }) => {
             }}
           />
         ),
+        linkName: "Quản lý bài hát",
         link: "songs",
       };
       break;
@@ -81,6 +86,7 @@ const Widget = ({ type }) => {
             style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
           />
         ),
+        linkName: "Quản lý nghệ sĩ",
         link: "artists",
       };
       break;
@@ -99,6 +105,7 @@ const Widget = ({ type }) => {
             }}
           />
         ),
+        linkName: "Quản lý Album",
         link: "albums",
       };
       break;
@@ -117,6 +124,8 @@ const Widget = ({ type }) => {
             }}
           />
         ),
+
+        linkName: "Quản lý Playlist",
         link: "playlists",
       };
       break;
@@ -133,7 +142,10 @@ const Widget = ({ type }) => {
         </span>
         <Link
           to={"/" + data.link}
-          onClick={() => (window.location.pathname = data.link)}
+          onClick={() => {
+            sidebar.setPathName(data.linkName);
+            sessionStorage.setItem("sidebarPath", JSON.stringify(data.link));
+          }}
         >
           <span>{data.linkTitle}</span>
         </Link>

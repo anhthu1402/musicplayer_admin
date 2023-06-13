@@ -103,19 +103,18 @@ const MAlbum = () => {
               // display: "flex",
               // flexDirection: 'row',
               justifyContent: "space-around",
-              
             }}
           >
             {params.row.artist.map((child, index) => {
               if (index < Object.keys(child).length - 1) {
                 return (
-                  <span key={index} item={child} className="artist">
-                      {child.artistName} <text values=" "></text>
+                  <span key={index} item={child}>
+                    {child.artistName} <text values=" "></text>
                   </span>
                 );
               } else {
                 return (
-                  <span key={index} item={child} className="artist">
+                  <span key={index} item={child}>
                     , <span> {child.artistName}</span>
                   </span>
                 );
