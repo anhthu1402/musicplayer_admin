@@ -28,9 +28,9 @@ import { DeleteOutline, Edit, Delete, Cancel } from "@mui/icons-material";
 const MSong = () => {
   const [data, setData] = useState(SongData);
   const rows = SongData;
-  const setDate = (date) =>{
-      date.format('DD MM YYYY');
-  }
+  const setDate = (date) => {
+    date.format("DD MM YYYY");
+  };
   const [id, setId] = useState();
   const [open, setOpen] = useState(false);
   const handleDelete = (id) => {
@@ -88,7 +88,7 @@ const MSong = () => {
       field: "releaseDate",
       headerName: "Thời gian",
       width: 150,
-      
+
       renderCell: (params) => {
         return (
           <div className="songListSong" style={{ verticalAlign: "center" }}>
@@ -104,33 +104,18 @@ const MSong = () => {
 
       renderCell: (params) => {
         return (
-          <div className="songListArtist" >
+          <div className="songListArtist">
             {params.row.representation.map((child, index) => {
               if (index < Object.keys(child).length - 1) {
                 return (
-                  <div key={index} item={child} className="artist">
-                    <Link
-                      to={`/artist/${child.artistName}`}
-                      state={child}
-                      color="grey"
-                    >
-                      {child.artistName}
-                    </Link>
+                  <div key={index} item={child}>
+                    {child.artistName}
                   </div>
                 );
               } else
                 return (
                   <div key={index} item={child}>
-                    ,{" "}
-                    <span className="artist">
-                      <Link
-                        to={`/artist/${child.artistName}`}
-                        state={child}
-                        color="grey"
-                      >
-                        {child.artistName}
-                      </Link>
-                    </span>
+                    , <span>{child.artistName}</span>
                   </div>
                 );
             })}
