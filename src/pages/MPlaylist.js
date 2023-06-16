@@ -126,7 +126,13 @@ function MPlaylist() {
       renderCell: (params) => {
         return (
           <>
-            {/* <button className="artistListView">View</button> */}
+            <Link
+                to={"/playlistDetail/" + params.row.playlistName}
+                state={params.row}
+            >
+              <button className="artistListView">View</button>
+            </Link>
+            {/*  */}
             <Link
               to={"/editPlaylist/" + params.row.playlistName}
               state={params.row}

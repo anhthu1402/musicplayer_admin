@@ -32,6 +32,8 @@ import MPlaylist from "./pages/MPlaylist";
 import EditPlaylist from "./components/EditPlaylist";
 import NewPlaylist from "./components/NewPlaylist";
 import AlbumDetail from "./components/AlbumDetail";
+import PlaylistDetail from "./components/PlaylistDetail";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -105,6 +107,10 @@ function App() {
         {
           path: "albumDetail/*",
           element: <AlbumDetail />,
+        },
+        {
+          path: "playlistDetail/*",
+          element: <PlaylistDetail />,
         },
         {
           path: "newAlbum",
