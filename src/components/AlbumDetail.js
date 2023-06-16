@@ -91,9 +91,9 @@ function AlbumDetail() {
                 <Avatar
                     src={album.albumImage} alt={album.albumName}
                     sx={{ width: "12.5vw", height: "12.5vw", marginRight: "2.3vw" }}
-                    style = {{ width: "12.5vw", height: "12.5vw", marginRight: "2.3vw" }}
+                    style = {{ width: "12.5vw", height: "12.5vw", marginRight: "1.5vw" }}
                 />
-                <div className="albumInfo"  style = {{marginTop: "auto", marginBottom: "auto", marginLeft: "3vw", fontSize: "3vw"}}>
+                <div className="albumInfo"  style = {{marginTop: "auto", marginBottom: "auto", marginLeft: "1.5vw", fontSize: "2vw"}}>
                     <h1 >{album.albumName}</h1>
                     <p style={{ fontSize: "1.2vw", color:"rgb(151, 150, 150)", paddingTop:"1vw" }}> Ngày phát hành: {FormatDate(album.releaseDate)}</p>
                     <div className="artists" style={{ fontSize: "1.2vw", color:"rgb(151, 150, 150)", paddingTop:"1vw" }}>
