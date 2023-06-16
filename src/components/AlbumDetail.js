@@ -1,4 +1,3 @@
-import "../styles/newartist.css";
 import "../styles/newalbum.css";
 import { ArtistsData } from "./ArtistsData";
 import "../styles/newsong.css";
@@ -16,13 +15,11 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
 import { SongData } from "./SongData";
 import SongItem from "./SongItem";
-import { Avatar } from "antd";
-import { grey } from "@mui/material/colors";
-import { color } from "@mui/system";
 
-function ArtistDetail() {
+function AlbumDetail() {
   // const [imageUrl, setImageUrl] = useState("");
   // const [loadImage, setLoadImage] = useState(false);
   const location = useLocation();
@@ -40,7 +37,25 @@ function ArtistDetail() {
   //   setError(error);
   //   setShowAlert(true);
   // };
-
+  function formatDate(day, month, year) {
+    if (month < 10) {
+      if (day < 10) {
+        return year + "-0" + month + "-0" + day;
+      } else return year + "-0" + month + "-" + day;
+    } else {
+      if (day < 10) {
+        return year + "-" + month + "-0" + day;
+      } else {
+        return year + "-" + month + "-" + day;
+      }
+    }
+  }
+  function FormatDate(string) {
+    var options = { year: "numeric", month: "numeric", day: "numeric" };
+    return new Date(string).toLocaleDateString([], options);
+  }
+  const [date, setDate] = useState(dayjs(FormatDate(album.releaseDate)));
+  
   const tracks = SongData;
   const artistSongs = [];
   tracks.map((item, index) => {
@@ -123,4 +138,4 @@ function ArtistDetail() {
   );
 }
 
-export default ArtistDetail;
+export default AlbumDetail;

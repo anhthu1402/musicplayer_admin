@@ -85,20 +85,20 @@ const MArtist = () => {
       renderCell: (params) => {
         return (
           <>
-            {/* <Link to={`/artistDetail/${params.artistName}`} state={params.id}>
+            <Link  to={"/artistDetail/" + params.row.albumName} state={params.row}>
               <button
                 className="artistListView"
-                onClick={(handleClickOpens, selectRow) =>
-                  setShowData({
-                    fimage: selectRow.imageArtist,
-                    fname: selectRow.nameArtist,
-                    ffolow: selectRow.numberOfFollower,
-                  })
-                }
+                // onClick={(handleClickOpens, selectRow) =>
+                //   setShowData({
+                //     fimage: selectRow.imageArtist,
+                //     fname: selectRow.nameArtist,
+                //     ffolow: selectRow.numberOfFollower,
+                //   })
+                // }
               >
                 View
               </button>
-            </Link> */}
+            </Link>
 
             <Link to={"/editArtist/" + params.row.albumName} state={params.row}>
               <button className="artistListEdit">Edit</button>
