@@ -130,12 +130,8 @@ function AlbumDetail() {
                                             src={child.songImage}
                                             alt={child.songName}
                                             />
-                                            {/* <button className="playBtn">
-                                            <PlayArrowRounded />
-                                            </button> */}
                                         </div>
-
-                                `          <div className={"Detail"}>
+                                        <div className={"Detail"}>
                                             <div className={"songHeader"}>
                                             <Typography
                                                 gutterBottom

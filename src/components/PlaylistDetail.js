@@ -68,8 +68,7 @@ function PlaylistDetail() {
                                             <PlayArrowRounded />
                                             </button> */}
                                         </div>
-
-                                `          <div className={"Detail"}>
+                                        <div className={"Detail"}>
                                             <div className={"songHeader"}>
                                             <Typography
                                                 gutterBottom
