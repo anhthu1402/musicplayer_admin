@@ -4,11 +4,6 @@ import "../styles/newsong.css";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import { Error, Check } from "@mui/icons-material";
-import TextField from "@mui/material/TextField";
-import "../styles/newsong.css";
 import { Alert, Button, Select } from "@mui/material";
 import { CountryData } from "./CountryData";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -20,6 +15,7 @@ import { Link } from "react-router-dom";
 import { Avatar } from "antd";
 import { SongData } from "./SongData";
 import SongItem from "./SongItem";
+
 import { Card, CardContent, Typography } from "@mui/material";
 function PlaylistDetail() {
     const location = useLocation();
@@ -29,22 +25,22 @@ function PlaylistDetail() {
     navigate("/playlists");
   };
   return (
-    <div className="newAlbum">
-      <form className="newAlbumForm" id="form-id">
-        <div className="newAlbumItem">
+    <div className="Playlist">
+      <form className="PlaylistForm" id="form-id">
+        <div className="PlaylistItem">
             <div style={{display: 'flex'}} >
                 <Avatar
                     src={playlist.playlistImg} alt={playlist.playlistName}
                     sx={{ width: "12.5vw", height: "12.5vw", marginRight: "2.3vw" }}
-                    style = {{ width: "12.5vw", height: "12.5vw", marginRight: "2vw" }}
+                    style = {{ width: "12.5vw", height: "12.5vw", marginRight: "2.5vw" }}
                 />
-                <div className="playlistInfo"  style = {{marginTop: "auto", marginBottom: "auto", marginLeft: "2vw", fontSize: "2vw"}}>
+                <div className="playlistInfo"  style = {{marginTop: "auto", marginBottom: "auto", marginLeft: "3vw", fontSize: "2vw"}}>
                     <h1 >{playlist.playlistName}</h1>
                     <p style={{ fontSize: "1.2vw", color:"rgb(151, 150, 150)", paddingTop:"1vw" }}>Người tạo: {playlist.user}</p>
                 </div>
             </div>      
         </div>
-        <div style={{ fontSize: "2vw",  marginBottom: "1vw",  marginRight:'auto', marginLeft:'auto'}}> <label>Các bài hát</label></div>
+        <div style={{ fontSize: "2vw",  marginTop:"1vw", marginBottom: "1vw",  marginRight:'auto', marginLeft:'auto'}}> <label>Các bài hát</label></div>
                 {playlist.songPlaylist.map((child, index) => (
                                 <div key={index} item={child}>
                                      <Card className={"cardSong"}>
@@ -109,16 +105,33 @@ function PlaylistDetail() {
                                             </Typography>
                                             </div>
                                             <div className={"songMoreDetail"}>
-                                            <Typography
-                                                className={"time"}
-                                                sx={{
-                                                "@media (max-width: 969px)": {
-                                                    fontSize: "1.6vw !important",
-                                                },
-                                                }}
-                                            >
-                                                {child.timeLimit}
-                                            </Typography>
+                                                {/* <Typography
+                                                    sx={{ cursor: `pointer`, fontSize: "1.3vw" }}
+                                                    className={"playlistEdit"}
+                                                >
+                                                    <Link to = {`/editSong/${child.songName}`}  state={child}>
+                                                        <button className="playlistEdit" 
+                                                        style={{backgroundColor: "#3bb077", 
+                                                        border: "none", 
+                                                        borderRadius: '10px', 
+                                                        color: 'white', 
+                                                        padding: '5px 10px', 
+                                                        fontSize:'1vw' }}
+                                                        >
+                                                            Edit
+                                                        </button>
+                                                    </Link>
+                                                </Typography> */}
+                                                <Typography
+                                                    className={"time"}
+                                                    sx={{
+                                                    "@media (max-width: 969px)": {
+                                                        fontSize: "1.6vw !important",
+                                                    },
+                                                    }}
+                                                >
+                                                    {child.timeLimit}
+                                                </Typography>
                                             </div>
                                         </div>
                                         </CardContent>
@@ -126,7 +139,7 @@ function PlaylistDetail() {
                 </div>
         ))}
                
-        <div style={{marginRight:'auto', marginLeft:'auto'}}>
+        <div style={{marginRight:'auto', marginLeft:'auto', textAlign: "center"}}>
           <Button
             onClick={ablumHandle}
             variant="contained"

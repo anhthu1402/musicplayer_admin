@@ -67,10 +67,10 @@ function ArtistDetail() {
     navigate("/artists");
   };
   return (
-    <div className="newArtist">
+    <div className="Artist">
       {/* <h1 className="newArtistTitle">Xem thông tin nghệ sĩ {artist.artistName}</h1> */}
-      <form className="newArtistForm">
-        <div className="newArtistItem">
+      <form className="ArtistForm">
+        <div className="ArtistItem">
           <div style={{display: 'flex'}}>
               <Avatar
                 alt={artist.artistName}
@@ -78,7 +78,7 @@ function ArtistDetail() {
                 sx={{ width: "12.5vw", height: "12.5vw", marginRight: "2.3vw" }}
                 style = {{ width: "12.5vw", height: "12.5vw", marginRight: "2.3vw" }}
               />
-              <div style = {{marginTop: "auto", marginBottom: "auto", marginLeft: "3vw", fontSize: "3vw"}}>
+              <div style = {{marginTop: "auto", marginBottom: "auto", marginLeft: "3vw", fontSize: "2vw"}}>
                   <h1 >{artist.artistName}</h1>
                   <div>
                       <h4 style={{ fontSize: "1.2vw", color:"rgb(151, 150, 150)", paddingTop:"1vw" }}>
@@ -89,8 +89,8 @@ function ArtistDetail() {
               </div>
           </div>      
         </div>
-        <div style={{ fontSize: "1.2vw",  marginBottom: "1vw"}}>
-          <label style={{ fontSize: "2vw", color:"rgb(151, 150, 150)",  marginBottom: "1vw"}}>Giới thiệu</label>
+        <div style={{ fontSize: "1.2vw",  marginBottom: "1.5vw",   marginTop:"1vw"}}>
+          <label style={{ fontSize: "2vw", color:"rgb(151, 150, 150)",  paddingBottom: "1.5vw"}}>Giới thiệu</label>
           <p>{artist.introduce}</p>
         </div>
         <div style={{ fontSize: "2vw",  marginBottom: "1vw", color:"rgb(151, 150, 150)" }}> <label>Các bài hát</label></div>
@@ -108,15 +108,16 @@ function ArtistDetail() {
                     )
                 )}
         </div>
-        <div  style={{marginRight:'auto', marginLeft:'auto'}}>
+        <div style={{marginRight:"auto", marginLeft:"auto", textAlign: "center"}}>
           <Button
             onClick={artistHandle}
             variant="contained"
             className="buttonAdd"
-           
           >
             Quay về
           </Button>
+            
+          
         </div>
       </form>
     </div>

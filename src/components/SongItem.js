@@ -96,7 +96,7 @@ class SongItem extends Component {
               </Typography>
             </div>
             <div className={"songMoreDetail"}>
-              {/* <Typography
+             {/* <Typography
                 sx={{ cursor: `pointer`, fontSize: "1.3vw" }}
                 variant="icon"
                 component={
@@ -104,12 +104,29 @@ class SongItem extends Component {
                     ? FavoriteIcon
                     : FavoriteBorderOutlined
                 }
-                color={this.props.item.isFavorite ? "#ff4672" : ""}
+                color={t his.props.item.isFavorite ? "#ff4672" : ""}
                 className={
                   this.props.item.isFavorite ? "songFavorite" : "noneFavorite"
                 }
               /> */}
-              <Typography
+                <Typography
+                                                    sx={{ cursor: `pointer`, fontSize: "1.3vw" }}
+                                                    className={"songEdit"}
+                                                >
+                                                    <Link to = {`/editSong/${this.props.item.songName}`}  state={this.props.item}>
+                                                        <button className="songEdit" 
+                                                        style={{backgroundColor: "#3bb077", 
+                                                        border: "none", 
+                                                        borderRadius: '10px', 
+                                                        color: 'white', 
+                                                        padding: '5px 10px', 
+                                                        fontSize:'1vw' }}
+                                                        >
+                                                            Edit
+                                                        </button>
+                                                    </Link>
+                                                </Typography>
+                <Typography
                 className={"time"}
                 sx={{
                   "@media (max-width: 969px)": {
