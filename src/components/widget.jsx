@@ -40,7 +40,7 @@ const Widget = ({ type }) => {
       data = {
         title: "Người dùng",
         isMoney: false,
-        linkTitle: "View all users",
+        linkTitle: "Tất cả người dùng",
         amount: UsersData.length,
         icon: (
           <PersonOutlinedIcon
@@ -59,7 +59,7 @@ const Widget = ({ type }) => {
       data = {
         title: "Bài hát",
         isMoney: false,
-        linkTitle: "View all songs",
+        linkTitle: "Tất cả bài hát",
         amount: SongData.length,
         icon: (
           <MusicNoteRounded
@@ -78,7 +78,7 @@ const Widget = ({ type }) => {
       data = {
         title: "Nghệ sĩ",
         isMoney: false,
-        linkTitle: "View all artists",
+        linkTitle: "Tất cả nghệ sĩ",
         amount: ArtistsData.length,
         icon: (
           <PersonRounded
@@ -95,7 +95,7 @@ const Widget = ({ type }) => {
         title: "Album",
         isMoney: false,
         amount: AlbumData.length,
-        linkTitle: "View all albums",
+        linkTitle: "Tất cả album",
         icon: (
           <AlbumSharpIcon
             className="icon"
@@ -114,7 +114,7 @@ const Widget = ({ type }) => {
         title: "Playlist",
         isMoney: false,
         amount: PlaylistData.length,
-        linkTitle: "View all playlists",
+        linkTitle: "Tất cả playlist",
         icon: (
           <PlaylistPlayRounded
             className="icon"
