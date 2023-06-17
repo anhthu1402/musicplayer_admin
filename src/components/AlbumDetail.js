@@ -172,16 +172,33 @@ function AlbumDetail() {
                                             </Typography>
                                             </div>
                                             <div className={"songMoreDetail"}>
-                                            <Typography
-                                                className={"time"}
-                                                sx={{
-                                                "@media (max-width: 969px)": {
-                                                    fontSize: "1.6vw !important",
-                                                },
-                                                }}
-                                            >
-                                                {child.timeLimit}
-                                            </Typography>
+                                              {/* <Typography
+                                                    sx={{ cursor: `pointer`, fontSize: "1.3vw" }}
+                                                    className={"AlbumEdit"}
+                                                >
+                                                    <Link to = {`/editSong/${child.songName}`}  state={child}>
+                                                        <button className="albumEdit" 
+                                                        style={{backgroundColor: "#3bb077", 
+                                                        border: "none", 
+                                                        borderRadius: '10px', 
+                                                        color: 'white', 
+                                                        padding: '5px 10px', 
+                                                        fontSize:'1vw' }}
+                                                        >
+                                                            Edit
+                                                        </button>
+                                                    </Link>
+                                              </Typography> */}
+                                              <Typography
+                                                  className={"time"}
+                                                  sx={{
+                                                  "@media (max-width: 969px)": {
+                                                      fontSize: "1.6vw !important",
+                                                  },
+                                                  }}
+                                              >
+                                                  {child.timeLimit}
+                                              </Typography>
                                             </div>
                                         </div>
                                         </CardContent>

@@ -16,7 +16,7 @@ export const AlbumData = [
         artistName: "Band",
         numberOfFollower: "927.713",
         introduce:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit, ...",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit,...",
         artistImage:
           "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSQSyUgtbtwz_jjQW9HdgngLzR5eyIZAErOKbpXwdgHsT8WOae4",
       },
@@ -25,7 +25,7 @@ export const AlbumData = [
         artistName: "Trademark",
         numberOfFollower: "97.713",
         introduce:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit, ...",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit,...",
         artistImage:
           "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTirgJDvMLhQK3nUI2LaUVY9vqGxBBZHLduUQZdf2n1L6Bmw-Xq",
       },

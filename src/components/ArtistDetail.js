@@ -68,13 +68,13 @@ function ArtistDetail() {
   };
   return (
     <div className="Artist">
-      {/* <h1 className="newArtistTitle">Xem thông tin nghệ sĩ {artist.artistName}</h1> */}
+      {artist && (
       <form className="ArtistForm">
         <div className="ArtistItem">
           <div style={{display: 'flex'}}>
               <Avatar
+                src={artist.artistImage}
                 alt={artist.artistName}
-                src={require("../assets/" + artist.artistImage)}
                 sx={{ width: "12.5vw", height: "12.5vw", marginRight: "2.3vw" }}
                 style = {{ width: "12.5vw", height: "12.5vw", marginRight: "2.3vw" }}
               />
@@ -120,6 +120,7 @@ function ArtistDetail() {
           
         </div>
       </form>
+      )}
     </div>
   );
 }

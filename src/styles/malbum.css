@@ -54,3 +54,12 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+.albumListArtist 
+  span:not(:last-of-type)::after {
+content: ", ";
+}
+.songs
+    span:not(:last-of-type)::after {
+    content: ", ";
+    }
