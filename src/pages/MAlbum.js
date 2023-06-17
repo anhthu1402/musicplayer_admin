@@ -48,7 +48,7 @@ const MAlbum = () => {
     {
       field: "image",
       headerName: "Ảnh",
-      width: 100,
+      width: 70,
 
       renderCell: (params) => {
         return (
@@ -180,7 +180,10 @@ const MAlbum = () => {
       renderCell: (params) => {
         return (
           <>
-            {/* <button className="artistListView">View</button> */}
+            <Link to={"/albumDetail/" + params.row.albumName} state={params.row}>
+                <button className="artistListView">View</button>
+            </Link>
+           
             <Link to={"/editAlbum/" + params.row.albumName} state={params.row}>
               <button className="albumListEdit">Edit</button>
             </Link>

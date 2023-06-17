@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "./SideBar";
 import { Outlet } from "react-router-dom";
+import axios from "axios";
 
 function AppRoot() {
+  // const [songs, setSongs]=useState([]);
+  // useEffect(() => {
+  //   axios.get("/api/getAllSongs").then((res) => {
+  //     const Songs = res.data.songs;
+  //     setSongs(Songs);
+  //   });
+  // });
   return (
     <>
       <div style={{ position: "relative" }}>

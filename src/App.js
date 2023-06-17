@@ -19,7 +19,6 @@ import NewSong from "./components/NewSong";
 import NewUser from "./components/NewUser";
 import NewAlbum from "./components/NewAlbum";
 import SignUp from "./components/SignUp";
-import DetailsUser from "./components/DetailUser";
 import { Switch } from "@mui/material";
 import UpLoadSong from "./components/UpLoadSong";
 import ArtistDetail from "./components/ArtistDetail";
@@ -32,6 +31,9 @@ import EditArtist from "./components/EditArtist";
 import MPlaylist from "./pages/MPlaylist";
 import EditPlaylist from "./components/EditPlaylist";
 import NewPlaylist from "./components/NewPlaylist";
+import AlbumDetail from "./components/AlbumDetail";
+import PlaylistDetail from "./components/PlaylistDetail";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -99,12 +101,16 @@ function App() {
           element: <NewUser />,
         },
         {
-          path: "users/:id",
-          element: <DetailsUser />,
-        },
-        {
           path: "artistDetail/*",
           element: <ArtistDetail />,
+        },
+        {
+          path: "albumDetail/*",
+          element: <AlbumDetail />,
+        },
+        {
+          path: "playlistDetail/*",
+          element: <PlaylistDetail />,
         },
         {
           path: "newAlbum",

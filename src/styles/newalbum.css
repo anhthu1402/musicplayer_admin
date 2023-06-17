@@ -65,3 +65,7 @@
   transition: 0.3s ease;
   color: #373b3e;
 }
+.artists
+  span:not(:last-of-type)::after {
+content: ", ";
+}
