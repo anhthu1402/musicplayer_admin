@@ -247,6 +247,7 @@ Don't let this be our last good-bye
             artistName: "Jin",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+            numberOfFollower: "927.713",  
           },
         ],
         songImage:
@@ -292,6 +293,7 @@ Don't let this be our last good-bye
             artistName: "BTS",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+            numberOfFollower: "927.713",
           },
         ],
         songImage:
@@ -419,6 +421,7 @@ Eolssu`,
             artistName: "911",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+            numberOfFollower: "107.713",
           },
         ],
         songImage:
@@ -465,12 +468,14 @@ Don't let this be our last good-bye
             artistName: "BTS",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+            numberOfFollower: "927.713",
           },
           {
             id: 6,
             artistName: "Nicki Minaj",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+            numberOfFollower: "927.713",
           },
         ],
         songImage:
@@ -598,6 +603,7 @@ Eolssu`,
             artistName: "Trademark",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+              numberOfFollower: "197.713",
           },
         ],
         songImage:
@@ -643,6 +649,7 @@ Don't let this be our last good-bye
             artistName: "Cool",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+            numberOfFollower: "227.713",
           },
         ],
         songImage:
@@ -688,12 +695,14 @@ Don't let this be our last good-bye
             artistName: "BTS",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+              numberOfFollower: "927.713",
           },
           {
             id: 6,
             artistName: "Nicki Minaj",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+              numberOfFollower: "927.713",
           },
         ],
         songImage:
@@ -821,6 +830,7 @@ Eolssu`,
             artistName: "Cool",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+              numberOfFollower: "227.713",
           },
         ],
         songImage:
@@ -875,12 +885,14 @@ Don't let this be our last good-bye
             artistName: "BTS",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+              numberOfFollower: "927.713",
           },
           {
             id: 6,
             artistName: "Nicki Minaj",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+              numberOfFollower: "927.713",
           },
         ],
         songImage:
@@ -1008,6 +1020,7 @@ Eolssu`,
             artistName: "Cool",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+              numberOfFollower: "227.713",
           },
         ],
         songImage:
@@ -1062,6 +1075,7 @@ Don't let this be our last good-bye
             artistName: "Cool",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+              numberOfFollower: "227.713",
           },
         ],
         songImage:
@@ -1108,6 +1122,7 @@ Don't let this be our last good-bye
             artistName: "Trademark",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+              numberOfFollower: "197.713",
           },
         ],
         songImage:
@@ -1162,6 +1177,7 @@ Don't let this be our last good-bye
             artistName: "Trademark",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+              numberOfFollower: "197.713",
           },
         ],
         songImage:
@@ -1208,6 +1224,7 @@ Don't let this be our last good-bye
             artistName: "Cool",
             artistImage:
               "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+              numberOfFollower: "227.713",
           },
         ],
         songImage:

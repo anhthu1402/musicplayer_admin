@@ -97,14 +97,13 @@ function AlbumDetail() {
                     <h1 >{album.albumName}</h1>
                     <p style={{ fontSize: "1.2vw", color:"rgb(151, 150, 150)", paddingTop:"1vw" }}> Ngày phát hành: {FormatDate(album.releaseDate)}</p>
                     <div className="artists" style={{ fontSize: "1.2vw", color:"rgb(151, 150, 150)", paddingTop:"1vw" }}>
-                        {album.artist.map((child, index) => (
-                        <span key={index} item={child}>
-                             {child.artistName}
-                            {/* <Link  to={`/artistDetail/${child.artistName}`} state={child}>
+                          {album.artist.map((child, index) => (
+                            <span key={index} item={child}>
+                              <Link to={`/artistDetail/${child.artistName}`} state={child}>
                                 {child.artistName}
-                            </Link> */}
-                        </span>
-                        ))}
+                              </Link>
+                            </span>
+                            ))}
                     </div>
                     <p style={{ fontSize: "1.2vw", color:"rgb(151, 150, 150)", paddingTop:"1vw" }}>{album.interestTimes} người yêu thích</p>
                 </div>
@@ -158,14 +157,14 @@ function AlbumDetail() {
                                                 {child.representation.map((child, index) => {
                                                 return (
                                                     <span key={index} item={child} className="artist">
-                                                     {child.artistName}
-                                                    {/* <Link
+                                                     {/* {child.artistName} */}
+                                                    <Link
                                                         to={`/artistDetail/${child.artistName}`}
                                                         state={child}
                                                         color="grey"
                                                     >
                                                         {child.artistName}
-                                                    </Link> */}
+                                                    </Link>
                                                     </span>
                                                 );
                                                 })}
@@ -177,7 +176,7 @@ function AlbumDetail() {
                                                     className={"AlbumEdit"}
                                                 >
                                                     <Link to = {`/editSong/${child.songName}`}  state={child}>
-                                                        <button className="albumEdit" 
+                                                        <button
                                                         style={{backgroundColor: "#3bb077", 
                                                         border: "none", 
                                                         borderRadius: '10px', 

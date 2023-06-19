@@ -60,9 +60,6 @@ function PlaylistDetail() {
                                             src={child.songImage}
                                             alt={child.songName}
                                             />
-                                            {/* <button className="playBtn">
-                                            <PlayArrowRounded />
-                                            </button> */}
                                         </div>
                                         <div className={"Detail"}>
                                             <div className={"songHeader"}>
@@ -91,37 +88,37 @@ function PlaylistDetail() {
                                                 {child.representation.map((child, index) => {
                                                 return (
                                                     <span key={index} item={child} className="artist">
-                                                     {child.artistName}
-                                                    {/* <Link
+                                                     {/* {child.artistName} */}
+                                                     <Link
                                                         to={`/artistDetail/${child.artistName}`}
                                                         state={child}
                                                         color="grey"
                                                     >
                                                         {child.artistName}
-                                                    </Link> */}
+                                                    </Link>
                                                     </span>
                                                 );
                                                 })}
                                             </Typography>
                                             </div>
                                             <div className={"songMoreDetail"}>
-                                                {/* <Typography
-                                                    sx={{ cursor: `pointer`, fontSize: "1.3vw" }}
-                                                    className={"playlistEdit"}
-                                                >
-                                                    <Link to = {`/editSong/${child.songName}`}  state={child}>
-                                                        <button className="playlistEdit" 
-                                                        style={{backgroundColor: "#3bb077", 
-                                                        border: "none", 
-                                                        borderRadius: '10px', 
-                                                        color: 'white', 
-                                                        padding: '5px 10px', 
-                                                        fontSize:'1vw' }}
-                                                        >
-                                                            Edit
-                                                        </button>
-                                                    </Link>
-                                                </Typography> */}
+                                                    {/* <Typography
+                                                        sx={{ cursor: `pointer`, fontSize: "1.3vw" }}
+                                                        className={"playlistEdit"}
+                                                    >
+                                                            <Link to = {`/editSong/${child.songName}`}  state={child}>
+                                                                <button className="playlistEdit" 
+                                                                style={{backgroundColor: "#3bb077", 
+                                                                border: "none", 
+                                                                borderRadius: '10px', 
+                                                                color: 'white', 
+                                                                padding: '5px 10px', 
+                                                                fontSize:'1vw' }}
+                                                                >
+                                                                    Edit
+                                                                </button>
+                                                            </Link>
+                                                    </Typography> */}
                                                 <Typography
                                                     className={"time"}
                                                     sx={{
