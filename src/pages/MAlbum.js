@@ -108,17 +108,20 @@ const MAlbum = () => {
             {params.row.artist.map((child, index) => {
               if (index < Object.keys(child).length - 1) {
                 return (
-                  <span key={index} item={child}>
-                    {child.artistName} <text values=" "></text>
-                  </span>
-                );
-              } else {
-                return (
-                  <span key={index} item={child}>
-                    , <span> {child.artistName}</span>
-                  </span>
+                    <span key={index} item={child}>
+                      <Link  to={`/artistDetail/${child.artistName}` } state={child}>
+                          {child.artistName}
+                      </Link>  
+                    </span>
                 );
               }
+              // } else {
+              //   return (
+              //     <span key={index} item={child}>
+              //       , <span> {child.artistName}</span>
+              //     </span>
+              //   );
+              // }
             })}
           </div>
         );
@@ -143,16 +146,17 @@ const MAlbum = () => {
               if (index < Object.keys(child).length - 1) {
                 return (
                   <span key={index} item={child} className="songs">
-                    {child.songName} <span values=" "></span>
+                    {child.songName}
                   </span>
                 );
-              } else {
-                return (
-                  <span key={index} item={child} className="songs">
-                    <span>{child.songName}</span>
-                  </span>
-                );
-              }
+              } 
+              // else {
+              //   return (
+              //     <span key={index} item={child} className="songs">
+              //       <span>{child.songName}</span>
+              //     </span>
+              //   );
+              // }
             })}
           </div>
         );

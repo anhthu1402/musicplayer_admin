@@ -108,16 +108,20 @@ const MSong = () => {
             {params.row.representation.map((child, index) => {
               if (index < Object.keys(child).length - 1) {
                 return (
-                  <div key={index} item={child}>
-                    {child.artistName}
-                  </div>
+                    <div key={index} item={child}>
+                        <Link  to={`/artistDetail/${child.artistName}` } state={child}>
+                          {child.artistName}
+                        </Link>  
+                    </div>
+                 
                 );
-              } else
-                return (
-                  <div key={index} item={child}>
-                    , <span>{child.artistName}</span>
-                  </div>
-                );
+              // } else
+              //   return (
+              //     <div key={index} item={child}>
+              //       , <span>{child.artistName}</span>
+              //     </div>
+              //   );
+              }
             })}
           </div>
         );

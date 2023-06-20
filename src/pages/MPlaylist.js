@@ -89,16 +89,17 @@ function MPlaylist() {
               if (index < Object.keys(child).length - 1) {
                 return (
                   <span key={index} item={child} className="songs">
-                    {child.songName} <text values=" "></text>
+                    {child.songName}
                   </span>
                 );
-              } else {
-                return (
-                  <span key={index} item={child} className="songs">
-                    , <span>{child.songName}</span>
-                  </span>
-                );
-              }
+              } 
+              // else {
+              //   return (
+              //     <span key={index} item={child} className="songs">
+              //       , <span>{child.songName}</span>
+              //     </span>
+              //   );
+              // }
             })}
           </div>
         );

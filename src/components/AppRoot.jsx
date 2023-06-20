@@ -6,8 +6,8 @@ import axios from "axios";
 function AppRoot() {
   // const [songs, setSongs]=useState([]);
   // useEffect(() => {
-  //   axios.get("/api/getAllSongs").then((res) => {
-  //     const Songs = res.data.songs;
+  //   axios.get("/api/test").then((res) => {
+  //     const Songs = res.data.message;
   //     setSongs(Songs);
   //   });
   // });

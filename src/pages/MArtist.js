@@ -48,7 +48,7 @@ const MArtist = () => {
           <div style={{ alignItems: "center" }}>
             <img
               className="artistListImg"
-              src={require("../assets/" + params.row.artistImage)}
+              src={params.row.artistImage}
               alt={params.row.artistName}
               width={70}
               height={70}
