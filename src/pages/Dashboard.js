@@ -26,7 +26,13 @@ import { render } from "@testing-library/react";
 function Dashboard() {
   // var CanvasJS = CanvasJSReact.CanvasJS;
   // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-  const [data, setData] = useState(ArtistsData);
+  const artistData = [];
+  ArtistsData.map((item, index) => {
+    if (index < 10) {
+      artistData.push(item);
+    }
+  });
+  const [data, setData] = useState(artistData);
   // const rows= ArtistsData
   // const options = {
   // 		title: {
@@ -53,7 +59,7 @@ function Dashboard() {
       </div>
       <div className="charts" style={{ width: "80%" }}>
         <div>
-          <h3 className="chartTitle">Thống kê nghệ sĩ</h3>
+          <h3 className="chartTitle">Thống kê top 10 nghệ sĩ</h3>
           <ResponsiveContainer width="100%" aspect={1.5}>
             <BarChart data={data}>
               <XAxis dataKey="artistName" />
@@ -104,7 +110,14 @@ function Dashboard() {
         {/* <CanvasJSChart options = {options}/> */}
         {/* <Chart data={UsersData} title="User Analytics" name="" grid dataKey="Active User"/> */}
         {/* <Chart data={SongData} name="songName" grid dataKey="" title="Song Analytics"/> */}
-        {/* <Chart data={ArtistsData} name="artistName" grid dataKey="numberOfFollower" title="Artist Analytics"  aspect={3 / 1} /> */}
+        {/* <Chart
+          data={ArtistsData}
+          name="artistName"
+          grid
+          dataKey="numberOfFollower"
+          title="Artist Analytics"
+          aspect={3 / 1}
+        /> */}
         {/* <Chart data={AlbumData} grid dataKey="" title="Album Analytics"/> */}
       </div>
     </div>

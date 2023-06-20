@@ -67,7 +67,7 @@ const MAlbum = () => {
     {
       field: "albumName",
       headerName: "Tên Album",
-      width: 150,
+      width: 200,
       editable: true,
       renderCell: (params) => {
         return (
@@ -93,7 +93,7 @@ const MAlbum = () => {
     {
       field: "artist",
       headerName: "Nghệ sĩ",
-      width: 150,
+      width: 100,
 
       renderCell: (params) => {
         return (
@@ -108,11 +108,15 @@ const MAlbum = () => {
             {params.row.artist.map((child, index) => {
               if (index < Object.keys(child).length - 1) {
                 return (
-                    <span key={index} item={child}>
-                      <Link  to={`/artistDetail/${child.artistName}` } state={child}>
-                          {child.artistName}
-                      </Link>  
-                    </span>
+                  <span key={index} item={child}>
+                    <Link
+                      to={`/artistDetail/${child.artistName}`}
+                      state={child}
+                      style={{ color: "black", textDecoration: "none" }}
+                    >
+                      {child.artistName}
+                    </Link>
+                  </span>
                 );
               }
               // } else {
@@ -149,7 +153,7 @@ const MAlbum = () => {
                     {child.songName}
                   </span>
                 );
-              } 
+              }
               // else {
               //   return (
               //     <span key={index} item={child} className="songs">
@@ -171,7 +175,11 @@ const MAlbum = () => {
         return (
           <div className="albumListCountry" style={{ verticalAlign: "center" }}>
             <div>
-              <span className="country">{params.row.country.countryName}</span>
+              <span className="country">
+                {params.row.country.map((item, index) => (
+                  <div key={index}>{item.countryName}</div>
+                ))}
+              </span>
             </div>
           </div>
         );
@@ -184,10 +192,13 @@ const MAlbum = () => {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/albumDetail/" + params.row.albumName} state={params.row}>
-                <button className="artistListView">View</button>
+            <Link
+              to={"/albumDetail/" + params.row.albumName}
+              state={params.row}
+            >
+              <button className="artistListView">View</button>
             </Link>
-           
+
             <Link to={"/editAlbum/" + params.row.albumName} state={params.row}>
               <button className="albumListEdit">Edit</button>
             </Link>

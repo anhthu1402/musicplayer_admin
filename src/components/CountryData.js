@@ -9,10 +9,10 @@ export const CountryData = [
   },
   {
     id: 3,
-    countryName: "Mỹ",
+    countryName: "Nhật Bản",
   },
   {
     id: 4,
-    countryName: "Anh",
+    countryName: "US-UK",
   },
 ];

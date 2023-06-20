@@ -23,35 +23,35 @@ import SongItem from "./SongItem";
 import { getAlbumDetail } from "../service";
 import { AlbumData } from "./AlbumData";
 import { Card, CardContent, Typography } from "@mui/material";
+import TrackItem from "./TrackItem";
 function AlbumDetail() {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const album = location.state;
-    // const id = location.state;
-    // const albumDetail = getAlbumDetail(id);
-    // const tracks = albumDetail.songs;
-    const id = location.state;
-    const albumDetail = getAlbumDetail(id);
-    // const tracks = albumDetail.songs;
-    
-    const tracks = AlbumData;
-    const artist = [];
-    album.artist.map((item, index) => {
-      artist.push(item.id);
-    });
-    
-    const songs = [];
-    album.songs.map((item, index) => {
-      songs.push(item.id);
-    });
-    const [songId, setSongId] = useState(songs);
-    const albumSong=[];
+  const location = useLocation();
+  const navigate = useNavigate();
+  const album = location.state;
+  // const id = location.state;
+  // const albumDetail = getAlbumDetail(id);
+  // const tracks = albumDetail.songs;
+  const id = location.state;
+  const albumDetail = getAlbumDetail(id);
+  // const tracks = albumDetail.songs;
 
-    // album.songs.map((item, index) => {
-    //     albumSong.push(item);
-    // });
+  const tracks = AlbumData;
+  const artist = [];
+  album.artist.map((item, index) => {
+    artist.push(item.id);
+  });
 
-    
+  const songs = [];
+  album.songs.map((item, index) => {
+    songs.push(item.id);
+  });
+  const [songId, setSongId] = useState(songs);
+  const albumSong = [];
+
+  // album.songs.map((item, index) => {
+  //     albumSong.push(item);
+  // });
+
   function formatDate(day, month, year) {
     if (month < 10) {
       if (day < 10) {
@@ -71,15 +71,15 @@ function AlbumDetail() {
   }
   const [date, setDate] = useState(dayjs(FormatDate(album.releaseDate)));
 
-//   const location = useLocation();
-//   const navigate = useNavigate();
-//   const album = location.state;
-//   const tracks = SongData;
-//   const artist = [];
-//     album.artist.map((item, index) => {
-//     artist.push(item.id);
-//   });
-   
+  //   const location = useLocation();
+  //   const navigate = useNavigate();
+  //   const album = location.state;
+  //   const tracks = SongData;
+  //   const artist = [];
+  //     album.artist.map((item, index) => {
+  //     artist.push(item.id);
+  //   });
+
   const ablumHandle = () => {
     navigate("/albums");
   };
@@ -87,125 +87,93 @@ function AlbumDetail() {
     <div className="Album">
       <form className="AlbumForm" id="form-id">
         <div className="AlbumItem">
-            <div style={{display: 'flex'}} >
-                <Avatar
-                    src={album.albumImage} alt={album.albumName}
-                    sx={{ width: "12.5vw", height: "12.5vw", marginRight: "2.3vw" }}
-                    style = {{ width: "12.5vw", height: "12.5vw", marginRight: "2.5vw" }}
-                />
-                <div className="albumInfo"  style = {{marginTop: "auto", marginBottom: "auto", marginLeft: "3vw", fontSize: "2vw"}}>
-                    <h1 >{album.albumName}</h1>
-                    <p style={{ fontSize: "1.2vw", color:"rgb(151, 150, 150)", paddingTop:"1vw" }}> Ngày phát hành: {FormatDate(album.releaseDate)}</p>
-                    <div className="artists" style={{ fontSize: "1.2vw", color:"rgb(151, 150, 150)", paddingTop:"1vw" }}>
-                          {album.artist.map((child, index) => (
-                            <span key={index} item={child}>
-                              <Link to={`/artistDetail/${child.artistName}`} state={child}>
-                                {child.artistName}
-                              </Link>
-                            </span>
-                            ))}
-                    </div>
-                    <p style={{ fontSize: "1.2vw", color:"rgb(151, 150, 150)", paddingTop:"1vw" }}>{album.interestTimes} người yêu thích</p>
-                </div>
-            </div>      
+          <div style={{ display: "flex" }}>
+            <Avatar
+              src={album.albumImage}
+              alt={album.albumName}
+              sx={{ width: "12.5vw", height: "12.5vw", marginRight: "2.3vw" }}
+              style={{
+                width: "12.5vw",
+                height: "12.5vw",
+                marginRight: "2.5vw",
+              }}
+            />
+            <div
+              className="albumInfo"
+              style={{
+                marginTop: "auto",
+                marginBottom: "auto",
+                marginLeft: "3vw",
+                fontSize: "2vw",
+              }}
+            >
+              <h1>{album.albumName}</h1>
+              <p
+                style={{
+                  fontSize: "1.2vw",
+                  color: "rgb(151, 150, 150)",
+                  paddingTop: "1vw",
+                }}
+              >
+                {" "}
+                Ngày phát hành: {FormatDate(album.releaseDate)}
+              </p>
+              <div
+                className="artists"
+                style={{
+                  fontSize: "1.2vw",
+                  color: "rgb(151, 150, 150)",
+                  paddingTop: "1vw",
+                }}
+              >
+                {album.artist.map((child, index) => (
+                  <span key={index} item={child}>
+                    <Link
+                      to={`/artistDetail/${child.artistName}`}
+                      state={child}
+                    >
+                      {child.artistName}
+                    </Link>
+                  </span>
+                ))}
+              </div>
+              <p
+                style={{
+                  fontSize: "1.2vw",
+                  color: "rgb(151, 150, 150)",
+                  paddingTop: "1vw",
+                }}
+              >
+                {album.interestTimes} người yêu thích
+              </p>
+            </div>
+          </div>
         </div>
-        <div style={{ fontSize: "2vw", marginTop:"1vw", marginBottom: "1vw",  marginRight:'auto', marginLeft:'auto'}}> <label>Các bài hát</label></div>
-                {album.songs.map((child, index) => (
-                                <div key={index} item={child}>
-                                     <Card className={"cardSong"}>
-                                        <CardContent className={"songItem"}>
-                                        <div
-                                            className="songMedia"
-                                        >
-                                            <img
-                                            style={{
-                                                width: `4vw`,
-                                                height: `4vw`,
-                                                border: `0.2px solid transparent`,
-                                                borderRadius: `3px`,
-                                                position: "relative",
-                                                marginRight: `1vw`,
-                                            }}
-                                            src={child.songImage}
-                                            alt={child.songName}
-                                            />
-                                        </div>
-                                        <div className={"Detail"}>
-                                            <div className={"songHeader"}>
-                                            <Typography
-                                                gutterBottom
-                                                variant="h5"
-                                                sx={{
-                                                fontSize: "1.6vw",
-                                                "@media (max-width: 1163px)": {
-                                                    fontSize: "1.8vw",
-                                                },
-                                                }}
-                                            >
-                                                {child.songName}
-                                            </Typography>
-                                            <Typography
-                                                variant="body2"
-                                                className={"songArtist"}
-                                                sx={{
-                                                fontSize: "1vw",
-                                                "@media (max-width: 1163px)": {
-                                                    fontSize: "1.4vw",
-                                                },
-                                                }}
-                                            >
-                                                {child.representation.map((child, index) => {
-                                                return (
-                                                    <span key={index} item={child} className="artist">
-                                                     {/* {child.artistName} */}
-                                                    <Link
-                                                        to={`/artistDetail/${child.artistName}`}
-                                                        state={child}
-                                                        color="grey"
-                                                    >
-                                                        {child.artistName}
-                                                    </Link>
-                                                    </span>
-                                                );
-                                                })}
-                                            </Typography>
-                                            </div>
-                                            <div className={"songMoreDetail"}>
-                                              {/* <Typography
-                                                    sx={{ cursor: `pointer`, fontSize: "1.3vw" }}
-                                                    className={"AlbumEdit"}
-                                                >
-                                                    <Link to = {`/editSong/${child.songName}`}  state={child}>
-                                                        <button
-                                                        style={{backgroundColor: "#3bb077", 
-                                                        border: "none", 
-                                                        borderRadius: '10px', 
-                                                        color: 'white', 
-                                                        padding: '5px 10px', 
-                                                        fontSize:'1vw' }}
-                                                        >
-                                                            Edit
-                                                        </button>
-                                                    </Link>
-                                              </Typography> */}
-                                              <Typography
-                                                  className={"time"}
-                                                  sx={{
-                                                  "@media (max-width: 969px)": {
-                                                      fontSize: "1.6vw !important",
-                                                  },
-                                                  }}
-                                              >
-                                                  {child.timeLimit}
-                                              </Typography>
-                                            </div>
-                                        </div>
-                                        </CardContent>
-                                    </Card>
-                </div>
+        <div
+          style={{
+            fontSize: "2vw",
+            marginTop: "1vw",
+            marginBottom: "1vw",
+            marginRight: "auto",
+            marginLeft: "auto",
+          }}
+        >
+          {" "}
+          <label>Các bài hát</label>
+        </div>
+        {album.songs.map((child, index) => (
+          <div className="song shadowDiv">
+            <TrackItem key={index} item={child} />
+          </div>
         ))}
-               
-        <div style={{marginRight:'auto', marginLeft:'auto', textAlign: "center"}}>
+
+        <div
+          style={{
+            marginRight: "auto",
+            marginLeft: "auto",
+            textAlign: "center",
+          }}
+        >
           <Button
             onClick={ablumHandle}
             variant="contained"

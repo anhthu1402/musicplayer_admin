@@ -32,6 +32,8 @@ const MenuProps = {
 };
 
 function EditSong() {
+  const location = useLocation();
+  const song = location.state;
   const [audioUrl, setAudioUrl] = useState("");
   const [timeLimit, setTimeLimit] = useState(0);
   const [imageUrl, setImageUrl] = useState("");
@@ -186,8 +188,6 @@ function EditSong() {
       }
     }
   }
-  const location = useLocation();
-  const song = location.state;
 
   const songnameRef = useRef();
   const loibaihatRef = useRef();

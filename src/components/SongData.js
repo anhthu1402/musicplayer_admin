@@ -9,7 +9,8 @@ export const SongData = [
         numberOfFollower: "97.713",
         introduce:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit, ...",
-        artistImage: "https://s.mxmcdn.net/images-storage/albums/4/1/1/4/3/9/26934114_800_800.jpg",
+        artistImage:
+          "https://s.mxmcdn.net/images-storage/albums/4/1/1/4/3/9/26934114_800_800.jpg",
       },
       {
         id: 2,
@@ -17,7 +18,8 @@ export const SongData = [
         numberOfFollower: "927.713",
         introduce:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit, ...",
-        artistImage: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSQSyUgtbtwz_jjQW9HdgngLzR5eyIZAErOKbpXwdgHsT8WOae4",
+        artistImage:
+          "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSQSyUgtbtwz_jjQW9HdgngLzR5eyIZAErOKbpXwdgHsT8WOae4",
       },
     ],
     songImage: "onlylove.jpg",
@@ -69,7 +71,8 @@ Don't let this be our last good-bye
       {
         id: 6,
         artistName: "Jin",
-        artistImage: "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+        artistImage:
+          "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
         introduce:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit, ...",
         numberOfFollower: "927.713",
@@ -124,7 +127,8 @@ Don't let this be our last good-bye
       {
         id: 4,
         artistName: "BTS",
-        artistImage: "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+        artistImage:
+          "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
         introduce:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit, ...",
         numberOfFollower: "927.713",
@@ -182,7 +186,8 @@ Don't let this be our last good-bye
         artistName: "911",
         introduce:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit,...",
-        artistImage: "https://th.bing.com/th/id/R.0d3c8c44d5624218ecb547fb78288f6b?rik=dEU4NdcLbyDGGQ&riu=http%3a%2f%2fcdn.images.express.co.uk%2fimg%2fdynamic%2fgalleries%2fx701%2f106070.jpg&ehk=94nqk1H6Vr9IL2kK6R4N3eg15HPg4ZSkRhIj9zCWY5k%3d&risl=&pid=ImgRaw&r=0",
+        artistImage:
+          "https://th.bing.com/th/id/R.0d3c8c44d5624218ecb547fb78288f6b?rik=dEU4NdcLbyDGGQ&riu=http%3a%2f%2fcdn.images.express.co.uk%2fimg%2fdynamic%2fgalleries%2fx701%2f106070.jpg&ehk=94nqk1H6Vr9IL2kK6R4N3eg15HPg4ZSkRhIj9zCWY5k%3d&risl=&pid=ImgRaw&r=0",
         numberOfFollower: "907.713",
       },
     ],
@@ -238,7 +243,8 @@ Don't let this be our last good-bye
         numberOfFollower: "97.713",
         introduce:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit, ...",
-        artistImage: "https://s.mxmcdn.net/images-storage/albums/4/1/1/4/3/9/26934114_800_800.jpg",
+        artistImage:
+          "https://s.mxmcdn.net/images-storage/albums/4/1/1/4/3/9/26934114_800_800.jpg",
       },
     ],
     songImage: "onlylove.jpg",
@@ -290,7 +296,8 @@ Don't let this be our last good-bye
       {
         id: 3,
         artistName: "Cool",
-        artistImage: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS577cuhYFeSCYDO6fyzkSbk5FSa505r5pSpmvJmzDLX3f2ybEs",
+        artistImage:
+          "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS577cuhYFeSCYDO6fyzkSbk5FSa505r5pSpmvJmzDLX3f2ybEs",
         introduce:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit, ...",
         numberOfFollower: "27.713",
@@ -347,7 +354,8 @@ Don't let this be our last good-bye
         artistName: "BTS",
         introduce:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit, ...",
-        artistImage: "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+        artistImage:
+          "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
         numberOfFollower: "927.713",
       },
     ],
@@ -403,7 +411,8 @@ Don't let this be our last good-bye
         numberOfFollower: "97.713",
         introduce:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit,...",
-        artistImage: "https://s.mxmcdn.net/images-storage/albums/4/1/1/4/3/9/26934114_800_800.jpg",
+        artistImage:
+          "https://s.mxmcdn.net/images-storage/albums/4/1/1/4/3/9/26934114_800_800.jpg",
       },
     ],
     songImage: "onlylove.jpg",
@@ -455,7 +464,8 @@ Don't let this be our last good-bye
       {
         id: 3,
         artistName: "Cool",
-        artistImage: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS577cuhYFeSCYDO6fyzkSbk5FSa505r5pSpmvJmzDLX3f2ybEs",
+        artistImage:
+          "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS577cuhYFeSCYDO6fyzkSbk5FSa505r5pSpmvJmzDLX3f2ybEs",
         introduce:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit, ...",
         numberOfFollower: "27.713",
@@ -510,7 +520,8 @@ Don't let this be our last good-bye
       {
         id: 4,
         artistName: "BTS",
-        artistImage: "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+        artistImage:
+          "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
         introduce:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit, ...",
         numberOfFollower: "927.713",
@@ -518,7 +529,8 @@ Don't let this be our last good-bye
       {
         id: 7,
         artistName: "Nicki Minaj",
-        artistImage: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTQmsoi9PPIK8QFU9X9F4GitRhVsWhz4sooOvoausr15K8mawB_",
+        artistImage:
+          "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTQmsoi9PPIK8QFU9X9F4GitRhVsWhz4sooOvoausr15K8mawB_",
         introduce:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac nunc ut justo tincidunt sagittis quis eu magna. Suspendisse posuere tellus velit, ...",
         numberOfFollower: "927.713",

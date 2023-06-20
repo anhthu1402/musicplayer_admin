@@ -21,6 +21,7 @@ import SongItem from "./SongItem";
 import { Avatar } from "antd";
 import { grey } from "@mui/material/colors";
 import { color } from "@mui/system";
+import TrackItem from "./TrackItem";
 
 function ArtistDetail() {
   // const [imageUrl, setImageUrl] = useState("");
@@ -69,57 +70,94 @@ function ArtistDetail() {
   return (
     <div className="Artist">
       {artist && (
-      <form className="ArtistForm">
-        <div className="ArtistItem">
-          <div style={{display: 'flex'}}>
+        <form className="ArtistForm">
+          <div className="ArtistItem">
+            <div style={{ display: "flex" }}>
               <Avatar
                 src={artist.artistImage}
                 alt={artist.artistName}
                 sx={{ width: "12.5vw", height: "12.5vw", marginRight: "2.3vw" }}
-                style = {{ width: "12.5vw", height: "12.5vw", marginRight: "2.3vw" }}
+                style={{
+                  width: "12.5vw",
+                  height: "12.5vw",
+                  marginRight: "2.3vw",
+                }}
               />
-              <div style = {{marginTop: "auto", marginBottom: "auto", marginLeft: "3vw", fontSize: "2vw"}}>
-                  <h1 >{artist.artistName}</h1>
-                  <div>
-                      <h4 style={{ fontSize: "1.2vw", color:"rgb(151, 150, 150)", paddingTop:"1vw" }}>
-                          <span>{artist.numberOfFollower} người theo dõi</span>
-                      </h4>
-                  </div>
-                 
+              <div
+                style={{
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                  marginLeft: "3vw",
+                  fontSize: "2vw",
+                }}
+              >
+                <h1>{artist.artistName}</h1>
+                <div>
+                  <h4
+                    style={{
+                      fontSize: "1.2vw",
+                      color: "rgb(151, 150, 150)",
+                      paddingTop: "1vw",
+                    }}
+                  >
+                    <span>{artist.numberOfFollower} người theo dõi</span>
+                  </h4>
+                </div>
               </div>
-          </div>      
-        </div>
-        <div style={{ fontSize: "1.2vw",  marginBottom: "1.5vw",   marginTop:"1vw"}}>
-          <label style={{ fontSize: "2vw", color:"rgb(151, 150, 150)",  paddingBottom: "1.5vw"}}>Giới thiệu</label>
-          <p>{artist.introduce}</p>
-        </div>
-        <div style={{ fontSize: "2vw",  marginBottom: "1vw", color:"rgb(151, 150, 150)" }}> <label>Các bài hát</label></div>
-        <div className="listSongs">
-                {artistSongs.map(
-                  (item, index) => (
-                      <div className="song shadowDiv">
-                        <SongItem
-                          key={index}
-                          item={item}
-                          tracks={artistSongs}
-                          index={index}
-                        />
-                      </div>
-                    )
-                )}
-        </div>
-        <div style={{marginRight:"auto", marginLeft:"auto", textAlign: "center"}}>
-          <Button
-            onClick={artistHandle}
-            variant="contained"
-            className="buttonAdd"
+            </div>
+          </div>
+          {/* <div
+            style={{
+              fontSize: "1.2vw",
+              marginBottom: "1.5vw",
+              marginTop: "1vw",
+            }}
           >
-            Quay về
-          </Button>
-            
-          
-        </div>
-      </form>
+            <label
+              style={{
+                fontSize: "2vw",
+                color: "rgb(151, 150, 150)",
+                paddingBottom: "1.5vw",
+              }}
+            >
+              Giới thiệu
+            </label>
+            <p>{artist.introduce}</p>
+          </div> */}
+          <div
+            style={{
+              fontSize: "2vw",
+              marginBottom: "1vw",
+              marginTop: "1vw",
+              color: "rgb(151, 150, 150)",
+            }}
+          >
+            {" "}
+            <label>Các bài hát</label>
+          </div>
+          <div className="listSongs">
+            {artistSongs.map((item, index) => (
+              <div className="song shadowDiv">
+                <TrackItem key={index} item={item} />
+              </div>
+            ))}
+          </div>
+          <div
+            style={{
+              marginRight: "auto",
+              marginLeft: "auto",
+              textAlign: "center",
+            }}
+          >
+            <Button
+              onClick={artistHandle}
+              variant="contained"
+              className="buttonAdd"
+            >
+              Quay về
+            </Button>
+          </div>
+        </form>
       )}
     </div>
   );
