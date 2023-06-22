@@ -55,7 +55,7 @@ function TrackItem({ item }) {
     <div className="item">
       <div className="songImg">
         <img src={`${item.songImage}`} alt={item.songName} />
-        <PlayCircleFilled className="playSongIcon" />
+        {/* <PlayCircleFilled className="playSongIcon" /> */}
       </div>
       <div className="songDetail">
         <div className="songTitle">{item.songName}</div>
@@ -72,13 +72,13 @@ function TrackItem({ item }) {
             </span>
           ))}
         </div>
-        <div className="trackReleaseDate">
-          {item.releaseDate === undefined
-            ? ""
-            : printReleaseDate(item.releaseDate)}
+          <div className="trackReleaseDate">
+            {item.releaseDate === undefined
+              ? ""
+              : printReleaseDate(item.releaseDate)}
+          </div>
+          <div className="trackDuration">{item.timeLimit}</div>
         </div>
-        <div className="trackDuration">{item.timeLimit}</div>
-      </div>
     </div>
   );
 }

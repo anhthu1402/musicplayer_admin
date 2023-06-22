@@ -2341,7 +2341,7 @@ Yongseohaejulge`,
           {
             id: 2,
             countryName: "Hàn Quốc",
-          },
+          }, 
         ],
         lyric: `[Verse 1: Jung Kook, V]
 Naze, konna ni mo namida ga afureru no
