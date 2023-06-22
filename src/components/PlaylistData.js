@@ -1,421 +1,5 @@
 export const PlaylistData = [
   {
-    id: 6,
-    playlistName: "Sleeping",
-    user: "Trinh",
-    playlistImg:
-      "https://t2.genius.com/unsafe/425x425/https%3A%2F%2Fimages.genius.com%2Fe4281fb86a2b7c40d5203e631c1b556b.384x384x1.png",
-    songPlaylist: [
-      {
-        id: "6",
-        songName: "Spring day",
-        representation: [
-          {
-            id: 3,
-            artistName: "BTS",
-            artistImage:
-              "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
-            numberOfFollower: "927.713",
-          },
-        ],
-        songImage:
-          "https://t2.genius.com/unsafe/425x425/https%3A%2F%2Fimages.genius.com%2Fe4281fb86a2b7c40d5203e631c1b556b.384x384x1.png",
-        isFavorite: 0,
-        timeLimit: "4:36",
-        songLink:
-          "https://res.cloudinary.com/dvmxvwqev/video/upload/v1686934229/musicplayer/audio/SpringDay-BTSBangtanBoys-4770072_cw6r7m.mp3",
-        releaseDate: "2017-02-12",
-        country: [
-          {
-            id: 2,
-            countryName: "Hàn Quốc",
-          },
-        ],
-        lyric: `[Verse 1: RM, j-hope]
-Bogo sipda ireohge
-Malhanikka deo bogo sipda
-Neohui sajineul
-Bogo isseodo bogo sipda
-Neomu yasokhan sigan
-Naneun uriga mipda
-Ijen eolgul han beon boneun geosdo
-Himdeureojin uriga
-
-[Verse 2: RM]
-Yeogin ontong gyeoul ppuniya
-Palworedo gyeouri wa
-Maeumeun siganeul dallyeogane
-Hollo nameun seolgugyeolcha
-Ni son japgo jigu
-Bandaepyeonkkaji ga
-Gyeoureul kkeutnaegopa
-Geuriumdeuri
-Eolmana nuncheoreom naeryeoya
-Geu bomnari olkka
-Friend
-
-[Verse 3: Jimin & V]
-Heogongeul tteodoneun
-Jageun meonjicheoreom
-Jageun meonjicheoreom
-Nallineun nuni naramyeon
-Jogeum deo ppalli nege
-Daheul su isseul tende
-
-[Pre-Chorus 1: Jung Kook & V]
-Nunkkocci tteoreojyeoyo
-Tto jogeumssik meoreojyeoyo
-Bogo sipda (bogo sipda)
-Bogo sipda (bogo sipda)
-Eolmana gidaryeoya
-Tto myeot bameul deo saewoya
-Neol boge doelkka (neol boge doelkka)
-Mannage doelkka (mannage doelkka)
-
-[Chorus: Jung Kook/Jin/j-hope]
-Chuun gyeoul kkeuteul jina
-Dasi bomnari ol ttaekkaji
-Kkot piul ttaekkaji
-Geugose jom deo meomulleojwo
-Meomulleojwo
-
-[Verse 4: SUGA & Jimin]
-Niga byeonhan geonji
-(niga byeonhan geonji)
-Animyeon naega byeonhan geonji
-(animyeon naega byeonhan geonji)
-I sungan heureuneun siganjocha miwo
-Uriga byeonhan geoji mwo
-Moduga geureon geoji mwo
-
-[Verse 5: SUGA & Jimin]
-Geurae mipda niga
-Neon tteonassjiman
-Dan harudo neoreul
-Ijeun jeogi eopseossji nan
-Soljikhi bogo sipeunde
-Iman neoreul jiulge
-Geuge neol wonmanghagibodan
-Deol apeunikka
-
-[Verse 6: Jin & Jimin]
-Sirin neol bureonae bonda
-Yeongicheoreom hayan yeongicheoreom
-Malloneun jiunda haedo
-Sasil nan ajik neol bonaeji moshaneunde
-
-[Pre-Chorus 1: Jung Kook & V]
-Nunkkocci tteoreojyeoyo
-Tto jogeumssik meoreojyeoyo
-Bogo sipda (bogo sipda)
-Bogo sipda (bogo sipda)
-Eolmana gidaryeoya
-Tto myeot bameul deo saewoya
-Neol boge doelkka (neol boge doelkka)
-Mannage doelkka (mannage doelkka)
-
-[Bridge: V & Jung Kook]
-You know it all
-You’re my best friend
-Achimeun dasi ol geoya
-Eotteon eodumdo eotteon gyejeoldo
-Yeongwonhal sun eopseunikka
-
-[Pre-Chorus 2: Jimin & JungKook & V]
-Beojkkocci pinabwayo
-I gyeouldo kkeuti nayo
-Bogo sipda (bogo sipda)
-Bogo sipda (bogo sipda)
-Jogeumman gidarimyeon
-Myeochil bamman deo saeumyeon
-Mannareo galge (mannareo galge)
-Derireo galge (derireo galge)
-
-[Chorus: Jung Kook/Jin/j-hope & Jin]
-Chuun gyeoul kkeuteul jina
-Dasi bomnari ol ttaekkaji
-Kkot piul ttaekkaji
-Geugose jom deo
-Meomulleojwo
-Meomulleojwo`,
-      },
-      {
-        id: "7",
-        songName: "4 O'clock",
-        representation: [
-          {
-            id: 4,
-            artistName: "V (BTS)",
-            artistImage:
-              "https://pbs.twimg.com/media/Fr4eP4aWcAE4Cu1?format=jpg&name=900x900",
-            numberOfFollower: "907.713",
-          },
-          {
-            id: 6,
-            artistName: "RM (BTS)",
-            artistImage:
-              "https://pbs.twimg.com/media/FTxcKFlaIAEw2W3?format=jpg&name=4096x4096",
-            numberOfFollower: "927.713",
-          },
-        ],
-        songImage:
-          "https://t2.genius.com/unsafe/425x425/https%3A%2F%2Fimages.genius.com%2Fd1f91edde2fa697a8df1d4013bc28e1e.1000x1000x1.jpg",
-        isFavorite: 1,
-        timeLimit: "3:55",
-        songLink:
-          "https://res.cloudinary.com/dvmxvwqev/video/upload/v1686934131/musicplayer/audio/4OClock-RapMonsterBTSVBTS-5018271_ycnbvj.mp3",
-        releaseDate: "2017-06-09",
-        country: [
-          {
-            id: "2",
-            countryName: "Hàn Quốc",
-          },
-        ],
-        lyric: `[Verse 1: V]
-Eoneu nal dalege
-Gilgogin pyeonjileul sseosseo
-Neoboda hwanhajin anhjiman
-Jageun chosbuleul kyeosseo
-
-[Pre-Chorus: V]
-Eoseuleumhan gongwonhe
-Noraehaneun ileummoleul sae
-Where are you
-Oh you
-Wae ulgo issneunji
-Yeogin nawa neo ppuninde
-Me and you
-Oh you
-
-[Chorus: V]
-Gipeun bameul ttaraseo
-Neoui noraesseoriga
-Han geoleumssik du geoleumssik
-Bulgeun achimeul deryeowa
-Saebyeogeun jinagago
-Jeo dari jame deulmyeon
-Hamkkehaessdeon pureunbichi
-Sarajyeo
-
-[Verse 2: Rap Monster]
-Oneuldo nan jeogdanghi saraga
-Balmajchwo jeogdanghi darhaga
-Taeyangeun sumi maghigo
-Sesangeun nal balgabeosgyeonwa
-Nan eojjeol su eopsi byeol su eopsi
-Dalbicc arae heuteojin naleul jubgo isseo
-I call you moonchild
-Urin dalui ai
-Saebyeogui chan sumeul swine
-Yes we're livin and dyin
-At the same time
-But jigeumeun nun tteodo dwae
-Geu eoneu yeonghwacheoreom geu daesacheoreom
-Dalbicc sogeseon on sesangi pureunikka
-
-[Pre-Chorus: V]
-Eoseureumhan gongwonhi
-Noraehaneun ireummoleul sae
-Where are you
-Oh you
-Wae ulgo issneunji
-Yeogin nawa neo ppuninde
-Me and you
-Oh you
-
-[Chorus: V]
-Gipeun bameul ttaraseo
-Neoui noraesseoriga
-Han geoleumssik du geoleumssik
-Bulgeun achimeul deryeowa
-Saebyeogeun jinagago
-Jeo dari jame deulmyeon
-Hamkkehaessdeon pureunbichi
-Sarajyeo
-
-[Chorus: Rap Monster]
-Gipeun bameul ttaraseo
-Neoui noraesseoriga
-Han geoleumssik du geoleumssik
-Bulgeun achimeul deryeowa
-Saebyeogeun jinagago
-Jeo dari jame deulmyeon
-Hamkkehaessdeon pureunbichi
-Sarajyeo
-
-[Outro: V]
-Saebyeogeun jinagago
-Jeo dari jame deulmyeon
-Hamkkehaessdeon pureunbichi`,
-      },
-      {
-        id: "8",
-        songName: "Answer: Love Myself",
-        representation: [
-          {
-            id: 3,
-            artistName: "BTS",
-            artistImage:
-              "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
-            numberOfFollower: "927.713",
-          },
-        ],
-        songImage:
-          "https://images.genius.com/0d77c955dd9a6745043b132e02274c98.1000x1000x1.jpg",
-        isFavorite: 1,
-        timeLimit: "4:12",
-        songLink:
-          "https://res.cloudinary.com/dvmxvwqev/video/upload/v1686934138/musicplayer/audio/AnswerLoveMyself-BTSBangtanBoys-5603196_ebmsx3.mp3",
-        releaseDate: "2018-08-24",
-        country: [
-          {
-            id: "2",
-            countryName: "Hàn Quốc",
-          },
-        ],
-        lyric: `[Intro: Jimin, Jung Kook]
-Nuneul tteunda eodum sok na
-Simjangi ttwineun sori natseol ttae
-Maju bonda geoul sok neo
-Geommeogeun nunbit haemugeun jilmun
-
-[Verse 1: SUGA]
-(SUGA) eojjeomyeon nugungareul saranghaneun geotboda
-Deo eoryeoun ge na jasineul saranghaneun geoya
-Soljiki injeonghal geon injeonghaja
-Niga naerin jatdaedeureun neoege deo eomgyeokadan geol
-Ni sal sogui gulgeun naite
-Geu ttohan neoui ilbu, neoigie
-Ijeneun na jasineul yongseohaja beorigien
-Uri insaengeun gireo miro sogeseon nal mideo
-Gyeouri jinamyeon dasi bomeun oneun geoya
-
-[Refrain: Jung Kook]
-Chagaun bamui siseon
-Chorahan nal gamchuryeo
-Mopsi dwicheongnyeotjiman, ayy
-
-[Pre-Chorus: Jimin]
-Jeo sumaneun byeoreul matgi
-Wihae nan tteoreojyeotdeonga (Hey-ey-ey)
-Jeo sucheon gae challanhan
-Hwasarui gwanyeogeun na hana, ayy
-
-[Chorus: Jin, Jung Kook]
-You've shown me I have reasons
-I should love myself (Oh-oh-oh)
-Nae sum nae georeoon gil jeonburo dapae
-
-[Post-Chorus: V, Jung Kook]
-Eojeui na oneurui na naeirui na
-(I'm learning how to love myself)
-Ppajimeopsi namgimeopsi modu da na
-
-[Verse 2: RM, j-hope]
-Jeongdabeun eopseuljido molla (Yeah, yeah)
-Eojjeom igeotdo dabeun anin geoya (Alright)
-Geujeo nal saranghaneun iljocha
-Nuguui heoragi pillyohaetdeon geoya
-Nan jigeumdo nareul tto chatgo isseo
-But deoneun jukgo sipjiga aneun geol
-Seulpeudeon me, apeudeon me
-Deo areumdaul mei
-Geurae geu areumdaumi (Uh-huh)
-Itdago, aneun maeumi (Alright)
-Naui sarangeuro ganeun gil (No way)
-Gajang pillyohan nadaun il
-Uh, jigeum nal wihan haengboneun (Ayy)
-Baro nal wihan haengdong
-Nal wihan taedo geuge nal wihan haengbok
-I'll show you what I got
-Duryeopjin ana geugeon nae jonjaenikka (Love myself)
-
-[Refrain: Jin]
-Sijagui cheoeumbuteo
-Kkeutui majimakkkaji
-Haedabeun ojik hana, ayy
-
-[Pre-Chorus: Jimin]
-Wae jakkuman gamchuryeogoman
-Hae ni gamyeon sogeuro (Hey-ey-ey)
-Nae silsuro saenggin
-Hyungteokkaji da nae byeoljarinde, ayy
-
-[Chorus: V]
-You've shown me I have reasons
-I should love myself (Oh-oh-oh)
-Nae sum nae georeoon gil jeonburo dapae
-
-[Bridge: Jung Kook, Jimin, Jimin & V]
-Nae aneneun yeojeonhi (Oh-oh)
-Seotun naega itjiman
-(Woah-oh-oh-oh)
-
-[Chorus: Jin & Jimin, Jung Kook, Jimin, V]
-You've shown me I have reasons
-I should love myself (I'm learning how to love myself)
-(Oh-oh-oh)
-Nae sum nae georeoon gil jeonburo dapae (Oh-woah-oh)
-
-[Post-Chorus: V, Jimin, Jung Kook]
-Eojeui na oneurui na naeirui na (Woah)
-(I'm learning how to love myself)
-Ppajimeopsi namgimeopsi modu da na`,
-      },
-      {
-        id: "9",
-        songName: "Autumn Outside The Post Office (cover)",
-        representation: [
-          {
-            id: 5,
-            artistName: "Jin (BTS)",
-            artistImage:
-              "https://lh3.googleusercontent.com/FY1xLPJ6CP6gi_hgp2UYwXxj1dY8pF3boxxrhjQez0zAksVIXUTF6D8VCB_ZAQg-0BvSE1-2vtjFZ7qggQkDs4y0t8fgU8mYOA=w1600-rj-nu-e365",
-            numberOfFollower: "827.713",
-          },
-        ],
-        songImage:
-          "https://tse3.mm.bing.net/th?id=OIP.F1AWKOetXhTw7gdpT6xz7QHaEK&pid=Api&P=0&h=180",
-        isFavorite: 1,
-        timeLimit: "4:31",
-        songLink:
-          "https://res.cloudinary.com/dvmxvwqev/video/upload/v1686934143/musicplayer/audio/AutumnOutsideThePostOffice-JinBTS-5495805_uvqquc.mp3",
-        releaseDate: "2018-06-08",
-        country: [
-          {
-            id: "2",
-            countryName: "Hàn Quốc",
-          },
-        ],
-        lyric: `[Verse 1]
-Gaeul ucheguk apeseo
-Geudaereul gidarida
-Nooran eunhaengipdeuri
-Barame nallyeogago
-Jinaneun saramdeul gati
-Jeo meolli ganeungeol bone
-
-[Chorus]
-Sesange aleumdaun geotdeuri, eolmana orae nameulkka
-Hanyeoreum sonagi ssodajyeodo, gudsege beotin kkochdeulgwa
-Jinan gyeoul nunboraedo, uttuk seoissneun namudeulgati
-Haneurarae modeun geosi, jeo hollo seol su isseulkka
-
-[Bridge]
-Gaeul ucheguk apeseo
-Geudaereul gidarida
-Uyeonhan saenggage ppajyeo
-Nal jeomuldorok mollassne
-
-[Outro: Chorus]
-Sesange aleumdaun geotdeuri, eolmana orae nameulkka
-Hanyeoreum sonagi ssodajyeodo, gudsege beotin kkochdeulgwa
-Jinan gyeoul nunboraedo, uttuk seoissneun namudeulgati
-Haneurarae modeun geosi, jeo hollo seol su isseulkka`,
-      },
-    ],
-  },
-  {
     id: 1,
     playlistName: "Playlist yêu thích",
     user: "Anh Thư",
@@ -6902,6 +6486,422 @@ Hansum gadeuk jichin mameul dajaba
 
 Oneuldo naeildo tto dasi ireona
 Harul sara gagetjyo`,
+      },
+    ],
+  },
+  {
+    id: 7,
+    playlistName: "Sleeping",
+    user: "Trinh",
+    playlistImg:
+      "https://t2.genius.com/unsafe/425x425/https%3A%2F%2Fimages.genius.com%2Fe4281fb86a2b7c40d5203e631c1b556b.384x384x1.png",
+    songPlaylist: [
+      {
+        id: "6",
+        songName: "Spring day",
+        representation: [
+          {
+            id: 3,
+            artistName: "BTS",
+            artistImage:
+              "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+            numberOfFollower: "927.713",
+          },
+        ],
+        songImage:
+          "https://t2.genius.com/unsafe/425x425/https%3A%2F%2Fimages.genius.com%2Fe4281fb86a2b7c40d5203e631c1b556b.384x384x1.png",
+        isFavorite: 0,
+        timeLimit: "4:36",
+        songLink:
+          "https://res.cloudinary.com/dvmxvwqev/video/upload/v1686934229/musicplayer/audio/SpringDay-BTSBangtanBoys-4770072_cw6r7m.mp3",
+        releaseDate: "2017-02-12",
+        country: [
+          {
+            id: 2,
+            countryName: "Hàn Quốc",
+          },
+        ],
+        lyric: `[Verse 1: RM, j-hope]
+Bogo sipda ireohge
+Malhanikka deo bogo sipda
+Neohui sajineul
+Bogo isseodo bogo sipda
+Neomu yasokhan sigan
+Naneun uriga mipda
+Ijen eolgul han beon boneun geosdo
+Himdeureojin uriga
+
+[Verse 2: RM]
+Yeogin ontong gyeoul ppuniya
+Palworedo gyeouri wa
+Maeumeun siganeul dallyeogane
+Hollo nameun seolgugyeolcha
+Ni son japgo jigu
+Bandaepyeonkkaji ga
+Gyeoureul kkeutnaegopa
+Geuriumdeuri
+Eolmana nuncheoreom naeryeoya
+Geu bomnari olkka
+Friend
+
+[Verse 3: Jimin & V]
+Heogongeul tteodoneun
+Jageun meonjicheoreom
+Jageun meonjicheoreom
+Nallineun nuni naramyeon
+Jogeum deo ppalli nege
+Daheul su isseul tende
+
+[Pre-Chorus 1: Jung Kook & V]
+Nunkkocci tteoreojyeoyo
+Tto jogeumssik meoreojyeoyo
+Bogo sipda (bogo sipda)
+Bogo sipda (bogo sipda)
+Eolmana gidaryeoya
+Tto myeot bameul deo saewoya
+Neol boge doelkka (neol boge doelkka)
+Mannage doelkka (mannage doelkka)
+
+[Chorus: Jung Kook/Jin/j-hope]
+Chuun gyeoul kkeuteul jina
+Dasi bomnari ol ttaekkaji
+Kkot piul ttaekkaji
+Geugose jom deo meomulleojwo
+Meomulleojwo
+
+[Verse 4: SUGA & Jimin]
+Niga byeonhan geonji
+(niga byeonhan geonji)
+Animyeon naega byeonhan geonji
+(animyeon naega byeonhan geonji)
+I sungan heureuneun siganjocha miwo
+Uriga byeonhan geoji mwo
+Moduga geureon geoji mwo
+
+[Verse 5: SUGA & Jimin]
+Geurae mipda niga
+Neon tteonassjiman
+Dan harudo neoreul
+Ijeun jeogi eopseossji nan
+Soljikhi bogo sipeunde
+Iman neoreul jiulge
+Geuge neol wonmanghagibodan
+Deol apeunikka
+
+[Verse 6: Jin & Jimin]
+Sirin neol bureonae bonda
+Yeongicheoreom hayan yeongicheoreom
+Malloneun jiunda haedo
+Sasil nan ajik neol bonaeji moshaneunde
+
+[Pre-Chorus 1: Jung Kook & V]
+Nunkkocci tteoreojyeoyo
+Tto jogeumssik meoreojyeoyo
+Bogo sipda (bogo sipda)
+Bogo sipda (bogo sipda)
+Eolmana gidaryeoya
+Tto myeot bameul deo saewoya
+Neol boge doelkka (neol boge doelkka)
+Mannage doelkka (mannage doelkka)
+
+[Bridge: V & Jung Kook]
+You know it all
+You’re my best friend
+Achimeun dasi ol geoya
+Eotteon eodumdo eotteon gyejeoldo
+Yeongwonhal sun eopseunikka
+
+[Pre-Chorus 2: Jimin & JungKook & V]
+Beojkkocci pinabwayo
+I gyeouldo kkeuti nayo
+Bogo sipda (bogo sipda)
+Bogo sipda (bogo sipda)
+Jogeumman gidarimyeon
+Myeochil bamman deo saeumyeon
+Mannareo galge (mannareo galge)
+Derireo galge (derireo galge)
+
+[Chorus: Jung Kook/Jin/j-hope & Jin]
+Chuun gyeoul kkeuteul jina
+Dasi bomnari ol ttaekkaji
+Kkot piul ttaekkaji
+Geugose jom deo
+Meomulleojwo
+Meomulleojwo`,
+      },
+      {
+        id: "7",
+        songName: "4 O'clock",
+        representation: [
+          {
+            id: 4,
+            artistName: "V (BTS)",
+            artistImage:
+              "https://pbs.twimg.com/media/Fr4eP4aWcAE4Cu1?format=jpg&name=900x900",
+            numberOfFollower: "907.713",
+          },
+          {
+            id: 6,
+            artistName: "RM (BTS)",
+            artistImage:
+              "https://pbs.twimg.com/media/FTxcKFlaIAEw2W3?format=jpg&name=4096x4096",
+            numberOfFollower: "927.713",
+          },
+        ],
+        songImage:
+          "https://t2.genius.com/unsafe/425x425/https%3A%2F%2Fimages.genius.com%2Fd1f91edde2fa697a8df1d4013bc28e1e.1000x1000x1.jpg",
+        isFavorite: 1,
+        timeLimit: "3:55",
+        songLink:
+          "https://res.cloudinary.com/dvmxvwqev/video/upload/v1686934131/musicplayer/audio/4OClock-RapMonsterBTSVBTS-5018271_ycnbvj.mp3",
+        releaseDate: "2017-06-09",
+        country: [
+          {
+            id: "2",
+            countryName: "Hàn Quốc",
+          },
+        ],
+        lyric: `[Verse 1: V]
+Eoneu nal dalege
+Gilgogin pyeonjileul sseosseo
+Neoboda hwanhajin anhjiman
+Jageun chosbuleul kyeosseo
+
+[Pre-Chorus: V]
+Eoseuleumhan gongwonhe
+Noraehaneun ileummoleul sae
+Where are you
+Oh you
+Wae ulgo issneunji
+Yeogin nawa neo ppuninde
+Me and you
+Oh you
+
+[Chorus: V]
+Gipeun bameul ttaraseo
+Neoui noraesseoriga
+Han geoleumssik du geoleumssik
+Bulgeun achimeul deryeowa
+Saebyeogeun jinagago
+Jeo dari jame deulmyeon
+Hamkkehaessdeon pureunbichi
+Sarajyeo
+
+[Verse 2: Rap Monster]
+Oneuldo nan jeogdanghi saraga
+Balmajchwo jeogdanghi darhaga
+Taeyangeun sumi maghigo
+Sesangeun nal balgabeosgyeonwa
+Nan eojjeol su eopsi byeol su eopsi
+Dalbicc arae heuteojin naleul jubgo isseo
+I call you moonchild
+Urin dalui ai
+Saebyeogui chan sumeul swine
+Yes we're livin and dyin
+At the same time
+But jigeumeun nun tteodo dwae
+Geu eoneu yeonghwacheoreom geu daesacheoreom
+Dalbicc sogeseon on sesangi pureunikka
+
+[Pre-Chorus: V]
+Eoseureumhan gongwonhi
+Noraehaneun ireummoleul sae
+Where are you
+Oh you
+Wae ulgo issneunji
+Yeogin nawa neo ppuninde
+Me and you
+Oh you
+
+[Chorus: V]
+Gipeun bameul ttaraseo
+Neoui noraesseoriga
+Han geoleumssik du geoleumssik
+Bulgeun achimeul deryeowa
+Saebyeogeun jinagago
+Jeo dari jame deulmyeon
+Hamkkehaessdeon pureunbichi
+Sarajyeo
+
+[Chorus: Rap Monster]
+Gipeun bameul ttaraseo
+Neoui noraesseoriga
+Han geoleumssik du geoleumssik
+Bulgeun achimeul deryeowa
+Saebyeogeun jinagago
+Jeo dari jame deulmyeon
+Hamkkehaessdeon pureunbichi
+Sarajyeo
+
+[Outro: V]
+Saebyeogeun jinagago
+Jeo dari jame deulmyeon
+Hamkkehaessdeon pureunbichi`,
+      },
+      {
+        id: "8",
+        songName: "Answer: Love Myself",
+        representation: [
+          {
+            id: 3,
+            artistName: "BTS",
+            artistImage:
+              "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/02/21/10/bts.jpg?quality=75&width=990&crop=4%3A3%2Csmart&auto=webp",
+            numberOfFollower: "927.713",
+          },
+        ],
+        songImage:
+          "https://images.genius.com/0d77c955dd9a6745043b132e02274c98.1000x1000x1.jpg",
+        isFavorite: 1,
+        timeLimit: "4:12",
+        songLink:
+          "https://res.cloudinary.com/dvmxvwqev/video/upload/v1686934138/musicplayer/audio/AnswerLoveMyself-BTSBangtanBoys-5603196_ebmsx3.mp3",
+        releaseDate: "2018-08-24",
+        country: [
+          {
+            id: "2",
+            countryName: "Hàn Quốc",
+          },
+        ],
+        lyric: `[Intro: Jimin, Jung Kook]
+Nuneul tteunda eodum sok na
+Simjangi ttwineun sori natseol ttae
+Maju bonda geoul sok neo
+Geommeogeun nunbit haemugeun jilmun
+
+[Verse 1: SUGA]
+(SUGA) eojjeomyeon nugungareul saranghaneun geotboda
+Deo eoryeoun ge na jasineul saranghaneun geoya
+Soljiki injeonghal geon injeonghaja
+Niga naerin jatdaedeureun neoege deo eomgyeokadan geol
+Ni sal sogui gulgeun naite
+Geu ttohan neoui ilbu, neoigie
+Ijeneun na jasineul yongseohaja beorigien
+Uri insaengeun gireo miro sogeseon nal mideo
+Gyeouri jinamyeon dasi bomeun oneun geoya
+
+[Refrain: Jung Kook]
+Chagaun bamui siseon
+Chorahan nal gamchuryeo
+Mopsi dwicheongnyeotjiman, ayy
+
+[Pre-Chorus: Jimin]
+Jeo sumaneun byeoreul matgi
+Wihae nan tteoreojyeotdeonga (Hey-ey-ey)
+Jeo sucheon gae challanhan
+Hwasarui gwanyeogeun na hana, ayy
+
+[Chorus: Jin, Jung Kook]
+You've shown me I have reasons
+I should love myself (Oh-oh-oh)
+Nae sum nae georeoon gil jeonburo dapae
+
+[Post-Chorus: V, Jung Kook]
+Eojeui na oneurui na naeirui na
+(I'm learning how to love myself)
+Ppajimeopsi namgimeopsi modu da na
+
+[Verse 2: RM, j-hope]
+Jeongdabeun eopseuljido molla (Yeah, yeah)
+Eojjeom igeotdo dabeun anin geoya (Alright)
+Geujeo nal saranghaneun iljocha
+Nuguui heoragi pillyohaetdeon geoya
+Nan jigeumdo nareul tto chatgo isseo
+But deoneun jukgo sipjiga aneun geol
+Seulpeudeon me, apeudeon me
+Deo areumdaul mei
+Geurae geu areumdaumi (Uh-huh)
+Itdago, aneun maeumi (Alright)
+Naui sarangeuro ganeun gil (No way)
+Gajang pillyohan nadaun il
+Uh, jigeum nal wihan haengboneun (Ayy)
+Baro nal wihan haengdong
+Nal wihan taedo geuge nal wihan haengbok
+I'll show you what I got
+Duryeopjin ana geugeon nae jonjaenikka (Love myself)
+
+[Refrain: Jin]
+Sijagui cheoeumbuteo
+Kkeutui majimakkkaji
+Haedabeun ojik hana, ayy
+
+[Pre-Chorus: Jimin]
+Wae jakkuman gamchuryeogoman
+Hae ni gamyeon sogeuro (Hey-ey-ey)
+Nae silsuro saenggin
+Hyungteokkaji da nae byeoljarinde, ayy
+
+[Chorus: V]
+You've shown me I have reasons
+I should love myself (Oh-oh-oh)
+Nae sum nae georeoon gil jeonburo dapae
+
+[Bridge: Jung Kook, Jimin, Jimin & V]
+Nae aneneun yeojeonhi (Oh-oh)
+Seotun naega itjiman
+(Woah-oh-oh-oh)
+
+[Chorus: Jin & Jimin, Jung Kook, Jimin, V]
+You've shown me I have reasons
+I should love myself (I'm learning how to love myself)
+(Oh-oh-oh)
+Nae sum nae georeoon gil jeonburo dapae (Oh-woah-oh)
+
+[Post-Chorus: V, Jimin, Jung Kook]
+Eojeui na oneurui na naeirui na (Woah)
+(I'm learning how to love myself)
+Ppajimeopsi namgimeopsi modu da na`,
+      },
+      {
+        id: "9",
+        songName: "Autumn Outside The Post Office (cover)",
+        representation: [
+          {
+            id: 5,
+            artistName: "Jin (BTS)",
+            artistImage:
+              "https://lh3.googleusercontent.com/FY1xLPJ6CP6gi_hgp2UYwXxj1dY8pF3boxxrhjQez0zAksVIXUTF6D8VCB_ZAQg-0BvSE1-2vtjFZ7qggQkDs4y0t8fgU8mYOA=w1600-rj-nu-e365",
+            numberOfFollower: "827.713",
+          },
+        ],
+        songImage:
+          "https://tse3.mm.bing.net/th?id=OIP.F1AWKOetXhTw7gdpT6xz7QHaEK&pid=Api&P=0&h=180",
+        isFavorite: 1,
+        timeLimit: "4:31",
+        songLink:
+          "https://res.cloudinary.com/dvmxvwqev/video/upload/v1686934143/musicplayer/audio/AutumnOutsideThePostOffice-JinBTS-5495805_uvqquc.mp3",
+        releaseDate: "2018-06-08",
+        country: [
+          {
+            id: "2",
+            countryName: "Hàn Quốc",
+          },
+        ],
+        lyric: `[Verse 1]
+Gaeul ucheguk apeseo
+Geudaereul gidarida
+Nooran eunhaengipdeuri
+Barame nallyeogago
+Jinaneun saramdeul gati
+Jeo meolli ganeungeol bone
+
+[Chorus]
+Sesange aleumdaun geotdeuri, eolmana orae nameulkka
+Hanyeoreum sonagi ssodajyeodo, gudsege beotin kkochdeulgwa
+Jinan gyeoul nunboraedo, uttuk seoissneun namudeulgati
+Haneurarae modeun geosi, jeo hollo seol su isseulkka
+
+[Bridge]
+Gaeul ucheguk apeseo
+Geudaereul gidarida
+Uyeonhan saenggage ppajyeo
+Nal jeomuldorok mollassne
+
+[Outro: Chorus]
+Sesange aleumdaun geotdeuri, eolmana orae nameulkka
+Hanyeoreum sonagi ssodajyeodo, gudsege beotin kkochdeulgwa
+Jinan gyeoul nunboraedo, uttuk seoissneun namudeulgati
+Haneurarae modeun geosi, jeo hollo seol su isseulkka`,
       },
     ],
   },

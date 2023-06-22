@@ -47,20 +47,10 @@ const MUser = () => {
       field: "userName",
       headerName: "Tên người dùng",
       width: 400,
-      // editable: true,
       renderCell: (params) => {
         return <div className="userListUser">{params.row.userName}</div>;
       },
     },
-    // {
-    //   field: "password",
-    //   headerName: "Mật khẩu",
-    //   width: 300,
-    //   // editable: true,
-    //   renderCell: (params) => {
-    //     return <div className="userListUser">{params.row.password}</div>;
-    //   },
-    // },
     {
       field: "action",
       headerName: "Action",
@@ -87,15 +77,15 @@ const MUser = () => {
           </button>
         </Link>
       </div>
-      <Box m="40px 0 0 0" height="75vh">
+      <Box m="40px 0 0 0">
         <DataGrid
           rows={data}
           disableSelectionOnClick
           columns={columns}
-          pageSize={8}
+          pageSize={10}
           initialState={{
             ...data.initialState,
-            pagination: { paginationModel: { pageSize: 8 } },
+            pagination: { paginationModel: { pageSize: 10 } },
           }}
           checkboxSelection
           components={{ Toolbar: GridToolbar }}

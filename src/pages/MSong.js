@@ -62,7 +62,7 @@ const MSong = () => {
           <div className="songListSong" style={{ verticalAlign: "center" }}>
             <img
               className="songListImg"
-              src={require("../assets/" + params.row.songImage)}
+              src={params.row.songImage}
               alt={params.row.songName}
               width={70}
               height={70}
@@ -75,7 +75,6 @@ const MSong = () => {
       field: " songName",
       headerName: "Tên bài hát",
       width: 200,
-      editable: true,
       renderCell: (params) => {
         return (
           <div className="songListSong" style={{ verticalAlign: "center" }}>
@@ -118,12 +117,6 @@ const MSong = () => {
                     </Link>
                   </div>
                 );
-                // } else
-                //   return (
-                //     <div key={index} item={child}>
-                //       , <span>{child.artistName}</span>
-                //     </div>
-                //   );
               }
             })}
           </div>
@@ -139,7 +132,11 @@ const MSong = () => {
         return (
           <div className="albumListCountry" style={{ verticalAlign: "center" }}>
             <div>
-              <span className="country">{params.row.country.countryName}</span>
+              <span className="country">
+                {params.row.country.map((item, index) => (
+                  <div key={index}>{item.countryName}</div>
+                ))}
+              </span>
             </div>
           </div>
         );
@@ -152,9 +149,6 @@ const MSong = () => {
       renderCell: (params) => {
         return (
           <>
-            {/* <Link to={"/editSong" + params.row.id}>
-              <button className="songListView">View</button>
-            </Link> */}
             <Link to={"/editSong/" + params.row.songName} state={params.row}>
               <button className="songListEdit">Edit</button>
             </Link>
@@ -173,12 +167,11 @@ const MSong = () => {
         <h1 className=" songName">Bài hát</h1>
         <Link to={"/newsong"}>
           <button className="songButtton">
-            {/* <span><AddIcon style={{size:'1rem'}}></AddIcon></span> */}
             <span>Thêm mới</span>
           </button>
         </Link>
       </div>
-      <Box m="40px 0 0 0" height="75vh">
+      <Box m="40px 0 0 0">
         <DataGrid
           rows={data}
           disableSelectionOnClick
@@ -186,7 +179,7 @@ const MSong = () => {
           rowsPerPageOptions={[5]}
           initialState={{
             ...data.initialState,
-            pagination: { paginationModel: { pageSize: 8 } },
+            pagination: { paginationModel: { pageSize: 10 } },
           }}
           pageSize={8}
           checkboxSelection

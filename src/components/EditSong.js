@@ -209,8 +209,20 @@ function EditSong() {
   const [personName, setPresonName] = useState(artist);
   //Danh sách id nghệ sĩ
   const [personId, setPresonId] = useState([]);
-  const [albumId, setAlbumId] = useState(song.album.id);
-  const [countryId, setCountryId] = useState(song.country.id);
+  const [countryId, setCountryId] = useState([]);
+  const [albumId, setAlbumId] = useState([]);
+  useEffect(() => {
+    AlbumData.map((item) => {
+      item.songs.map((child) => {
+        if (child.id === song.id) {
+          setAlbumId(item.id);
+        }
+      });
+    });
+    song.country.map((item) => {
+      setCountryId(item.id);
+    });
+  }, [albumId, song.id, countryId, song]);
   const [date, setDate] = useState(dayjs(formatDate(song.releaseDate)));
   const handleChange = (event) => {
     setPresonId(event.target.value);

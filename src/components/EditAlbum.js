@@ -135,7 +135,12 @@ function EditAlbum() {
   const [personName, setPresonName] = useState(artist);
   //Danh sách id nghệ sĩ
   const [personId, setPresonId] = useState([]);
-  const [countryId, setCountryId] = useState(album.country.id);
+  const [countryId, setCountryId] = useState([]);
+  useEffect(() => {
+    album.country.map((item) => {
+      setCountryId(item.id);
+    });
+  });
   const [date, setDate] = useState(dayjs(FormatDate(album.releaseDate)));
   const handleChange = (event) => {
     setPresonId(event.target.value);

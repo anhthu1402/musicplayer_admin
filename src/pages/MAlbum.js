@@ -68,7 +68,6 @@ const MAlbum = () => {
       field: "albumName",
       headerName: "Tên Album",
       width: 200,
-      editable: true,
       renderCell: (params) => {
         return (
           <div className="albumListAlbum" style={{ verticalAlign: "center" }}>
@@ -100,8 +99,6 @@ const MAlbum = () => {
           <div
             className="albumListArtist"
             style={{
-              // display: "flex",
-              // flexDirection: 'row',
               justifyContent: "space-around",
             }}
           >
@@ -119,13 +116,6 @@ const MAlbum = () => {
                   </span>
                 );
               }
-              // } else {
-              //   return (
-              //     <span key={index} item={child}>
-              //       , <span> {child.artistName}</span>
-              //     </span>
-              //   );
-              // }
             })}
           </div>
         );
@@ -141,8 +131,6 @@ const MAlbum = () => {
           <div
             className="songs"
             style={{
-              // display: "flex",
-              // flexDirection: "row",
               justifyContent: "space-around",
             }}
           >
@@ -154,13 +142,6 @@ const MAlbum = () => {
                   </span>
                 );
               }
-              // else {
-              //   return (
-              //     <span key={index} item={child} className="songs">
-              //       <span>{child.songName}</span>
-              //     </span>
-              //   );
-              // }
             })}
           </div>
         );
@@ -217,20 +198,19 @@ const MAlbum = () => {
         <h1 className="title">Album</h1>
         <Link to="/newAlbum">
           <button className="albumButtton">
-            {/* <span><AddIcon style={{size:'1rem'}}></AddIcon></span> */}
             <span>Thêm mới</span>
           </button>
         </Link>
       </div>
-      <Box m="40px 0 0 0" height="75vh">
+      <Box m="40px 0 0 0">
         <DataGrid
           rows={data}
           disableSelectionOnClick
           columns={columns}
-          pageSize={8}
+          pageSize={10}
           initialState={{
             ...data.initialState,
-            pagination: { paginationModel: { pageSize: 8 } },
+            pagination: { paginationModel: { pageSize: 10 } },
           }}
           checkboxSelection
           components={{ Toolbar: GridToolbar }}

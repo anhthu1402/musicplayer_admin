@@ -8,7 +8,6 @@ import {
   DialogTitle,
 } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { AlbumData } from "../components/AlbumData";
 import "../styles/malbum.css";
 import { Link } from "react-router-dom";
 import { DeleteOutline } from "@mui/icons-material";
@@ -61,7 +60,6 @@ function MPlaylist() {
       field: "albumName",
       headerName: "Tên Playlist",
       width: 200,
-      editable: true,
       renderCell: (params) => {
         return (
           <div className="albumListAlbum" style={{ verticalAlign: "center" }}>
@@ -80,8 +78,6 @@ function MPlaylist() {
           <div
             className="songs"
             style={{
-              // display: "flex",
-              // flexDirection: "row",
               justifyContent: "space-around",
             }}
           >
@@ -92,14 +88,7 @@ function MPlaylist() {
                     {child.songName}
                   </span>
                 );
-              } 
-              // else {
-              //   return (
-              //     <span key={index} item={child} className="songs">
-              //       , <span>{child.songName}</span>
-              //     </span>
-              //   );
-              // }
+              }
             })}
           </div>
         );
@@ -128,12 +117,11 @@ function MPlaylist() {
         return (
           <>
             <Link
-                to={"/playlistDetail/" + params.row.playlistName}
-                state={params.row}
+              to={"/playlistDetail/" + params.row.playlistName}
+              state={params.row}
             >
               <button className="artistListView">View</button>
             </Link>
-            {/*  */}
             <Link
               to={"/editPlaylist/" + params.row.playlistName}
               state={params.row}
@@ -159,15 +147,15 @@ function MPlaylist() {
           </button>
         </Link>
       </div>
-      <Box m="40px 0 0 0" height="75vh">
+      <Box m="40px 0 0 0">
         <DataGrid
           rows={data}
           disableSelectionOnClick
           columns={columns}
-          pageSize={8}
+          pageSize={10}
           initialState={{
             ...data.initialState,
-            pagination: { paginationModel: { pageSize: 8 } },
+            pagination: { paginationModel: { pageSize: 10 } },
           }}
           checkboxSelection
           components={{ Toolbar: GridToolbar }}

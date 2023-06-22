@@ -14,8 +14,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 const MArtist = () => {
   const [data, setData] = useState(ArtistsData);
-  const rows = ArtistsData;
-  const [showData, setShowData] = useState(ArtistsData);
   const [id, setId] = useState();
   const [open, setOpen] = useState(false);
   const handleDelete = (id) => {
@@ -61,7 +59,6 @@ const MArtist = () => {
       field: "name",
       headerName: "Nghệ sĩ",
       width: 250,
-      editable: true,
       renderCell: (params) => {
         return <div className="artistListArtist">{params.row.artistName}</div>;
       },
@@ -85,19 +82,11 @@ const MArtist = () => {
       renderCell: (params) => {
         return (
           <>
-            <Link  to={"/artistDetail/" + params.row.albumName} state={params.row}>
-              <button
-                className="artistListView"
-                // onClick={(handleClickOpens, selectRow) =>
-                //   setShowData({
-                //     fimage: selectRow.imageArtist,
-                //     fname: selectRow.nameArtist,
-                //     ffolow: selectRow.numberOfFollower,
-                //   })
-                // }
-              >
-                View
-              </button>
+            <Link
+              to={"/artistDetail/" + params.row.albumName}
+              state={params.row}
+            >
+              <button className="artistListView">View</button>
             </Link>
 
             <Link to={"/editArtist/" + params.row.albumName} state={params.row}>
@@ -118,24 +107,22 @@ const MArtist = () => {
         <h1 className="title">Nghệ sĩ</h1>
         <Link to="/newArtist">
           <button className="artistButtton">
-            {/* <span><AddIcon style={{size:'1rem'}}></AddIcon></span> */}
             <span>Thêm mới</span>
           </button>
         </Link>
       </div>
       <div>
-        <Box m="40px 0 0 0" height="75vh">
+        <Box m="40px 0 0 0">
           <DataGrid
             rows={data}
             disableSelectionOnClick
             columns={columns}
-            // getRowId={(row) => row._id}
             rowsPerPageOptions={[5]}
             initialState={{
               ...data.initialState,
-              pagination: { paginationModel: { pageSize: 8 } },
+              pagination: { paginationModel: { pageSize: 10 } },
             }}
-            pageSize={8}
+            pageSize={10}
             checkboxSelection
             components={{ Toolbar: GridToolbar }}
             selectedGridRowsCountSelector={handleDelete}
