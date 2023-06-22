@@ -131,10 +131,6 @@ function EditAlbum() {
     var options = { year: "numeric", month: "numeric", day: "numeric" };
     return new Date(string).toLocaleDateString([], options);
   }
-  const country = [];
-  album.country.map((item, index) => {
-    country.push(item.id);
-  });
   const [personName, setPresonName] = useState(artist);
   //Danh sách id nghệ sĩ
   const [personId, setPresonId] = useState([]);
@@ -216,7 +212,7 @@ function EditAlbum() {
           <FormControl>
             <Select
               id="select_country"
-              value={country}
+              value={countryId}
               onChange={(e) => {
                 console.log(e.target.value);
                 setCountryId(e.target.value);
