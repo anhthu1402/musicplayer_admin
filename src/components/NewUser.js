@@ -9,24 +9,12 @@ function NewUser() {
           <input type="text" placeholder="" />
         </div>
         <div className="newUserItem">
-          <label>Tên đầy đủ</label>
-          <input type="text" placeholder="" />
-        </div>
-        <div className="newUserItem">
-          <label>Email</label>
-          <input type="email" placeholder="abc@gmail.com" />
-        </div>
-        <div className="newUserItem">
           <label>Password</label>
           <input type="password" placeholder="password" />
         </div>
         <div className="newUserItem">
-          <label>Số điện thoại</label>
-          <input type="text" placeholder="0xxx" />
-        </div>
-        <div className="newUserItem">
-          <label>Quốc gia</label>
-          <input type="text" placeholder="" />
+          <label>Xác nhận lại mật khẩu</label>
+          <input type="password" placeholder="password" />
         </div>
       </form>
       <button className="newUserButton">Thêm mới</button>

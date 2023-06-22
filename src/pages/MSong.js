@@ -62,7 +62,7 @@ const MSong = () => {
           <div className="songListSong" style={{ verticalAlign: "center" }}>
             <img
               className="songListImg"
-              src={require("../assets/" + params.row.songImage)}
+              src={params.row.songImage}
               alt={params.row.songName}
               width={70}
               height={70}

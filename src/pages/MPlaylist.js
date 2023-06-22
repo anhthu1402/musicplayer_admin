@@ -36,7 +36,7 @@ function MPlaylist() {
     {
       field: "id",
       headerName: "ID",
-      width: 100,
+      width: 50,
     },
     {
       field: "image",
@@ -60,7 +60,7 @@ function MPlaylist() {
     {
       field: "albumName",
       headerName: "Tên Playlist",
-      width: 200,
+      width: 150,
       editable: true,
       renderCell: (params) => {
         return (
@@ -73,7 +73,7 @@ function MPlaylist() {
     {
       field: "songs",
       headerName: "Bài hát",
-      width: 300,
+      width: 450,
 
       renderCell: (params) => {
         return (
@@ -108,7 +108,7 @@ function MPlaylist() {
     {
       field: "user",
       headerName: "Người tạo",
-      width: 150,
+      width: 100,
 
       renderCell: (params) => {
         return (

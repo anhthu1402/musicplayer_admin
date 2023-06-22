@@ -33,6 +33,7 @@ function Dashboard() {
     }
   });
   const [data, setData] = useState(artistData);
+  const [dataArtist, setDataArtist] = useState(ArtistsData);
   // const rows= ArtistsData
   // const options = {
   // 		title: {
@@ -57,10 +58,10 @@ function Dashboard() {
         <Widget type="album" />
         <Widget type="playlist" />
       </div>
-      <div className="charts" style={{ width: "80%" }}>
+      <div className="charts" style={{ width: "90%" }}>
         <div>
           <h3 className="chartTitle">Thống kê top 10 nghệ sĩ</h3>
-          <ResponsiveContainer width="100%" aspect={1.5}>
+          <ResponsiveContainer width="100%" aspect={1.75}>
             <BarChart data={data}>
               <XAxis dataKey="artistName" />
               <YAxis />
