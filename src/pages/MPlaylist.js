@@ -6,16 +6,22 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Button
 } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import "../styles/malbum.css";
 import { Link } from "react-router-dom";
 import { DeleteOutline } from "@mui/icons-material";
-import { PlaylistData } from "../components/PlaylistData";
-import { Button } from "antd";
+import axios from "axios";
+import { useEffect } from "react";
 
 function MPlaylist() {
-  const [data, setData] = useState(PlaylistData);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/playlists").then((response) => {
+      setData(response.data);
+    })
+  }, [data])
   const [id, setId] = useState();
   const [open, setOpen] = useState(false);
   const handleDelete = (id) => {
@@ -26,9 +32,9 @@ function MPlaylist() {
     setOpen(false);
   };
   const handleYes = () => {
-    //hàm xóa ở đây
-    console.log(id);
-    setData(data.filter((item) => item.id !== id));
+    axios.delete("http://localhost:8080/api/playlists/ " + id).then((response) => {
+      console.log(response.data);
+    })
     setOpen(false);
   };
   const columns = [
@@ -44,7 +50,7 @@ function MPlaylist() {
 
       renderCell: (params) => {
         return (
-          <div className="albumListAlbum" style={{ verticalAlign: "center" }}>
+          <div className="albumListAlbum" style={{ display: 'flex', alignItems: 'center' }}>
             <img
               className="albumListImg"
               src={params.row.playlistImg}
@@ -59,37 +65,11 @@ function MPlaylist() {
     {
       field: "albumName",
       headerName: "Tên Playlist",
-      width: 200,
+      width: 250,
       renderCell: (params) => {
         return (
-          <div className="albumListAlbum" style={{ verticalAlign: "center" }}>
+          <div className="albumListAlbum">
             {params.row.playlistName}
-          </div>
-        );
-      },
-    },
-    {
-      field: "songs",
-      headerName: "Bài hát",
-      width: 450,
-
-      renderCell: (params) => {
-        return (
-          <div
-            className="songs"
-            style={{
-              justifyContent: "space-around",
-            }}
-          >
-            {params.row.songPlaylist.map((child, index) => {
-              if (index < Object.keys(child).length - 1) {
-                return (
-                  <span key={index} item={child} className="songs">
-                    {child.songName}
-                  </span>
-                );
-              }
-            })}
           </div>
         );
       },
@@ -97,13 +77,13 @@ function MPlaylist() {
     {
       field: "user",
       headerName: "Người tạo",
-      width: 100,
+      width: 150,
 
       renderCell: (params) => {
         return (
-          <div className="albumListCountry" style={{ verticalAlign: "center" }}>
+          <div className="albumListCountry" >
             <div>
-              <span className="country">{params.row.user}</span>
+              <span className="country">{params.row.userName}</span>
             </div>
           </div>
         );
@@ -111,22 +91,22 @@ function MPlaylist() {
     },
     {
       field: "action",
-      headerName: "Action",
+      headerName: "Hành động",
       width: 200,
       renderCell: (params) => {
         return (
           <>
             <Link
               to={"/playlistDetail/" + params.row.playlistName}
-              state={params.row}
+              state={params.row.id}
             >
-              <button className="artistListView">View</button>
+              <Button className="albumListBtn View" variant="contained">Xem</Button>
             </Link>
             <Link
               to={"/editPlaylist/" + params.row.playlistName}
               state={params.row}
             >
-              <button className="albumListEdit">Edit</button>
+              <Button className="albumListBtn Edit" variant="contained">Sửa</Button>
             </Link>
             <DeleteOutline
               className="albumListDelete"
@@ -142,15 +122,14 @@ function MPlaylist() {
       <div className="button">
         <h1 className="title">Playlist</h1>
         <Link to="/newPlaylist">
-          <button className="albumButtton">
-            <span>Thêm mới</span>
-          </button>
+          <Button className="albumButtton" variant="contained">
+            Thêm mới
+          </Button>
         </Link>
       </div>
       <Box m="40px 0 0 0">
         <DataGrid
           rows={data}
-          disableSelectionOnClick
           columns={columns}
           pageSize={10}
           initialState={{
@@ -159,7 +138,6 @@ function MPlaylist() {
           }}
           checkboxSelection
           components={{ Toolbar: GridToolbar }}
-          selectedGridRowsCountSelector={handleDelete}
         />
       </Box>
       <Dialog

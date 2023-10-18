@@ -1,23 +1,8 @@
 import { Link } from "react-router-dom";
-import React, { Component } from "react";
-import {
-  MoreHoriz,
-  FavoriteBorderOutlined,
-  PlayCircleFilled,
-  QueueRounded,
-  PlaylistAddRounded,
-  QueueMusicRounded,
-  AddCircleRounded,
-  FileDownloadOutlined,
-  LyricsOutlined,
-} from "@mui/icons-material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import React from "react";
 import "../styles/TrackItem.css";
-import { Button, ButtonGroup, Tooltip } from "@mui/material";
-import { useState } from "react";
 
 function TrackItem({ item }) {
-  // render() {
   function printReleaseDate(dateParam) {
     const date = new Date(dateParam);
     const DAY_IN_MS = 86400000;
@@ -55,33 +40,34 @@ function TrackItem({ item }) {
     <div className="item">
       <div className="songImg">
         <img src={`${item.songImage}`} alt={item.songName} />
-        {/* <PlayCircleFilled className="playSongIcon" /> */}
       </div>
       <div className="songDetail">
-        <div className="songTitle">{item.songName}</div>
+        <div className="songTitle">
+          <Link className="songTitle link" to={"/editSong/" + item.songName} state={item}>
+            {item.songName}
+          </Link>
+        </div>
         <div className="artist">
           {item.representation.map((child, index) => (
-            <span key={index} item={child}>
+            <span key={index} item={child} style={{ fontSize: '15px' }}>
               <Link
                 to={`/artistDetail/${child.artistName}`}
                 state={child}
-                style={{ color: "black" }}
               >
                 {child.artistName}
               </Link>
             </span>
           ))}
         </div>
-          <div className="trackReleaseDate">
-            {item.releaseDate === undefined
-              ? ""
-              : printReleaseDate(item.releaseDate)}
-          </div>
-          <div className="trackDuration">{item.timeLimit}</div>
+        <div className="trackReleaseDate">
+          {item.releaseDate === undefined
+            ? ""
+            : printReleaseDate(item.releaseDate)}
         </div>
+        <div className="trackDuration">{item.timeLimit}</div>
+      </div>
     </div>
   );
 }
-// }
 
 export default TrackItem;

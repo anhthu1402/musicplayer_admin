@@ -1,24 +1,17 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../styles/newsong.css";
-import { ArtistsData } from "./ArtistsData";
 import axios from "axios";
-import { useState } from "react";
-import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { Error, Check } from "@mui/icons-material";
 import TextField from "@mui/material/TextField";
 import { Alert, Button, Select } from "@mui/material";
-import { CountryData } from "./CountryData";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AlbumData } from "./AlbumData";
-import dayjs from "dayjs";
+import { formatDate } from "../service";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -31,16 +24,12 @@ const MenuProps = {
   },
 };
 
-function EditSong() {
-  const location = useLocation();
-  const song = location.state;
+function NewSong() {
   const [audioUrl, setAudioUrl] = useState("");
   const [timeLimit, setTimeLimit] = useState(0);
   const [imageUrl, setImageUrl] = useState("");
   const [loadImage, setLoadImage] = useState(false);
   const [loadAudio, setLoadAudio] = useState(false);
-  const [remainImage, setRemainImage] = useState(false);
-  const [remainAudio, setRemainAudio] = useState(false);
   const [loadSucces, setLoadSuccess] = useState(false);
   const processFileAudio = async (e) => {
     var file = e.target.files[0];
@@ -175,22 +164,8 @@ function EditSong() {
     const secondLeft = value - minute * 60;
     return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
   }
-  function formatDate(day, month, year) {
-    if (month < 10) {
-      if (day < 10) {
-        return year + "-0" + month + "-0" + day;
-      } else return year + "-0" + month + "-" + day;
-    } else {
-      if (day < 10) {
-        return year + "-" + month + "-0" + day;
-      } else {
-        return year + "-" + month + "-" + day;
-      }
-    }
-  }
-
   const songnameRef = useRef();
-  const loibaihatRef = useRef();
+  const lyricsRef = useRef();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -202,81 +177,74 @@ function EditSong() {
     setError(error);
     setShowAlert(true);
   };
-  const artist = [];
-  song.representation.map((item, index) => {
-    artist.push(item.id);
-  });
-  const [personName, setPresonName] = useState(artist);
-  //Danh sách id nghệ sĩ
-  const [personId, setPresonId] = useState([]);
-  const [countryId, setCountryId] = useState([]);
-  const [albumId, setAlbumId] = useState([]);
+  const [countryData, setCountryData] = useState([]);
+  const [artistData, setArtistData] = useState([]);
+  const [albumData, setAlbumData] = useState([]);
   useEffect(() => {
-    AlbumData.map((item) => {
-      item.songs.map((child) => {
-        if (child.id === song.id) {
-          setAlbumId(item.id);
-        }
-      });
+    axios.get("http://localhost:8080/api/countries").then((response) => {
+      setCountryData(response.data);
     });
-    song.country.map((item) => {
-      setCountryId(item.id);
+    axios.get("http://localhost:8080/api/artists").then((response) => {
+      setArtistData(response.data);
     });
-  }, [albumId, song.id, countryId, song]);
-  const [date, setDate] = useState(dayjs(formatDate(song.releaseDate)));
-  const handleChange = (event) => {
-    setPresonId(event.target.value);
+    axios.get("http://localhost:8080/api/albums").then((response) => {
+      setAlbumData(response.data);
+    })
+  }, [countryData, artistData, albumData]);
+  const [songId, setSongId] = useState();
+  //Danh sách id nghệ sĩ
+  const [representationId, setRepresentationId] = useState([]);
+  const [composerId, setComposerId] = useState([]);
+  const [album, setAlbum] = useState();
+  const [country, setCountry] = useState();
+  const [date, setDate] = useState("");
+  const representationChange = (event) => {
     const {
       target: { value },
     } = event;
-    setPresonName(value);
-    console.log(personName);
+    setRepresentationId(value);
+  };
+  const composerChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setComposerId(value);
   };
   useEffect(() => {
     if (loadAudio && loadImage) {
       setLoadSuccess(true);
       setSuccess("File hình ảnh và bài hát đã được tải lên.");
       setShowAlertSuccess(true);
-      setShowAlert(false);
     }
-    if (remainAudio && remainImage) {
-      setLoadSuccess(true);
+  }, [loadSucces, loadAudio, loadImage, success, showAlertSuccess]);
+  useEffect(() => {
+    if (songId != null) {
+      representationId.map((child) => {
+        axios.put("http://localhost:8080/api/songs/" + songId + "/representation/" + child).then((response) => {
+          console.log(response.data);
+        })
+      })
+      composerId.map((child) => {
+        axios.put("http://localhost:8080/api/songs/" + songId + "/composer/" + child).then((response) => {
+          console.log(response.data);
+          navigate("/songs");
+        })
+      })
+      axios.put("http://localhost:8080/api/songs/" + songId + "/album/" + album.id).then((response) => {
+        console.log(response.data)
+      })
     }
-  }, [
-    loadSucces,
-    loadAudio,
-    loadImage,
-    success,
-    showAlertSuccess,
-    showAlert,
-    remainAudio,
-    remainImage,
-  ]);
-  const handleRemainAudio = () => {
-    setAudioUrl(song.songLink);
-    setTimeLimit(song.timeLimit);
-    setLoadAudio(true);
-    setRemainAudio(true);
-  };
-  const handleRemainImage = () => {
-    setImageUrl(song.songImage);
-    setLoadImage(true);
-    setRemainImage(true);
-  };
+  }, [songId])
   const songHandler = () => {
     const songName = songnameRef.current.value;
-    const loibaihat = loibaihatRef.current.value;
+    const lyrics = lyricsRef.current.value;
     if (
-      !songName ||
-      !loibaihat ||
-      !personId ||
-      !countryId ||
-      !date ||
-      !albumId
+      !songName || !lyrics || !composerId || !representationId ||
+      !country || !date || !album
     ) {
       return setAlertError("Vui lòng nhập đầy đủ thông tin!");
     }
-    if (!loadAudio && !loadImage && !remainAudio && !remainImage) {
+    if (!loadAudio && !loadImage) {
       return setAlertError("File hình ảnh hoặc bài hát chưa được tải lên.");
     }
     if (!loadSucces) {
@@ -285,47 +253,63 @@ function EditSong() {
       );
     }
     //sign in successfully
-    setShowAlertSuccess(false);
     setError(null);
     setShowAlert(false);
-    console.log(
-      songName,
-      personId,
-      countryId,
-      date,
-      loibaihat,
-      audioUrl,
-      imageUrl,
-      timeLimit,
-      albumId
-    );
-    navigate("/songs");
+    const songDetail = {
+      songName: songName,
+      songImage: imageUrl,
+      songLink: audioUrl,
+      timeLimit: timeLimit,
+      releaseDate: date,
+      lyrics: lyrics,
+      country: country
+    };
+    axios.post("http://localhost:8080/api/songs", songDetail).then((response) => {
+      setSongId(response.data.id);
+    })
   };
-
   return (
     <div className="newSong">
-      <h1 className="newSongTitle">Chỉnh sửa bài hát</h1>
-      <form className="newSongForm">
+      <h1 className="newSongTitle">Thêm bài hát mới</h1>
+      <form
+        className="newSongForm"
+        id="form-id"
+        action="~/admin/Ql_BaiHat/ThemBaiHat"
+        method="POST"
+      >
         <div className="newSongItem">
           <label>Tên bài hát</label>
-          <TextField
-            id="songname"
-            variant="outlined"
-            inputRef={songnameRef}
-            defaultValue={song.songName}
-          />
+          <TextField id="songname" variant="outlined" inputRef={songnameRef} />
         </div>
         <div className="newSongItem">
           <label>Người trình bày</label>
           <FormControl>
             <Select
-              id="select_artists"
+              id="select_representations"
               multiple
-              value={personName}
-              onChange={handleChange}
+              value={representationId}
+              onChange={representationChange}
               MenuProps={MenuProps}
             >
-              {ArtistsData.map((child, index) => (
+              {artistData.map((child, index) => (
+                <MenuItem key={child.id} item={child} value={child.id}>
+                  {child.artistName}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div className="newSongItem">
+          <label>Sáng tác</label>
+          <FormControl>
+            <Select
+              id="select_composers"
+              multiple
+              value={composerId}
+              onChange={composerChange}
+              MenuProps={MenuProps}
+            >
+              {artistData.map((child, index) => (
                 <MenuItem key={child.id} item={child} value={child.id}>
                   {child.artistName}
                 </MenuItem>
@@ -338,14 +322,12 @@ function EditSong() {
           <FormControl>
             <Select
               id="select_album"
-              value={albumId}
-              onChange={(e) => {
-                console.log(e.target.value);
-                setAlbumId(e.target.value);
+              onChange={(e, value) => {
+                setAlbum(value.props.item);
               }}
               MenuProps={MenuProps}
             >
-              {AlbumData.map((child, index) => (
+              {albumData.map((child, index) => (
                 <MenuItem key={child.id} item={child} value={child.id}>
                   {child.albumName}
                 </MenuItem>
@@ -358,14 +340,12 @@ function EditSong() {
           <FormControl>
             <Select
               id="select_country"
-              value={countryId}
-              onChange={(e) => {
-                console.log(e.target.value);
-                setCountryId(e.target.value);
+              onChange={(e, value) => {
+                setCountry(value.props.item)
               }}
               MenuProps={MenuProps}
             >
-              {CountryData.map((child, index) => (
+              {countryData.map((child, index) => (
                 <MenuItem key={child.id} item={child} value={child.id}>
                   {child.countryName}
                 </MenuItem>
@@ -378,7 +358,6 @@ function EditSong() {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
-                value={date}
                 onChange={(e) => {
                   setDate(formatDate(e.$D, e.$M + 1, e.$y));
                 }}
@@ -392,58 +371,25 @@ function EditSong() {
           </label>
           <TextField
             id="songLyric"
-            defaultValue={song.lyric}
             multiline
             rows={4}
-            inputRef={loibaihatRef}
+            inputRef={lyricsRef}
           />
           <span asp-validation-for="LOIBAIHAT" class="text-danger"></span>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <div className="newSongLink">
-            <label asp-for="LINKBH" class="control-label">
-              Link bài hát
-            </label>
-            <input type="file" id="linkaudio" onChange={processFileAudio} />
-          </div>
-          <Button
-            variant="outlined"
-            className="buttonStay"
-            size="small"
-            onClick={handleRemainAudio}
-          >
-            Giữ nguyên
-          </Button>
+        <div className="newSongLink">
+          <label asp-for="LINKBH" class="control-label">
+            Link bài hát
+          </label>
+          <input type="file" id="linkaudio" onChange={processFileAudio} />
+          <span asp-validation-for="LINKBH" class="text-danger"></span>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <div className="newSongLink">
-            <label asp-for="ANHBH" class="control-label">
-              Ảnh bài hát
-            </label>
-            <input type="file" id="linkimage" onChange={processFileImage} />
-          </div>
-          <Button
-            variant="outlined"
-            className="buttonStay"
-            size="small"
-            onClick={handleRemainImage}
-          >
-            Giữ nguyên
-          </Button>
+        <div class="newSongLink">
+          <label asp-for="ANHBH" class="control-label">
+            Ảnh bài hát
+          </label>
+          <input type="file" id="linkimage" onChange={processFileImage} />
+          <span asp-validation-for="ANHBH" class="text-danger"></span>
         </div>
         {showAlert && (
           <Alert
@@ -475,7 +421,7 @@ function EditSong() {
             variant="contained"
             className="buttonAdd"
           >
-            Cập nhật bài hát
+            Thêm bài hát mới
           </Button>
         </div>
       </form>
@@ -483,4 +429,4 @@ function EditSong() {
   );
 }
 
-export default EditSong;
+export default NewSong;

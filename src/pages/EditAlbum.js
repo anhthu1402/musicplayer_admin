@@ -1,5 +1,4 @@
 import "../styles/newalbum.css";
-import { ArtistsData } from "./ArtistsData";
 import "../styles/newsong.css";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
@@ -10,12 +9,12 @@ import { Error, Check } from "@mui/icons-material";
 import TextField from "@mui/material/TextField";
 import "../styles/newsong.css";
 import { Alert, Button, Select } from "@mui/material";
-import { CountryData } from "./CountryData";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
+import { formatDate, FormatDate } from "../service";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -110,70 +109,81 @@ function EditAlbum() {
     setError(error);
     setShowAlert(true);
   };
-  function formatDate(day, month, year) {
-    if (month < 10) {
-      if (day < 10) {
-        return year + "-0" + month + "-0" + day;
-      } else return year + "-0" + month + "-" + day;
-    } else {
-      if (day < 10) {
-        return year + "-" + month + "-0" + day;
-      } else {
-        return year + "-" + month + "-" + day;
-      }
-    }
-  }
+  const [countryData, setCountryData] = useState([]);
+  const [artistData, setArtistData] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/countries").then((response) => {
+      setCountryData(response.data);
+    });
+    axios.get("http://localhost:8080/api/artists").then((response) => {
+      setArtistData(response.data);
+    })
+  }, [countryData, artistData]);
   const artist = [];
   album.artist.map((item, index) => {
     artist.push(item.id);
   });
-  function FormatDate(string) {
-    var options = { year: "numeric", month: "numeric", day: "numeric" };
-    return new Date(string).toLocaleDateString([], options);
-  }
-  const [personName, setPresonName] = useState(artist);
   //Danh sách id nghệ sĩ
-  const [personId, setPresonId] = useState([]);
-  const [countryId, setCountryId] = useState([]);
-  useEffect(() => {
-    album.country.map((item) => {
-      setCountryId(item.id);
-    });
-  });
+  const [personId, setPresonId] = useState(artist);
   const [date, setDate] = useState(dayjs(FormatDate(album.releaseDate)));
   const handleChange = (event) => {
-    setPresonId(event.target.value);
     const {
       target: { value },
     } = event;
-    setPresonName(value);
+    setPresonId(value);
   };
   useEffect(() => {
     if (loadImage) {
       setSuccess("File hình ảnh đã được tải lên.");
       setShowAlertSuccess(true);
-      setShowAlert(false);
+      if (error === "File hình ảnh chưa được tải lên.") {
+        setShowAlert(false);
+      }
     }
   }, [loadImage, success, showAlertSuccess, showAlert]);
-
   const handleRemainImage = () => {
     setImageUrl(album.albumImage);
     setLoadImage(true);
     setRemainImage(true);
   };
+  const albumInterestTimesRef = useRef();
+  const [country, setCountry] = useState(album.country);
   const albumHandler = () => {
     const albumName = albumNameRef.current.value;
-    if (!albumName || !personId || !countryId || !date) {
+    const albumInterestTimes = albumInterestTimesRef.current.value;
+    if (!albumName || !personId || !date || !albumInterestTimes || !country) {
       return setAlertError("Vui lòng nhập đầy đủ thông tin!");
     }
     if (!loadImage && !remainImage) {
       return setAlertError("File hình ảnh chưa được tải lên.");
     }
+    if (isNaN(albumInterestTimes)) {
+      return setAlertError("Số lượt quan tâm phải là một số!");
+    }
     //sign in successfully
-    setShowAlertSuccess(false);
     setError(null);
     setShowAlert(false);
-    console.log(albumName, personId, countryId, date, imageUrl);
+    const albumDetail = {
+      albumName: albumName,
+      interestTimes: albumInterestTimes,
+      releaseDate: date,
+      albumImage: imageUrl,
+      country: album.country,
+    };
+    axios.put("http://localhost:8080/api/albums/" + album.id, albumDetail).then((response) => {
+      console.log(response.data);
+      personId.map((child) => {
+        axios.put("http://localhost:8080/api/albums/" + album.id + "/artist/" + child).then((result) => {
+          console.log(result.data);
+        })
+      })
+      if (country.id !== album.country.id) {
+        axios.put("http://localhost:8080/api/albums/" + album.id + "/country/" + country.id).then((response) => {
+          console.log(response.data);
+        })
+      }
+    })
+
     navigate("/albums");
   };
   return (
@@ -195,11 +205,11 @@ function EditAlbum() {
             <Select
               id="select_artists"
               multiple
-              value={personName}
+              value={personId}
               onChange={handleChange}
               MenuProps={MenuProps}
             >
-              {ArtistsData.map((child, index) => (
+              {artistData.map((child, index) => (
                 <MenuItem key={child.id} item={child} value={child.id}>
                   {child.artistName}
                 </MenuItem>
@@ -212,14 +222,13 @@ function EditAlbum() {
           <FormControl>
             <Select
               id="select_country"
-              value={countryId}
-              onChange={(e) => {
-                console.log(e.target.value);
-                setCountryId(e.target.value);
+              defaultValue={album.country.id}
+              onChange={(e, value) => {
+                setCountry(value.props.item)
               }}
               MenuProps={MenuProps}
             >
-              {CountryData.map((child, index) => (
+              {countryData.map((child, index) => (
                 <MenuItem key={child.id} item={child} value={child.id}>
                   {child.countryName}
                 </MenuItem>
@@ -240,7 +249,14 @@ function EditAlbum() {
             </DemoContainer>
           </LocalizationProvider>
         </div>
-
+        <div className="newAlbumItem">
+          <label htmlFor="albumInterestTimes">Số lượt quan tâm</label>
+          <TextField
+            id="albumInterestTimes" defaultValue={album.interestTimes}
+            variant="outlined"
+            inputRef={albumInterestTimesRef}
+          />
+        </div>
         <div
           style={{
             display: "flex",

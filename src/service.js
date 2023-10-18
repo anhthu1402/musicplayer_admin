@@ -1,7 +1,56 @@
 import { PlaylistData } from "./components/PlaylistData";
 import { AlbumData } from "./components/AlbumData";
-import { UserData } from "./components/UserData";
 import { ArtistsData } from "./components/ArtistsData";
+export const setSideBarData = (navigate, sidebar) => {
+  switch (sidebar.pathName) {
+    case "artists": {
+      navigate("/artists");
+      break;
+    }
+    case "users": {
+      navigate("/users");
+      break;
+    }
+    case "songs": {
+      navigate("/songs");
+      break;
+    }
+    case "albums": {
+      navigate("/albums");
+      break;
+    }
+    case "playlists": {
+      navigate("/playlists");
+      break;
+    }
+    case "dashboard": {
+      navigate("/dashboard");
+      break;
+    }
+    default: {
+
+    }
+  }
+}
+
+export const formatDate = (day, month, year) => {
+  if (month < 10) {
+    if (day < 10) {
+      return year + "-0" + month + "-0" + day;
+    } else return year + "-0" + month + "-" + day;
+  } else {
+    if (day < 10) {
+      return year + "-" + month + "-0" + day;
+    } else {
+      return year + "-" + month + "-" + day;
+    }
+  }
+}
+
+export const FormatDate = (string) => {
+  var options = { year: "numeric", month: "numeric", day: "numeric" };
+  return new Date(string).toLocaleDateString([], options);
+}
 
 export const getPlaylistDetail = (playlistId) => {
   return PlaylistData.find((playlist) => playlist.id === playlistId);

@@ -25,7 +25,7 @@ export const SidebarData = [
     title: "Dashboard",
     path: "/",
     icon: <LineAxis />,
-    pathName: "",
+    pathName: "dashboard",
   },
   {
     title: "Quản lý bài hát",

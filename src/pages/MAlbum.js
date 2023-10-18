@@ -1,6 +1,5 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  Avatar,
   Box,
   Button,
   Dialog,
@@ -8,36 +7,40 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  IconButton,
-  Tooltip,
-  Typography,
 } from "@mui/material";
-import { DataGrid, gridClasses, GridToolbar } from "@mui/x-data-grid";
-import { AlbumData } from "../components/AlbumData";
-import SongItem from "../components/SongItem";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import "../styles/malbum.css";
 import { Link } from "react-router-dom";
-import AddIcon from "@mui/icons-material/Add";
-import { DeleteOutline, Edit, Delete } from "@mui/icons-material";
+import { DeleteOutline } from "@mui/icons-material";
+import axios from "axios";
 
 const MAlbum = () => {
-  const [data, setData] = useState(AlbumData);
-  const rows = AlbumData;
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/albums").then((response) => {
+      setData(response.data);
+    });
+  }, [data])
   const [id, setId] = useState();
   const [open, setOpen] = useState(false);
   const handleDelete = (id) => {
     setOpen(true);
     setId(id);
+    console.log(id)
   };
   const handleClose = () => {
     setOpen(false);
   };
   const handleYes = () => {
-    //hàm xóa ở đây
-    console.log(id);
-    setData(data.filter((item) => item.id !== id));
+    axios.delete("http://localhost:8080/api/albums/ " + id).then((response) => {
+      console.log(response.data);
+    })
     setOpen(false);
   };
+  function FormatDate(string) {
+    var options = { year: "numeric", month: "numeric", day: "numeric" };
+    return new Date(string).toLocaleDateString([], options);
+  }
 
   const columns = [
     {
@@ -48,7 +51,7 @@ const MAlbum = () => {
     {
       field: "image",
       headerName: "Ảnh",
-      width: 70,
+      width: 100,
 
       renderCell: (params) => {
         return (
@@ -67,10 +70,10 @@ const MAlbum = () => {
     {
       field: "albumName",
       headerName: "Tên Album",
-      width: 200,
+      width: 250,
       renderCell: (params) => {
         return (
-          <div className="albumListAlbum" style={{ verticalAlign: "center" }}>
+          <div className="albumListAlbum" style={{ verticalAlign: "center", textOverflow: 'ellipsis' }}>
             {params.row.albumName}
           </div>
         );
@@ -79,12 +82,12 @@ const MAlbum = () => {
     {
       field: "releaseDate",
       headerName: "Thời gian",
-      width: 150,
+      width: 130,
 
       renderCell: (params) => {
         return (
           <div className="albumListAlbum" style={{ verticalAlign: "center" }}>
-            {params.row.releaseDate}
+            {FormatDate(params.row.releaseDate)}
           </div>
         );
       },
@@ -92,7 +95,7 @@ const MAlbum = () => {
     {
       field: "artist",
       headerName: "Nghệ sĩ",
-      width: 100,
+      width: 180,
 
       renderCell: (params) => {
         return (
@@ -122,44 +125,16 @@ const MAlbum = () => {
       },
     },
     {
-      field: "songs",
-      headerName: "Bài hát",
-      width: 200,
-
-      renderCell: (params) => {
-        return (
-          <div
-            className="songs"
-            style={{
-              justifyContent: "space-around",
-            }}
-          >
-            {params.row.songs.map((child, index) => {
-              if (index < Object.keys(child).length - 1) {
-                return (
-                  <span key={index} item={child} className="songs">
-                    {child.songName}
-                  </span>
-                );
-              }
-            })}
-          </div>
-        );
-      },
-    },
-    {
       field: "country",
       headerName: "Nước",
-      width: 80,
+      width: 100,
 
       renderCell: (params) => {
         return (
           <div className="albumListCountry" style={{ verticalAlign: "center" }}>
             <div>
               <span className="country">
-                {params.row.country.map((item, index) => (
-                  <div key={index}>{item.countryName}</div>
-                ))}
+                {params.row.country.countryName && <div>{params.row.country.countryName}</div>}
               </span>
             </div>
           </div>
@@ -168,20 +143,20 @@ const MAlbum = () => {
     },
     {
       field: "action",
-      headerName: "Action",
+      headerName: "Hành động",
       width: 200,
       renderCell: (params) => {
         return (
           <>
             <Link
               to={"/albumDetail/" + params.row.albumName}
-              state={params.row}
+              state={params.row.id}
             >
-              <button className="artistListView">View</button>
+              <Button className="albumListBtn View" variant="contained">Xem</Button>
             </Link>
 
             <Link to={"/editAlbum/" + params.row.albumName} state={params.row}>
-              <button className="albumListEdit">Edit</button>
+              <Button className="albumListBtn Edit" variant="contained">Sửa</Button>
             </Link>
             <DeleteOutline
               className="albumListDelete"
@@ -197,15 +172,14 @@ const MAlbum = () => {
       <div className="button">
         <h1 className="title">Album</h1>
         <Link to="/newAlbum">
-          <button className="albumButtton">
-            <span>Thêm mới</span>
-          </button>
+          <Button className="albumButtton" variant="contained">
+            Thêm mới
+          </Button>
         </Link>
       </div>
       <Box m="40px 0 0 0">
         <DataGrid
           rows={data}
-          disableSelectionOnClick
           columns={columns}
           pageSize={10}
           initialState={{
@@ -214,7 +188,6 @@ const MAlbum = () => {
           }}
           checkboxSelection
           components={{ Toolbar: GridToolbar }}
-          selectedGridRowsCountSelector={handleDelete}
         />
       </Box>
       <Dialog

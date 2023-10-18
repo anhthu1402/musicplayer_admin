@@ -1,21 +1,9 @@
 import "../styles/widget.scss";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import {
-  ExpandMore,
-  ExpandLess,
-  LibraryMusic,
-  HomeRounded,
   MusicNoteRounded,
   PersonRounded,
   PlaylistPlayRounded,
-  BarChartRounded,
-  TrendingUpRounded,
-  AccountCircle,
-  LineAxis,
 } from "@mui/icons-material";
 import AlbumSharpIcon from "@mui/icons-material/AlbumSharp";
 import { Link } from "react-router-dom";
@@ -39,7 +27,6 @@ const Widget = ({ type }) => {
     case "user":
       data = {
         title: "Người dùng",
-        isMoney: false,
         linkTitle: "Tất cả người dùng",
         amount: UsersData.length,
         icon: (
@@ -58,7 +45,6 @@ const Widget = ({ type }) => {
     case "song":
       data = {
         title: "Bài hát",
-        isMoney: false,
         linkTitle: "Tất cả bài hát",
         amount: SongData.length,
         icon: (
@@ -77,7 +63,6 @@ const Widget = ({ type }) => {
     case "artist":
       data = {
         title: "Nghệ sĩ",
-        isMoney: false,
         linkTitle: "Tất cả nghệ sĩ",
         amount: ArtistsData.length,
         icon: (
@@ -93,7 +78,6 @@ const Widget = ({ type }) => {
     case "album":
       data = {
         title: "Album",
-        isMoney: false,
         amount: AlbumData.length,
         linkTitle: "Tất cả album",
         icon: (
@@ -112,7 +96,6 @@ const Widget = ({ type }) => {
     case "playlist":
       data = {
         title: "Playlist",
-        isMoney: false,
         amount: PlaylistData.length,
         linkTitle: "Tất cả playlist",
         icon: (
@@ -137,13 +120,11 @@ const Widget = ({ type }) => {
     <div className="widget">
       <div className="left">
         <span className="title">{data.title}</span>
-        <span className="counter">
-          {data.isMoney && "$"} {data.amount}
-        </span>
+        <span className="counter">{data.amount}</span>
         <Link
           to={"/" + data.link}
           onClick={() => {
-            sidebar.setPathName(data.linkName);
+            sidebar.setPathName(data.link);
             sessionStorage.setItem("sidebarPath", JSON.stringify(data.link));
           }}
         >

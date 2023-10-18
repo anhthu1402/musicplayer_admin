@@ -4,14 +4,13 @@ import { SidebarData } from "./SidebarData";
 import "../styles/Sidebar.css";
 import { Link } from "react-router-dom";
 import Logo from "../assets/Logo.png";
-import Header from "../components/Header";
 
 function SideBar() {
   return (
     <div className="sidebar">
       <div>
-        <Link className="sidebar-header" to={"/home"}>
-          <img src={Logo} alt="" />
+        <Link className="sidebar-header" to={"/dashboard"}>
+          <img src={Logo} alt="Logo" />
           <h2>UIT MP3</h2>
         </Link>
       </div>
@@ -19,9 +18,9 @@ function SideBar() {
         <SidebarItem key={index} item={item} />
       ))}
       <div>
+      </div>
     </div>
-    </div>
-      
+
   );
 }
 

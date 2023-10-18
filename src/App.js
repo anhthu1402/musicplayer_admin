@@ -1,5 +1,4 @@
 import "./App.css";
-import SideBar from "./components/SideBar";
 import {
   Route,
   BrowserRouter as Router,
@@ -14,25 +13,22 @@ import MSong from "./pages/MSong";
 import MAlbum from "./pages/MAlbum";
 import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
-import NewArtist from "./components/NewArtist";
-import NewSong from "./components/NewSong";
-import NewUser from "./components/NewUser";
-import NewAlbum from "./components/NewAlbum";
+import NewArtist from "./pages/NewArtist";
+import NewSong from "./pages/NewSong";
+import NewUser from "./pages/NewUser";
+import NewAlbum from "./pages/NewAlbum";
 import SignUp from "./components/SignUp";
-import { Switch } from "@mui/material";
 import UpLoadSong from "./components/UpLoadSong";
-import ArtistDetail from "./components/ArtistDetail";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import ArtistDetail from "./pages/ArtistDetail";
 import AppRoot from "./components/AppRoot";
-import EditSong from "./components/EditSong";
-import EditAlbum from "./components/EditAlbum";
-import EditArtist from "./components/EditArtist";
+import EditSong from "./pages/EditSong";
+import EditAlbum from "./pages/EditAlbum";
+import EditArtist from "./pages/EditArtist";
 import MPlaylist from "./pages/MPlaylist";
-import EditPlaylist from "./components/EditPlaylist";
-import NewPlaylist from "./components/NewPlaylist";
-import AlbumDetail from "./components/AlbumDetail";
-import PlaylistDetail from "./components/PlaylistDetail";
+import NewPlaylist from "./pages/NewPlaylist";
+import AlbumDetail from "./pages/AlbumDetail";
+import PlaylistDetail from "./pages/PlaylistDetail";
+import EditPlaylist from "./pages/EditPlaylist"
 
 function App() {
   const router = createBrowserRouter([

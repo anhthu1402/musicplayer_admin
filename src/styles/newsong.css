@@ -61,20 +61,13 @@
 }
 
 .buttonAdd {
-  cursor: pointer;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
-  padding: 10px 15px !important;
-  margin: 5px;
+  border-radius: 5px !important;
+  margin: 30px !important;
   background-color: #ff5f85 !important;
-  display: inline-block;
-  color: white;
 }
 .buttonAdd:hover,
 .buttonStay:hover {
   background-color: #fba1b6 !important;
-  cursor: pointer;
-  transition: 0.3s ease;
   color: #373b3e;
 }
 .buttonStay {

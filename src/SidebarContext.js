@@ -4,7 +4,7 @@ export const SidebarProvider = ({ children }) => {
   const [pathName, setPathName] = useState(
     sessionStorage.getItem("sidebarPath") !== null
       ? JSON.parse(sessionStorage.getItem("sidebarPath"))
-      : "Dashboard"
+      : "dashboard"
   );
   return (
     <SidebarContext.Provider value={{ pathName, setPathName }}>

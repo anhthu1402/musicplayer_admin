@@ -1,56 +1,48 @@
-.artistList{
-    flex: 4;
+.artistList {
+  flex: 4;
+}
+.artistListArtist .artistListFollow {
+  display: flex;
+}
+.artistListImg {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 10%;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+.artistListBtn {
+  border: none;
+  border-radius: 10px !important;
+  padding: 5px 10px !important;
+  color: white !important;
+  cursor: pointer !important;
+  margin-right: 1rem !important;
+  text-transform: none !important;
+}
+.Edit {
+  background-color: #3bb077 !important;
+}
+.View {
+  background-color: #eea3a3 !important;
+}
+.artistListDelete {
+  cursor: pointer;
+}
 
+.title {
+  font-size: 2rem;
 }
-.artistListArtist .artistListFollow{
-    display: flex;
+.artistButtton {
+  border: none;
+  border-radius: 10px !important;
+  font-size: 1rem !important;
+  width: 120px !important;
+  color: white !important;
+  padding: 10px !important;
+  font-weight: 700 !important;
+  background-color: #eea3a3 !important;
 }
-.artistListImg{
-    width: 3rem;
-    height: 3rem;
-    border-radius: 10%;
-    object-fit: cover;
-    margin-right: 1rem ;
-}
-.artistListEdit{
-    border: none;
-    border-radius: 10px;
-    padding: 5px 10px;
-    background-color: #3bb077;
-    color: white;
-    cursor: pointer;
-    margin-right: 1rem ;
-}
-.artistListView{
-    border: none;
-    border-radius: 10px;
-    padding: 5px 10px;
-    background-color: #eea3a3;
-    color: white;
-    cursor: pointer;
-    margin-right: 1rem ;
-}
-.artistListDelete{
-    cursor: pointer;
-}
-.button{
-    /*position: absolute;*/
-    /* display: flex; */
-    justify-content: space-between;
-    align-items: center;
-}
-.title{
-    font-size: 2rem;
-}
-.artistButtton{
-    border: none;
-    border-radius: 10px;
-    font-size: 1.25rem;
-    display: inline-flex;
-    width: 120px;
-    background-color: #eea3a3;
-    color: white;
-    padding: 10px 10px;
-    font-weight: 600;
-    cursor: pointer;
+.delete {
+  background-color: #b2b5b2 !important;
 }

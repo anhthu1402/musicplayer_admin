@@ -1,21 +1,11 @@
 import "../styles/newartist.css";
-import "../styles/newalbum.css";
-import { ArtistsData } from "./ArtistsData";
-import "../styles/newsong.css";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import { Error, Check } from "@mui/icons-material";
 import TextField from "@mui/material/TextField";
 import "../styles/newsong.css";
-import { Alert, Button, Select } from "@mui/material";
-import { CountryData } from "./CountryData";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { DatePicker } from "@mui/x-date-pickers";
+import { Alert, Button } from "@mui/material";
 const NewArtist = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [loadImage, setLoadImage] = useState(false);
@@ -84,6 +74,7 @@ const NewArtist = () => {
   };
 
   const artistNameRef = useRef();
+  const artistFollowersRef = useRef();
   const introduceRef = useRef();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
@@ -100,23 +91,33 @@ const NewArtist = () => {
     if (loadImage) {
       setSuccess("File hình ảnh đã được tải lên.");
       setShowAlertSuccess(true);
-      setShowAlert(false);
     }
   }, [loadImage, success, showAlertSuccess, showAlert]);
   const artistHandle = () => {
     const artistName = artistNameRef.current.value;
     const introduce = introduceRef.current.value;
-    if (!artistName || !introduce) {
+    const artistFollowers = artistFollowersRef.current.value;
+    if (!artistName || !introduce || !artistFollowers) {
       return setAlertError("Vui lòng nhập đầy đủ thông tin!");
     }
     if (!loadImage) {
       return setAlertError("File hình ảnh chưa được tải lên.");
     }
+    if (isNaN(artistFollowers)) {
+      return setAlertError("Số người theo dõi phải là một số!");
+    }
     //sign in successfully
-    setShowAlertSuccess(false);
     setError(null);
     setShowAlert(false);
-    console.log(artistName, introduce, imageUrl);
+    const artistDetail = {
+      artistImage: imageUrl,
+      artistName: artistName,
+      introduce: introduce,
+      numberOfFollower: artistFollowers
+    }
+    axios.post("http://localhost:8080/api/artists", artistDetail).then((response) => {
+      console.log(response);
+    })
     navigate("/artists");
   };
   return (
@@ -138,6 +139,14 @@ const NewArtist = () => {
             inputRef={introduceRef}
             multiline
             rows={4}
+          />
+        </div>
+        <div className="newArtistItem">
+          <label htmlFor="artistFollowers">Số người theo dõi</label>
+          <TextField
+            id="artistFollowers"
+            variant="outlined"
+            inputRef={artistFollowersRef}
           />
         </div>
         <div class="newAlbumLink">

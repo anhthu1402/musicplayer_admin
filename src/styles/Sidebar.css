@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Fredoka&family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap");
 .sidebar {
-  width: 260px;
+  width: 17vw;
   flex-shrink: 0;
   background-color: #ffdde5;
   height: 100vh;
@@ -8,19 +8,20 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* mozilla */
 }
-
 .sidebar::-webkit-scrollbar {
   display: none; /* Safari and Chrome browsers */
 }
+
 .sidebar-header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 1rem;
+  margin-left: 1vw;
   text-decoration: none;
   color: #86a7ff;
   margin-bottom: 2rem;
   margin-top: 0.5rem;
+  font-size: 1.2vw;
 }
 
 .sidebar-header h2 {
@@ -28,22 +29,26 @@
   font-style: normal;
   font-weight: 642;
   line-height: 39px;
-  font-size: 1.8em;
-  color: #86a7ff;
+  font-size: 2vw;
+  /*color: #86a7ff;*/
   font-stretch: 105;
-  text-shadow: white 2px 2px 0px, 2px 0 0 white;
+  -webkit-text-stroke: 0.1vw white;
+  text-shadow: 0 0 0 12px #699afb;
+  background-image: -webkit-linear-gradient(#699afb, #f4b2e9);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
 }
 
 .sidebar-header img {
   margin-right: 1.2rem;
+  width: 4vw;
 }
 
 .sidebar-item {
   padding: 1em 1em;
   display: block;
   transition: background-color 0.15s;
-  border-radius: 5px;
-  margin: 0.5em 0;
 }
 
 .sidebar-item:hover {
@@ -60,7 +65,7 @@
 .sidebar-link,
 .sidebar-item.plain span {
   display: flex;
-  font-size: 1.2rem;
+  font-size: 1.2vw;
   align-items: center;
   flex-direction: row;
   text-decoration: none;

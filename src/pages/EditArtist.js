@@ -1,27 +1,14 @@
-import "../styles/newalbum.css";
+import "../styles/newartist.css";
 import "../styles/newsong.css";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Error, Check } from "@mui/icons-material";
 import TextField from "@mui/material/TextField";
 import "../styles/newsong.css";
-import { Alert, Button, Select } from "@mui/material";
-import { SongData } from "./SongData";
+import { Alert, Button } from "@mui/material";
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-function NewPlaylist() {
+function EditArtist() {
   const [imageUrl, setImageUrl] = useState("");
   const [loadImage, setLoadImage] = useState(false);
   const processFileImage = async (e) => {
@@ -88,8 +75,12 @@ function NewPlaylist() {
     }
   };
 
-  const playlistNameRef = useRef();
-  const userRef = useRef();
+  const location = useLocation();
+  const artist = location.state;
+
+  const artistNameRef = useRef();
+  const artistFollowersRef = useRef();
+  const introduceRef = useRef();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -101,13 +92,11 @@ function NewPlaylist() {
     setError(error);
     setShowAlert(true);
   };
-
-  const [songId, setSongId] = useState([]);
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setSongId(value);
+  const [remainImage, setRemainImage] = useState(false);
+  const handleRemainImage = () => {
+    setImageUrl(artist.artistImage);
+    setLoadImage(true);
+    setRemainImage(true);
   };
   useEffect(() => {
     if (loadImage) {
@@ -116,63 +105,88 @@ function NewPlaylist() {
       setShowAlert(false);
     }
   }, [loadImage, success, showAlertSuccess, showAlert]);
-  const albumHandler = () => {
-    const albumName = playlistNameRef.current.value;
-    const user = userRef.current.value;
-    if (!albumName || !user || !songId) {
+  const artistHandle = () => {
+    const artistName = artistNameRef.current.value;
+    const introduce = introduceRef.current.value;
+    const artistFollowers = artistFollowersRef.current.value;
+    if (!artistName || !introduce || !artistFollowers) {
       return setAlertError("Vui lòng nhập đầy đủ thông tin!");
     }
-    if (!loadImage) {
+    if (!loadImage && !remainImage) {
       return setAlertError("File hình ảnh chưa được tải lên.");
     }
+    if (isNaN(artistFollowers)) {
+      return setAlertError("Số người theo dõi phải là một số!");
+    }
     //sign in successfully
-    setShowAlertSuccess(false);
     setError(null);
     setShowAlert(false);
-    console.log(albumName, user, songId, imageUrl);
-    navigate("/playlists");
+    const artistDetail = {
+      artistImage: imageUrl,
+      artistName: artistName,
+      introduce: introduce,
+      numberOfFollower: artistFollowers
+    }
+    axios.put("http://localhost:8080/api/artists/" + artist.id, artistDetail).then((response) => {
+      console.log(response);
+    })
+    navigate("/artists");
   };
   return (
-    <div className="newAlbum">
-      <h1 className="newAlbumTitle">Thêm Playlist mới</h1>
-      <form className="newAlbumForm" id="form-id">
-        <div className="newAlbumItem">
-          <label>Tên playlist</label>
+    <div className="newArtist">
+      <h1 className="newArtistTitle">Chỉnh sửa nghệ sĩ</h1>
+      <form className="newArtistForm">
+        <div className="newArtistItem">
+          <label htmlFor="artistName">Tên nghệ sĩ</label>
           <TextField
-            id="albumname"
+            id="artistName"
             variant="outlined"
-            inputRef={playlistNameRef}
+            defaultValue={artist.artistName}
+            inputRef={artistNameRef}
           />
         </div>
-        <div className="newAlbumItem">
-          <label>Người tạo</label>
-          <TextField id="username" variant="outlined" inputRef={userRef} />
+        <div className="newArtistItem">
+          <label>Giới thiệu</label>
+          <TextField
+            variant="outlined"
+            inputRef={introduceRef}
+            defaultValue={artist.introduce}
+            multiline
+            rows={4}
+          />
         </div>
-        <div className="newAlbumItem">
-          <label>Bài hát</label>
-          <FormControl>
-            <Select
-              id="select_artists"
-              multiple
-              value={songId}
-              onChange={handleChange}
-              MenuProps={MenuProps}
-            >
-              {SongData.map((child, index) => (
-                <MenuItem key={child.id} item={child} value={child.id}>
-                  {child.songName}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+        <div className="newArtistItem">
+          <label htmlFor="artistFollowers">Số người theo dõi</label>
+          <TextField
+            id="artistFollowers"
+            variant="outlined"
+            defaultValue={artist.numberOfFollower}
+            inputRef={artistFollowersRef}
+          />
         </div>
-
-        <div class="newAlbumLink">
-          <label asp-for="ANHAL" class="control-label">
-            Ảnh playlist
-          </label>
-          <input type="file" id="linkimage" onChange={processFileImage} />
-          <span asp-validation-for="ANHAL" class="text-danger"></span>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <div class="newAlbumLink">
+            <label asp-for="ANHAL" class="control-label">
+              Ảnh nghệ sĩ
+            </label>
+            <input type="file" id="linkimage" onChange={processFileImage} />
+            <span asp-validation-for="ANHAL" class="text-danger"></span>
+          </div>
+          <Button
+            variant="outlined"
+            className="buttonStay"
+            size="small"
+            onClick={handleRemainImage}
+          >
+            Giữ nguyên
+          </Button>
         </div>
         {showAlert && (
           <Alert
@@ -200,11 +214,11 @@ function NewPlaylist() {
           }}
         >
           <Button
-            onClick={albumHandler}
+            onClick={artistHandle}
             variant="contained"
             className="buttonAdd"
           >
-            Thêm playlist mới
+            Cập nhật nghệ sĩ
           </Button>
         </div>
       </form>
@@ -212,4 +226,4 @@ function NewPlaylist() {
   );
 }
 
-export default NewPlaylist;
+export default EditArtist;

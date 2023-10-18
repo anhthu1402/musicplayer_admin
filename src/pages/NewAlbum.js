@@ -2,14 +2,19 @@ import "../styles/newalbum.css";
 import "../styles/newsong.css";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { Error, Check } from "@mui/icons-material";
 import TextField from "@mui/material/TextField";
 import "../styles/newsong.css";
 import { Alert, Button, Select } from "@mui/material";
-import { SongData } from "./SongData";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { DatePicker } from "@mui/x-date-pickers";
+import { formatDate } from "../service";
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -21,7 +26,7 @@ const MenuProps = {
   },
 };
 
-function EditPlaylist() {
+function NewAlbum() {
   const [imageUrl, setImageUrl] = useState("");
   const [loadImage, setLoadImage] = useState(false);
   const processFileImage = async (e) => {
@@ -88,8 +93,7 @@ function EditPlaylist() {
     }
   };
 
-  const playlistNameRef = useRef();
-  const userRef = useRef();
+  const albumNameRef = useRef();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -102,113 +106,144 @@ function EditPlaylist() {
     setShowAlert(true);
   };
 
-  const location = useLocation();
-  const playlist = location.state;
-  const songs = [];
-  playlist.songPlaylist.map((item, index) => {
-    songs.push(item.id);
-  });
-  const [remainImage, setRemainImage] = useState(false);
-  const handleRemainImage = () => {
-    setImageUrl(playlist.playlistImg);
-    setLoadImage(true);
-    setRemainImage(true);
-  };
-
-  const [songId, setSongId] = useState(songs);
+  const albumInterestTimesRef = useRef();
+  //Danh sách id nghệ sĩ
+  const [personId, setPresonId] = useState([]);
+  const [date, setDate] = useState("");
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setSongId(value);
+    setPresonId(value);
   };
   useEffect(() => {
     if (loadImage) {
       setSuccess("File hình ảnh đã được tải lên.");
       setShowAlertSuccess(true);
-      setShowAlert(false);
     }
   }, [loadImage, success, showAlertSuccess, showAlert]);
-  const playlistHandler = () => {
-    const playlistName = playlistNameRef.current.value;
-    const user = userRef.current.value;
-    if (!playlistName || !user || !songId) {
+  const [countryData, setCountryData] = useState([]);
+  const [artistData, setArtistData] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/countries").then((response) => {
+      setCountryData(response.data);
+    });
+    axios.get("http://localhost:8080/api/artists").then((response) => {
+      setArtistData(response.data);
+    })
+  }, [countryData, artistData]);
+  const [albumId, setAlbumId] = useState();
+  useEffect(() => {
+    if (albumId != null) {
+      personId.map((child) => {
+        axios.put("http://localhost:8080/api/albums/" + albumId + "/artist/" + child).then((result) => {
+          console.log(result.data);
+        })
+      })
+      navigate("/albums");
+    }
+  }, [albumId])
+  const [country, setCountry] = useState();
+  const albumHandler = () => {
+    const albumName = albumNameRef.current.value;
+    const albumInterestTimes = albumInterestTimesRef.current.value;
+    if (!albumName || !personId || !country || !date || !albumInterestTimes) {
       return setAlertError("Vui lòng nhập đầy đủ thông tin!");
     }
-    if (!loadImage && !remainImage) {
+    if (!loadImage) {
       return setAlertError("File hình ảnh chưa được tải lên.");
     }
+    if (isNaN(albumInterestTimes)) {
+      return setAlertError("Số lượt quan tâm phải là một số!");
+    }
     //sign in successfully
-    setShowAlertSuccess(false);
     setError(null);
     setShowAlert(false);
-    console.log(playlistName, user, songId, imageUrl);
-    navigate("/playlists");
+    const albumDetail = {
+      albumName: albumName,
+      interestTimes: albumInterestTimes,
+      releaseDate: date,
+      albumImage: imageUrl,
+      country: country,
+    };
+    axios.post("http://localhost:8080/api/albums", albumDetail).then((response) => {
+      setAlbumId(response.data.id);
+    })
   };
   return (
     <div className="newAlbum">
-      <h1 className="newAlbumTitle">Chỉnh sửa playlist</h1>
+      <h1 className="newAlbumTitle">Thêm Album mới</h1>
       <form className="newAlbumForm" id="form-id">
         <div className="newAlbumItem">
-          <label>Tên playlist</label>
+          <label>Tên bài hát</label>
           <TextField
             id="albumname"
             variant="outlined"
-            inputRef={playlistNameRef}
-            defaultValue={playlist.playlistName}
+            inputRef={albumNameRef}
           />
         </div>
         <div className="newAlbumItem">
-          <label>Người tạo</label>
-          <TextField
-            id="username"
-            variant="outlined"
-            inputRef={userRef}
-            defaultValue={playlist.user}
-          />
-        </div>
-        <div className="newAlbumItem">
-          <label>Bài hát</label>
+          <label>Nghệ sĩ</label>
           <FormControl>
             <Select
               id="select_artists"
               multiple
-              value={songId}
+              value={personId}
               onChange={handleChange}
               MenuProps={MenuProps}
             >
-              {SongData.map((child, index) => (
+              {artistData.map((child, index) => (
                 <MenuItem key={child.id} item={child} value={child.id}>
-                  {child.songName}
+                  {child.artistName}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
         </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <div class="newAlbumLink">
-            <label asp-for="ANHAL" class="control-label">
-              Ảnh playlist
-            </label>
-            <input type="file" id="linkimage" onChange={processFileImage} />
-            <span asp-validation-for="ANHAL" class="text-danger"></span>
-          </div>
-          <Button
+        <div className="newSongItem">
+          <label>Quốc gia</label>
+          <FormControl>
+            <Select
+              id="select_country"
+              onChange={(e, value) => {
+                setCountry(value.props.item)
+              }}
+              MenuProps={MenuProps}
+            >
+              {countryData.map((child, index) => (
+                <MenuItem key={child.id} item={child} value={child.id}>
+                  {child.countryName}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div className="newAlbumItem">
+          <label class="control-label">Ngày phát hành</label>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker"]}>
+              <DatePicker
+                onChange={(e) => {
+                  setDate(formatDate(e.$D, e.$M + 1, e.$y));
+                }}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+        </div>
+        <div className="newAlbumItem">
+          <label htmlFor="albumInterestTimes">Số lượt quan tâm</label>
+          <TextField
+            id="albumInterestTimes"
             variant="outlined"
-            className="buttonStay"
-            size="small"
-            onClick={handleRemainImage}
-          >
-            Giữ nguyên
-          </Button>
+            inputRef={albumInterestTimesRef}
+          />
+        </div>
+        <div class="newAlbumLink">
+          <label asp-for="ANHAL" class="control-label">
+            Ảnh album
+          </label>
+          <input type="file" id="linkimage" onChange={processFileImage} />
+          <span asp-validation-for="ANHAL" class="text-danger"></span>
         </div>
         {showAlert && (
           <Alert
@@ -236,11 +271,11 @@ function EditPlaylist() {
           }}
         >
           <Button
-            onClick={playlistHandler}
+            onClick={albumHandler}
             variant="contained"
             className="buttonAdd"
           >
-            Cập nhật playlist
+            Thêm album mới
           </Button>
         </div>
       </form>
@@ -248,4 +283,4 @@ function EditPlaylist() {
   );
 }
 
-export default EditPlaylist;
+export default NewAlbum;

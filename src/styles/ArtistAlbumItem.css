@@ -1,0 +1,43 @@
+.artistAblumDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  width: 100%;
+}
+.albumImage {
+  max-width: 300px;
+  border-radius: 10px;
+  aspect-ratio: 1;
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 0.5em;
+  position: relative;
+}
+.albumImage img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  transition: transform 0.5s, filter 0.5s ease-in-out;
+  transform-origin: center center;
+  filter: brightness(100%);
+  height: 100%;
+  aspect-ratio: 1;
+}
+
+.artistAlbum:hover img {
+  transform: scale(1.05);
+  filter: brightness(70%);
+}
+
+.artistAlbum {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.albumTitle {
+  color: black;
+}

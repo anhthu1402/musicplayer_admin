@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
-import { ArtistsData } from "../components/ArtistsData";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { Modal } from "../components/Modal";
 import "../styles/martist.css";
 import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -11,9 +9,16 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import axios from "axios";
+import { useEffect } from "react";
 
 const MArtist = () => {
-  const [data, setData] = useState(ArtistsData);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/artists").then((response) => {
+      setData(response.data);
+    });
+  }, [data])
   const [id, setId] = useState();
   const [open, setOpen] = useState(false);
   const handleDelete = (id) => {
@@ -24,9 +29,9 @@ const MArtist = () => {
     setOpen(false);
   };
   const handleYes = () => {
-    //hàm xóa ở đây
-    console.log(id);
-    setData(data.filter((item) => item.id !== id));
+    axios.delete("http://localhost:8080/api/artists/" + id).then((response) => {
+      console.log(response.data);
+    })
     setOpen(false);
   };
 
@@ -34,16 +39,16 @@ const MArtist = () => {
     {
       field: "id",
       headerName: "ID",
-      width: 100,
+      width: 80,
     },
     {
       field: "image",
       headerName: "Hình ảnh",
-      width: 200,
+      width: 100,
 
       renderCell: (params) => {
         return (
-          <div style={{ alignItems: "center" }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <img
               className="artistListImg"
               src={params.row.artistImage}
@@ -77,20 +82,20 @@ const MArtist = () => {
 
     {
       field: "action",
-      headerName: "Action",
+      headerName: "Hành động",
       width: 300,
       renderCell: (params) => {
         return (
           <>
             <Link
-              to={"/artistDetail/" + params.row.albumName}
+              to={"/artistDetail/" + params.row.artistName}
               state={params.row}
             >
-              <button className="artistListView">View</button>
+              <Button className="artistListBtn View" variant="contained">Xem</Button>
             </Link>
 
-            <Link to={"/editArtist/" + params.row.albumName} state={params.row}>
-              <button className="artistListEdit">Edit</button>
+            <Link to={"/editArtist/" + params.row.artistName} state={params.row}>
+              <Button className="artistListBtn Edit" variant="contained">Sửa</Button>
             </Link>
             <DeleteOutline
               className="artistListDelete"
@@ -106,16 +111,15 @@ const MArtist = () => {
       <div className="button">
         <h1 className="title">Nghệ sĩ</h1>
         <Link to="/newArtist">
-          <button className="artistButtton">
-            <span>Thêm mới</span>
-          </button>
+          <Button className="artistButtton" variant="contained">
+            Thêm mới
+          </Button>
         </Link>
       </div>
       <div>
         <Box m="40px 0 0 0">
           <DataGrid
             rows={data}
-            disableSelectionOnClick
             columns={columns}
             rowsPerPageOptions={[5]}
             initialState={{
@@ -124,8 +128,6 @@ const MArtist = () => {
             }}
             pageSize={10}
             checkboxSelection
-            components={{ Toolbar: GridToolbar }}
-            selectedGridRowsCountSelector={handleDelete}
           />
         </Box>
 
