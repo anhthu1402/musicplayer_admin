@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import { styled } from "@mui/material/styles";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import "../styles/muser.css";
-import { UsersData } from "../components/UserData";
-import { DataGrid, gridClasses, GridToolbar } from "@mui/x-data-grid";
-import AddIcon from "@mui/icons-material/Add";
-import { Link } from "react-router-dom";
-import { DeleteOutline, Edit, Delete } from "@mui/icons-material";
-import { useRecordSelection } from "react-admin";
+import "../styles/muser.css"
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DeleteOutline } from "@mui/icons-material";
 import {
+  Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import { Button } from "antd";
+import axios from "axios";
 
 const MUser = () => {
-  const [data, setData] = useState(UsersData);
-  const rows = UsersData;
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:9090/api/users").then((response) => {
+      if (data.length === 0 || data.length !== response.data.length) {
+        setData(response.data);
+      }
+    }).catch((error) => console.log(error))
+  }, [data])
   const [id, setId] = useState();
   const [open, setOpen] = useState(false);
   const handleDelete = (id) => {
@@ -71,11 +71,11 @@ const MUser = () => {
     <div className="userList">
       <div className="button">
         <h1 className="title">Người dùng</h1>
-        <Link to="/newUser">
-          <button className="userButtton">
-            <span>Thêm mới</span>
-          </button>
-        </Link>
+        {/* <Link to="/users/create">
+          <Button className="artistButton" variant="contained">
+            Thêm mới
+          </Button>
+        </Link> */}
       </div>
       <Box m="40px 0 0 0">
         <DataGrid

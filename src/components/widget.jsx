@@ -7,20 +7,54 @@ import {
 } from "@mui/icons-material";
 import AlbumSharpIcon from "@mui/icons-material/AlbumSharp";
 import { Link } from "react-router-dom";
-import { UsersData } from "./UserData";
-import { SongData } from "./SongData";
-import { ArtistsData } from "./ArtistsData";
-import { AlbumData } from "./AlbumData";
-import { PlaylistData } from "./PlaylistData";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import SidebarContext from "../SidebarContext";
+import axios from "axios";
 
 const Widget = ({ type }) => {
   let data;
-
-  //temporary
-  // const amount = 100;
-  const diff = 20;
+  const [songData, setSongData] = useState(0);
+  const [albumData, setAlbumData] = useState(0);
+  const [artistData, setArtistData] = useState(0);
+  const [playlistData, setPlaylistData] = useState(0);
+  const [userData, setUserData] = useState(0);
+  useEffect(() => {
+    axios
+      .get("http://localhost:9090/api/songs/number-of-songs")
+      .then((response) => {
+        if (songData === 0 || songData !== response.data) {
+          setSongData(response.data);
+        }
+      });
+    axios
+      .get("http://localhost:9090/api/albums/number-of-albums")
+      .then((response) => {
+        if (albumData === 0 || albumData !== response.data) {
+          setAlbumData(response.data);
+        }
+      });
+    axios
+      .get("http://localhost:9090/api/playlists/number-of-playlists")
+      .then((response) => {
+        if (playlistData === 0 || playlistData !== response.data) {
+          setPlaylistData(response.data);
+        }
+      });
+    axios
+      .get("http://localhost:9090/api/artists/number-of-artists")
+      .then((response) => {
+        if (artistData === 0 || artistData !== response.data) {
+          setArtistData(response.data);
+        }
+      });
+    axios
+      .get("http://localhost:9090/api/users/number-of-users")
+      .then((response) => {
+        if (userData === 0 || userData !== response.data) {
+          setUserData(response.data);
+        }
+      });
+  }, [songData, albumData, playlistData, artistData, userData]);
   const sidebar = useContext(SidebarContext);
 
   switch (type) {
@@ -28,7 +62,7 @@ const Widget = ({ type }) => {
       data = {
         title: "Người dùng",
         linkTitle: "Tất cả người dùng",
-        amount: UsersData.length,
+        amount: userData,
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -46,7 +80,7 @@ const Widget = ({ type }) => {
       data = {
         title: "Bài hát",
         linkTitle: "Tất cả bài hát",
-        amount: SongData.length,
+        amount: songData,
         icon: (
           <MusicNoteRounded
             className="icon"
@@ -64,7 +98,7 @@ const Widget = ({ type }) => {
       data = {
         title: "Nghệ sĩ",
         linkTitle: "Tất cả nghệ sĩ",
-        amount: ArtistsData.length,
+        amount: artistData,
         icon: (
           <PersonRounded
             className="icon"
@@ -78,7 +112,7 @@ const Widget = ({ type }) => {
     case "album":
       data = {
         title: "Album",
-        amount: AlbumData.length,
+        amount: albumData,
         linkTitle: "Tất cả album",
         icon: (
           <AlbumSharpIcon
@@ -96,7 +130,7 @@ const Widget = ({ type }) => {
     case "playlist":
       data = {
         title: "Playlist",
-        amount: PlaylistData.length,
+        amount: playlistData,
         linkTitle: "Tất cả playlist",
         icon: (
           <PlaylistPlayRounded

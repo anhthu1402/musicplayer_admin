@@ -97,7 +97,7 @@ function EditPlaylist() {
   const [songId, setSongId] = useState(sPlaylist);
   useEffect(() => {
     if (p.id != null) {
-      axios.get("http://localhost:8080/api/playlists/" + p.id).then((response) => {
+      axios.get("http://localhost:9090/api/playlists/" + p.id).then((response) => {
         setPlaylist(response.data);
         if (songId.length === 0) {
           response.data.songPlaylist.map((child) => {
@@ -130,10 +130,10 @@ function EditPlaylist() {
   const [songData, setSongData] = useState([]);
   const [userData, setUserData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/api/songs").then((response) => {
+    axios.get("http://localhost:9090/api/songs").then((response) => {
       setSongData(response.data);
     });
-    axios.get("http://localhost:8080/api/users").then((response) => {
+    axios.get("http://localhost:9090/api/users").then((response) => {
       setUserData(response.data)
     })
   }, [userData, songData]);
@@ -169,15 +169,15 @@ function EditPlaylist() {
       playlistName: playlistName,
       playlistImg: imageUrl
     }
-    axios.put("http://localhost:8080/api/playlists/" + p.id, playlistDetail).then((response) => {
+    axios.put("http://localhost:9090/api/playlists/" + p.id, playlistDetail).then((response) => {
       console.log(response.data)
       songId.map((child) => {
-        axios.put("http://localhost:8080/api/playlists/" + p.id + "/song/" + child).then((result) => {
+        axios.put("http://localhost:9090/api/playlists/" + p.id + "/song/" + child).then((result) => {
           console.log(result.data);
         })
       })
       if (userId !== p.userId) {
-        axios.put("http://localhost:8080/api/playlists/" + p.id + "/user/" + userId).then((result) => {
+        axios.put("http://localhost:9090/api/playlists/" + p.id + "/user/" + userId).then((result) => {
           console.log(result.data);
         })
       }
@@ -199,24 +199,7 @@ function EditPlaylist() {
                 defaultValue={playlist.playlistName}
               />
             </div>
-            <div className="newAlbumItem">
-              <label>Người tạo</label>
-              <FormControl>
-                <Select
-                  id="select_user" value={userId}
-                  onChange={(e) => {
-                    setUserId(e.target.value)
-                  }}
-                  MenuProps={MenuProps}
-                >
-                  {userData.map((child, index) => (
-                    <MenuItem key={child.id} item={child} value={child.id}>
-                      {child.userName}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
+
             <div className="newAlbumItem">
               <label>Bài hát</label>
               <FormControl>

@@ -89,7 +89,6 @@ function NewPlaylist() {
   };
 
   const playlistNameRef = useRef();
-  const [userId, setUserId] = useState();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -104,10 +103,10 @@ function NewPlaylist() {
   const [songData, setSongData] = useState([]);
   const [userData, setUserData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/api/songs").then((response) => {
+    axios.get("http://localhost:9090/api/songs").then((response) => {
       setSongData(response.data);
     });
-    axios.get("http://localhost:8080/api/users").then((response) => {
+    axios.get("http://localhost:9090/api/users").then((response) => {
       setUserData(response.data)
     })
   }, [userData, songData]);
@@ -129,19 +128,17 @@ function NewPlaylist() {
   }, [changeImg, loadImage, success, showAlertSuccess, showAlert]);
   useEffect(() => {
     if (playlistId != null) {
-      if (userId != null) {
-        axios.put("http://localhost:8080/api/playlists/" + playlistId + "/user/" + userId).then((response) => {
-          console.log(response.data);
-        })
-      }
+      axios.put("http://localhost:9090/api/playlists/" + playlistId + "/user/0").then((response) => {
+        console.log(response.data);
+      })
       songId.map((child) => {
-        axios.put("http://localhost:8080/api/playlists/" + playlistId + "/song/" + child).then((response) => {
+        axios.put("http://localhost:9090/api/playlists/" + playlistId + "/song/" + child).then((response) => {
           console.log(response.data)
         })
       })
       navigate("/playlists");
     }
-  }, [playlistId]);
+  }, [navigate, playlistId, songId]);
   const playlistHandler = () => {
     const playlistName = playlistNameRef.current.value;
     if (!playlistName) {
@@ -160,7 +157,7 @@ function NewPlaylist() {
       playlistName: playlistName,
       playlistImg: imageUrl
     }
-    axios.post("http://localhost:8080/api/playlists", playlistDetail).then((response) => {
+    axios.post("http://localhost:9090/api/playlists", playlistDetail).then((response) => {
       setPlaylistId(response.data.id);
     })
   };
@@ -176,24 +173,7 @@ function NewPlaylist() {
             inputRef={playlistNameRef}
           />
         </div>
-        <div className="newAlbumItem">
-          <label>Người tạo</label>
-          <FormControl>
-            <Select
-              id="select_user"
-              onChange={(e) => {
-                setUserId(e.target.value)
-              }}
-              MenuProps={MenuProps}
-            >
-              {userData.map((child, index) => (
-                <MenuItem key={child.id} item={child} value={child.id}>
-                  {child.userName}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
+
         <div className="newAlbumItem">
           <label>Bài hát</label>
           <FormControl>

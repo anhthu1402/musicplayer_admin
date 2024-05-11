@@ -8,7 +8,7 @@ import {
   DialogTitle,
   Button
 } from "@mui/material";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import "../styles/malbum.css";
 import { Link } from "react-router-dom";
 import { DeleteOutline } from "@mui/icons-material";
@@ -18,9 +18,11 @@ import { useEffect } from "react";
 function MPlaylist() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/api/playlists").then((response) => {
-      setData(response.data);
-    })
+    axios.get("http://localhost:9090/api/playlists").then((response) => {
+      if (data.length === 0 || data.length !== response.data.length) {
+        setData(response.data);
+      }
+    }).catch((error) => console.log(error))
   }, [data])
   const [id, setId] = useState();
   const [open, setOpen] = useState(false);
@@ -32,9 +34,11 @@ function MPlaylist() {
     setOpen(false);
   };
   const handleYes = () => {
-    axios.delete("http://localhost:8080/api/playlists/ " + id).then((response) => {
-      console.log(response.data);
-    })
+    axios.delete("http://localhost:9090/api/playlists/ " + id).then((res) => {
+      axios.get("http://localhost:9090/api/playlists").then((response) => {
+        setData(response.data);
+      }).catch((error) => console.log(error))
+    }).catch((error) => console.log(error))
     setOpen(false);
   };
   const columns = [
@@ -97,17 +101,28 @@ function MPlaylist() {
         return (
           <>
             <Link
-              to={"/playlistDetail/" + params.row.playlistName}
+              to={"/playlists/detail/" + params.row.id}
               state={params.row.id}
             >
               <Button className="albumListBtn View" variant="contained">Xem</Button>
             </Link>
-            <Link
-              to={"/editPlaylist/" + params.row.playlistName}
+            {params.row.userId === null && <Link
+              to={"/playlists/edit/" + params.row.id}
               state={params.row}
             >
               <Button className="albumListBtn Edit" variant="contained">Sửa</Button>
-            </Link>
+            </Link>}
+          </>
+        );
+      },
+    },
+    {
+      field: "delete",
+      headerName: "",
+      width: 100,
+      renderCell: (params) => {
+        return (
+          <>
             <DeleteOutline
               className="albumListDelete"
               onClick={() => handleDelete(params.row.id)}
@@ -121,7 +136,7 @@ function MPlaylist() {
     <div className="albumList">
       <div className="button">
         <h1 className="title">Playlist</h1>
-        <Link to="/newPlaylist">
+        <Link to="/playlists/create">
           <Button className="albumButtton" variant="contained">
             Thêm mới
           </Button>
@@ -137,7 +152,6 @@ function MPlaylist() {
             pagination: { paginationModel: { pageSize: 10 } },
           }}
           checkboxSelection
-          components={{ Toolbar: GridToolbar }}
         />
       </Box>
       <Dialog

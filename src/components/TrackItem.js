@@ -43,7 +43,7 @@ function TrackItem({ item }) {
       </div>
       <div className="songDetail">
         <div className="songTitle">
-          <Link className="songTitle link" to={"/editSong/" + item.songName} state={item}>
+          <Link className="songTitle link" to={"/songs/edit/" + item.id} state={item}>
             {item.songName}
           </Link>
         </div>
@@ -51,7 +51,7 @@ function TrackItem({ item }) {
           {item.representation.map((child, index) => (
             <span key={index} item={child} style={{ fontSize: '15px' }}>
               <Link
-                to={`/artistDetail/${child.artistName}`}
+                to={`/artists/detail/${child.id}`}
                 state={child}
               >
                 {child.artistName}

@@ -21,9 +21,9 @@ function PlaylistDetail() {
   const sidebar = useContext(SidebarContext);
   useEffect(() => {
     if (playlistId != null) {
-      axios.get("http://localhost:8080/api/playlists/" + playlistId).then((response) => {
+      axios.get("http://localhost:9090/api/playlists/" + playlistId).then((response) => {
         setPlaylist(response.data);
-      })
+      }).catch((error) => console.log(error))
     }
   })
   const [open, setOpen] = useState(false);
@@ -34,9 +34,9 @@ function PlaylistDetail() {
     setOpen(false);
   };
   const handleYes = () => {
-    axios.delete("http://localhost:8080/api/playlists/" + playlistId).then((response) => {
-      console.log(response);
-    })
+    axios.delete("http://localhost:9090/api/playlists/" + playlistId).then((response) => {
+      navigate("/playlists")
+    }).catch((error) => console.log(error))
     setOpen(false);
     setSideBarData(navigate, sidebar);
   };
@@ -63,18 +63,19 @@ function PlaylistDetail() {
                 <p style={{ fontSize: "1.2vw", color: "rgb(151, 150, 150)", paddingTop: "1vw" }}>Người tạo: {playlist.userName}</p>
               </div>
             </div>
-            <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Link to={"/editPlaylist/" + playlist.playlistName} state={playlist}>
-                <Button className="albumButtton edit" sx={{ marginRight: '15px' }} variant="contained">
-                  Chỉnh sửa
-                </Button>
-              </Link>
-              <div>
-                <Button onClick={handleDelete} className="albumButtton delete" variant="contained">
-                  Xóa
-                </Button>
-              </div>
-            </div>
+            {playlist.userId === null &&
+              <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Link to={"/playlists/edit/" + playlist.id} state={playlist}>
+                  <Button className="albumButtton edit" sx={{ marginRight: '15px' }} variant="contained">
+                    Chỉnh sửa
+                  </Button>
+                </Link>
+                <div>
+                  <Button onClick={handleDelete} className="albumButtton delete" variant="contained">
+                    Xóa
+                  </Button>
+                </div>
+              </div>}
           </div>
         </div>
         <div style={{

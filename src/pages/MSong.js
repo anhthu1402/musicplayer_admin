@@ -8,22 +8,27 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import {
-  DataGrid,
-  GridToolbar,
-} from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import "../styles/msong.css";
 import { Link } from "react-router-dom";
 import { DeleteOutline } from "@mui/icons-material";
 import axios from "axios";
+import { FormatDateUTC } from "../service";
 
 const MSong = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/api/songs").then((response) => {
-      setData(response.data);
-    })
-  })
+    if (data.length === 0) {
+      axios
+        .get("http://localhost:9090/api/songs")
+        .then((response) => {
+          if (data.length === 0 || data.length !== response.data.length) {
+            setData(response.data);
+          }
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [data]);
   const [id, setId] = useState();
   const [open, setOpen] = useState(false);
   const handleDelete = (id) => {
@@ -34,15 +39,19 @@ const MSong = () => {
     setOpen(false);
   };
   const handleYes = () => {
-    axios.delete("http://localhost:8080/api/songs/" + id).then((response) => {
-      console.log(response.data)
-    })
+    axios
+      .delete("http://localhost:9090/api/songs/" + id)
+      .then((res) => {
+        axios
+          .get("http://localhost:9090/api/songs")
+          .then((response) => {
+            setData(response.data);
+          })
+          .catch((error) => console.log(error));
+      })
+      .catch((error) => console.log(error));
     setOpen(false);
   };
-  function FormatDate(string) {
-    var options = { year: "numeric", month: "numeric", day: "numeric" };
-    return new Date(string).toLocaleDateString([], options);
-  }
 
   const columns = [
     {
@@ -57,7 +66,10 @@ const MSong = () => {
 
       renderCell: (params) => {
         return (
-          <div className="songListSong" style={{ display: 'flex', alignItems: 'center' }}>
+          <div
+            className="songListSong"
+            style={{ display: "flex", alignItems: "center" }}
+          >
             <img
               className="songListImg"
               src={params.row.songImage}
@@ -75,9 +87,7 @@ const MSong = () => {
       width: 280,
       renderCell: (params) => {
         return (
-          <div style={{ textOverflow: 'ellipsis' }}>
-            {params.row.songName}
-          </div>
+          <div style={{ textOverflow: "ellipsis" }}>{params.row.songName}</div>
         );
       },
     },
@@ -89,7 +99,7 @@ const MSong = () => {
       renderCell: (params) => {
         return (
           <div className="songListSong" style={{ verticalAlign: "center" }}>
-            {FormatDate(params.row.releaseDate)}
+            {FormatDateUTC(params.row.releaseDate)}
           </div>
         );
       },
@@ -101,9 +111,11 @@ const MSong = () => {
 
       renderCell: (params) => {
         return (
-          <div className="songListArtist" style={{
-            justifyContent: "space-around",
-          }}
+          <div
+            className="songListArtist"
+            style={{
+              justifyContent: "space-around",
+            }}
           >
             {params.row.representation.map((child, index) => {
               if (index < Object.keys(child).length - 1) {
@@ -113,7 +125,8 @@ const MSong = () => {
                       to={`/artistDetail/${child.artistName}`}
                       state={child}
                       style={{
-                        color: "black", textDecoration: "none",
+                        color: "black",
+                        textDecoration: "none",
                       }}
                     >
                       {child.artistName}
@@ -136,7 +149,9 @@ const MSong = () => {
           <div className="albumListCountry" style={{ verticalAlign: "center" }}>
             <div>
               <span className="country">
-                <div>{params.row.country && params.row.country.countryName}</div>
+                <div>
+                  {params.row.country && params.row.country.countryName}
+                </div>
               </span>
             </div>
           </div>
@@ -150,8 +165,10 @@ const MSong = () => {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/editSong/" + params.row.songName} state={params.row}>
-              <Button className="songListBtn Edit" variant="contained">Sửa</Button>
+            <Link to={"/songs/edit/" + params.row.id} state={params.row}>
+              <Button className="songListBtn Edit" variant="contained">
+                Sửa
+              </Button>
             </Link>
             <DeleteOutline
               className="songListDelete"
@@ -166,8 +183,8 @@ const MSong = () => {
     <div className="songList">
       <div className="button">
         <h1 className=" songName">Bài hát</h1>
-        <Link to={"/newsong"}>
-          <Button className="songButtton" variant="contained">
+        <Link to={"/songs/create"}>
+          <Button className="songButton" variant="contained">
             Thêm mới
           </Button>
         </Link>
@@ -180,7 +197,6 @@ const MSong = () => {
             ...data.initialState,
             pagination: { paginationModel: { pageSize: 10 } },
           }}
-          pageSize={10}
           checkboxSelection
           components={{ Toolbar: GridToolbar }}
         />

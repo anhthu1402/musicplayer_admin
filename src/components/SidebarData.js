@@ -1,14 +1,7 @@
 import React from "react";
 import {
-  ExpandMore,
-  ExpandLess,
-  LibraryMusic,
-  HomeRounded,
   MusicNoteRounded,
   PersonRounded,
-  PlaylistPlayRounded,
-  BarChartRounded,
-  TrendingUpRounded,
   AccountCircle,
   LineAxis,
   PlaylistPlaySharp,

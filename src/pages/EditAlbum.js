@@ -1,5 +1,4 @@
-import "../styles/newalbum.css";
-import "../styles/newsong.css";
+
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -7,14 +6,12 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { Error, Check } from "@mui/icons-material";
 import TextField from "@mui/material/TextField";
-import "../styles/newsong.css";
-import { Alert, Button, Select } from "@mui/material";
+import { Alert, Backdrop, Button, CircularProgress, Select } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
-import { formatDate, FormatDate } from "../service";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -112,12 +109,18 @@ function EditAlbum() {
   const [countryData, setCountryData] = useState([]);
   const [artistData, setArtistData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/api/countries").then((response) => {
-      setCountryData(response.data);
-    });
-    axios.get("http://localhost:8080/api/artists").then((response) => {
-      setArtistData(response.data);
-    })
+    if (countryData.length === 0) {
+      axios.get("http://localhost:9090/api/countries").then((response) => {
+        setCountryData(response.data);
+      })
+        .catch((error) => console.log(error));;
+    }
+    if (artistData.length === 0) {
+      axios.get("http://localhost:9090/api/artists").then((response) => {
+        setArtistData(response.data);
+      })
+        .catch((error) => console.log(error));
+    }
   }, [countryData, artistData]);
   const artist = [];
   album.artist.map((item, index) => {
@@ -125,7 +128,7 @@ function EditAlbum() {
   });
   //Danh sách id nghệ sĩ
   const [personId, setPresonId] = useState(artist);
-  const [date, setDate] = useState(dayjs(FormatDate(album.releaseDate)));
+  const [date, setDate] = useState(dayjs(album.releaseDate));
   const handleChange = (event) => {
     const {
       target: { value },
@@ -140,14 +143,15 @@ function EditAlbum() {
         setShowAlert(false);
       }
     }
-  }, [loadImage, success, showAlertSuccess, showAlert]);
+  }, [loadImage, success, showAlertSuccess, showAlert, error]);
   const handleRemainImage = () => {
     setImageUrl(album.albumImage);
     setLoadImage(true);
     setRemainImage(true);
   };
   const albumInterestTimesRef = useRef();
-  const [country, setCountry] = useState(album.country);
+  const [country, setCountry] = useState(album.country.id);
+  const [open, setOpen] = useState(false);
   const albumHandler = () => {
     const albumName = albumNameRef.current.value;
     const albumInterestTimes = albumInterestTimesRef.current.value;
@@ -161,6 +165,7 @@ function EditAlbum() {
       return setAlertError("Số lượt quan tâm phải là một số!");
     }
     //sign in successfully
+    setOpen(true);
     setError(null);
     setShowAlert(false);
     const albumDetail = {
@@ -168,23 +173,14 @@ function EditAlbum() {
       interestTimes: albumInterestTimes,
       releaseDate: date,
       albumImage: imageUrl,
-      country: album.country,
+      countryId: country,
+      artistId: personId
     };
-    axios.put("http://localhost:8080/api/albums/" + album.id, albumDetail).then((response) => {
-      console.log(response.data);
-      personId.map((child) => {
-        axios.put("http://localhost:8080/api/albums/" + album.id + "/artist/" + child).then((result) => {
-          console.log(result.data);
-        })
-      })
-      if (country.id !== album.country.id) {
-        axios.put("http://localhost:8080/api/albums/" + album.id + "/country/" + country.id).then((response) => {
-          console.log(response.data);
-        })
-      }
-    })
+    axios.put("http://localhost:9090/api/albums/" + album.id, albumDetail).then((response) => {
+      navigate("/albums");
+    }).catch((error) => console.log(error));
 
-    navigate("/albums");
+
   };
   return (
     <div className="newAlbum">
@@ -223,8 +219,8 @@ function EditAlbum() {
             <Select
               id="select_country"
               defaultValue={album.country.id}
-              onChange={(e, value) => {
-                setCountry(value.props.item)
+              onChange={(e) => {
+                setCountry(e.target.value)
               }}
               MenuProps={MenuProps}
             >
@@ -243,7 +239,7 @@ function EditAlbum() {
               <DatePicker
                 value={date}
                 onChange={(e) => {
-                  setDate(formatDate(e.$D, e.$M + 1, e.$y));
+                  setDate(e);
                 }}
               />
             </DemoContainer>
@@ -315,6 +311,9 @@ function EditAlbum() {
           </Button>
         </div>
       </form>
+      <Backdrop sx={{ color: "#fff", zIndex: 10 }} open={open}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }

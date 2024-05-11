@@ -1,6 +1,10 @@
 import { PlaylistData } from "./components/PlaylistData";
 import { AlbumData } from "./components/AlbumData";
 import { ArtistsData } from "./components/ArtistsData";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc"
+import axios from "axios";
+
 export const setSideBarData = (navigate, sidebar) => {
   switch (sidebar.pathName) {
     case "artists": {
@@ -50,6 +54,11 @@ export const formatDate = (day, month, year) => {
 export const FormatDate = (string) => {
   var options = { year: "numeric", month: "numeric", day: "numeric" };
   return new Date(string).toLocaleDateString([], options);
+}
+
+dayjs.extend(utc)
+export const FormatDateUTC = (string) => {
+  return dayjs.utc(new Date(string)).local().format('DD/MM/YYYY')
 }
 
 export const getPlaylistDetail = (playlistId) => {

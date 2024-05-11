@@ -7,17 +7,19 @@ function ArtistAlbumItem({ item }) {
         <div className="artistAblumDetail">
             <div className="artistAlbum">
                 <Link
-                    to={"/albumDetail/" + item.albumName}
+                    to={"/albums/detail/" + item.id}
                     state={item.id}
                     style={{ color: "black", textDecoration: 'none' }}
-                ><div className="albumImage">
+                >
+                    <div className="albumImage">
                         <img src={item.albumImage} alt={item.albumName} />
-                    </div></Link>
+                    </div>
+                </Link>
 
             </div>
             <div className="albumTitle">
                 <Link
-                    to={"/albumDetail/" + item.albumName}
+                    to={"/albums/detail/" + item.id}
                     state={item.id}
                     style={{ color: "black", textDecoration: 'none' }}
                 >

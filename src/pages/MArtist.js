@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import "../styles/martist.css";
 import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -15,9 +15,12 @@ import { useEffect } from "react";
 const MArtist = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/api/artists").then((response) => {
-      setData(response.data);
-    });
+    axios.get("http://localhost:9090/api/artists").then((response) => {
+      if (data.length === 0 || data.length !== response.data.length) {
+        setData(response.data);
+      }
+    })
+      .catch((error) => console.log(error));
   }, [data])
   const [id, setId] = useState();
   const [open, setOpen] = useState(false);
@@ -29,9 +32,13 @@ const MArtist = () => {
     setOpen(false);
   };
   const handleYes = () => {
-    axios.delete("http://localhost:8080/api/artists/" + id).then((response) => {
-      console.log(response.data);
+    axios.delete("http://localhost:9090/api/artists/" + id).then((res) => {
+      axios.get("http://localhost:9090/api/artists").then((response) => {
+        setData(response.data);
+      })
+        .catch((error) => console.log(error));
     })
+      .catch((error) => console.log(error))
     setOpen(false);
   };
 
@@ -88,13 +95,13 @@ const MArtist = () => {
         return (
           <>
             <Link
-              to={"/artistDetail/" + params.row.artistName}
+              to={"/artists/detail/" + params.row.id}
               state={params.row}
             >
               <Button className="artistListBtn View" variant="contained">Xem</Button>
             </Link>
 
-            <Link to={"/editArtist/" + params.row.artistName} state={params.row}>
+            <Link to={"/artists/edit/" + params.row.id} state={params.row}>
               <Button className="artistListBtn Edit" variant="contained">Sửa</Button>
             </Link>
             <DeleteOutline
@@ -110,8 +117,8 @@ const MArtist = () => {
     <div className="artistList">
       <div className="button">
         <h1 className="title">Nghệ sĩ</h1>
-        <Link to="/newArtist">
-          <Button className="artistButtton" variant="contained">
+        <Link to="/artists/create">
+          <Button className="artistButton" variant="contained">
             Thêm mới
           </Button>
         </Link>

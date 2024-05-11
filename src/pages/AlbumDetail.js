@@ -13,7 +13,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import SidebarContext from "../SidebarContext";
-import { setSideBarData } from "../service";
+import { FormatDateUTC, setSideBarData } from "../service";
 
 function AlbumDetail() {
   const location = useLocation();
@@ -26,15 +26,15 @@ function AlbumDetail() {
   const sidebar = useContext(SidebarContext);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/albums/" + id).then((response) => {
+    axios.get("http://localhost:9090/api/albums/" + id).then((response) => {
       setALbum(response.data);
-    })
+    }).catch((error) => console.log(error));
     if (album != null) {
       setArtists(album.artist);
       setSongs(album.songs);
       setDate(dayjs(FormatDate(album.releaseDate)))
     }
-  }, [album, artists, songs]);
+  }, [album, artists, id, songs]);
 
   const [open, setOpen] = useState(false);
   const handleDelete = () => {
@@ -44,9 +44,9 @@ function AlbumDetail() {
     setOpen(false);
   };
   const handleYes = () => {
-    axios.delete("http://localhost:8080/api/albums/" + album.id).then((response) => {
-      console.log(response);
-    })
+    axios.delete("http://localhost:9090/api/albums/" + album.id).then((response) => {
+      navigate("/albums")
+    }).catch((error) => console.log(error));
     setOpen(false);
     setSideBarData(navigate, sidebar);
   };
@@ -88,7 +88,7 @@ function AlbumDetail() {
                         return (
                           <span key={index} item={child}>
                             <Link
-                              to={`/artistDetail/${child.artistName}`}
+                              to={`/artists/detail/${child.id}`}
                               state={child}
                               style={{ color: "black", textDecoration: "none" }}
                             >
@@ -107,7 +107,7 @@ function AlbumDetail() {
                     }}
                   >
                     {" "}
-                    Ngày phát hành: {FormatDate(date)}
+                    Ngày phát hành: {FormatDateUTC(date)}
                   </p>
 
                   <p
@@ -122,7 +122,7 @@ function AlbumDetail() {
                 </div>
               </div>
               <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Link to={"/editAlbum/" + album.albumName} state={album}>
+                <Link to={"/albums/edit/" + id} state={album}>
                   <Button className="albumButtton edit" sx={{ marginRight: '15px' }} variant="contained">
                     Chỉnh sửa
                   </Button>

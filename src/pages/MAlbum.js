@@ -13,13 +13,16 @@ import "../styles/malbum.css";
 import { Link } from "react-router-dom";
 import { DeleteOutline } from "@mui/icons-material";
 import axios from "axios";
+import { FormatDateUTC } from "../service";
 
 const MAlbum = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/api/albums").then((response) => {
-      setData(response.data);
-    });
+    axios.get("http://localhost:9090/api/albums").then((response) => {
+      if (data.length === 0 || data.length !== response.data.length) {
+        setData(response.data);
+      }
+    }).catch((error) => console.log(error));;
   }, [data])
   const [id, setId] = useState();
   const [open, setOpen] = useState(false);
@@ -32,15 +35,13 @@ const MAlbum = () => {
     setOpen(false);
   };
   const handleYes = () => {
-    axios.delete("http://localhost:8080/api/albums/ " + id).then((response) => {
-      console.log(response.data);
-    })
+    axios.delete("http://localhost:9090/api/albums/ " + id).then((res) => {
+      axios.get("http://localhost:9090/api/albums").then((response) => {
+        setData(response.data);
+      }).catch((error) => console.log(error));;
+    }).catch((error) => console.log(error));
     setOpen(false);
   };
-  function FormatDate(string) {
-    var options = { year: "numeric", month: "numeric", day: "numeric" };
-    return new Date(string).toLocaleDateString([], options);
-  }
 
   const columns = [
     {
@@ -87,7 +88,7 @@ const MAlbum = () => {
       renderCell: (params) => {
         return (
           <div className="albumListAlbum" style={{ verticalAlign: "center" }}>
-            {FormatDate(params.row.releaseDate)}
+            {FormatDateUTC(params.row.releaseDate)}
           </div>
         );
       },
@@ -149,13 +150,13 @@ const MAlbum = () => {
         return (
           <>
             <Link
-              to={"/albumDetail/" + params.row.albumName}
+              to={"/albums/detail/" + params.row.id}
               state={params.row.id}
             >
               <Button className="albumListBtn View" variant="contained">Xem</Button>
             </Link>
 
-            <Link to={"/editAlbum/" + params.row.albumName} state={params.row}>
+            <Link to={"/albums/edit/" + params.row.id} state={params.row}>
               <Button className="albumListBtn Edit" variant="contained">Sửa</Button>
             </Link>
             <DeleteOutline

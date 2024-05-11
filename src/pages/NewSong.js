@@ -6,7 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { Error, Check } from "@mui/icons-material";
 import TextField from "@mui/material/TextField";
-import { Alert, Button, Select } from "@mui/material";
+import { Alert, Backdrop, Button, CircularProgress, Select } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -181,17 +181,26 @@ function NewSong() {
   const [artistData, setArtistData] = useState([]);
   const [albumData, setAlbumData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/api/countries").then((response) => {
-      setCountryData(response.data);
-    });
-    axios.get("http://localhost:8080/api/artists").then((response) => {
-      setArtistData(response.data);
-    });
-    axios.get("http://localhost:8080/api/albums").then((response) => {
-      setAlbumData(response.data);
-    })
+    if (countryData.length === 0) {
+      axios.get("http://localhost:9090/api/countries").then((response) => {
+        setCountryData(response.data);
+      })
+        .catch((error) => console.log(error));
+    }
+    if (artistData.length === 0) {
+      axios.get("http://localhost:9090/api/artists").then((response) => {
+        setArtistData(response.data);
+      })
+        .catch((error) => console.log(error));
+    }
+    if (albumData.length === 0) {
+      axios.get("http://localhost:9090/api/albums").then((response) => {
+        setAlbumData(response.data);
+      })
+        .catch((error) => console.log(error));
+    }
   }, [countryData, artistData, albumData]);
-  const [songId, setSongId] = useState();
+  const [songId, setSongId] = useState(0);
   //Danh sách id nghệ sĩ
   const [representationId, setRepresentationId] = useState([]);
   const [composerId, setComposerId] = useState([]);
@@ -217,24 +226,25 @@ function NewSong() {
       setShowAlertSuccess(true);
     }
   }, [loadSucces, loadAudio, loadImage, success, showAlertSuccess]);
+
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
-    if (songId != null) {
+    if (songId !== 0) {
       representationId.map((child) => {
-        axios.put("http://localhost:8080/api/songs/" + songId + "/representation/" + child).then((response) => {
-          console.log(response.data);
-        })
+        axios.put("http://localhost:9090/api/songs/" + songId + "/representation/" + child).then((res => {
+          console.log(res.data);
+        })).catch((error) => console.log(error))
       })
       composerId.map((child) => {
-        axios.put("http://localhost:8080/api/songs/" + songId + "/composer/" + child).then((response) => {
-          console.log(response.data);
-          navigate("/songs");
-        })
+        axios.put("http://localhost:9090/api/songs/" + songId + "/composer/" + child).then((res => {
+          console.log(res.data);
+        })).catch((error) => console.log(error))
       })
-      axios.put("http://localhost:8080/api/songs/" + songId + "/album/" + album.id).then((response) => {
-        console.log(response.data)
-      })
+      navigate("/songs")
     }
-  }, [songId])
+  }, [songId, representationId, composerId, navigate])
+
   const songHandler = () => {
     const songName = songnameRef.current.value;
     const lyrics = lyricsRef.current.value;
@@ -253,6 +263,7 @@ function NewSong() {
       );
     }
     //sign in successfully
+    setOpen(true);
     setError(null);
     setShowAlert(false);
     const songDetail = {
@@ -264,9 +275,10 @@ function NewSong() {
       lyrics: lyrics,
       country: country
     };
-    axios.post("http://localhost:8080/api/songs", songDetail).then((response) => {
+    axios.post("http://localhost:9090/api/songs/album/" + album, songDetail).then((response) => {
       setSongId(response.data.id);
     })
+      .catch((error) => console.log(error));
   };
   return (
     <div className="newSong">
@@ -322,8 +334,8 @@ function NewSong() {
           <FormControl>
             <Select
               id="select_album"
-              onChange={(e, value) => {
-                setAlbum(value.props.item);
+              onChange={(e) => {
+                setAlbum(e.target.value);
               }}
               MenuProps={MenuProps}
             >
@@ -354,7 +366,7 @@ function NewSong() {
           </FormControl>
         </div>
         <div className="newSongItem">
-          <label class="control-label">Ngày phát hành</label>
+          <label className="control-label">Ngày phát hành</label>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
@@ -366,30 +378,30 @@ function NewSong() {
           </LocalizationProvider>
         </div>
         <div className="newSongItem">
-          <label asp-for="LOIBAIHAT" class="control-label">
+          <label asp-for="LOIBAIHAT" className="control-label">
             Lời bài hát
           </label>
           <TextField
             id="songLyric"
             multiline
-            rows={4}
+            rows={6}
             inputRef={lyricsRef}
           />
-          <span asp-validation-for="LOIBAIHAT" class="text-danger"></span>
+          <span asp-validation-for="LOIBAIHAT" className="text-danger"></span>
         </div>
         <div className="newSongLink">
-          <label asp-for="LINKBH" class="control-label">
+          <label asp-for="LINKBH" className="control-label">
             Link bài hát
           </label>
           <input type="file" id="linkaudio" onChange={processFileAudio} />
-          <span asp-validation-for="LINKBH" class="text-danger"></span>
+          <span asp-validation-for="LINKBH" className="text-danger"></span>
         </div>
-        <div class="newSongLink">
-          <label asp-for="ANHBH" class="control-label">
+        <div className="newSongLink">
+          <label asp-for="ANHBH" className="control-label">
             Ảnh bài hát
           </label>
           <input type="file" id="linkimage" onChange={processFileImage} />
-          <span asp-validation-for="ANHBH" class="text-danger"></span>
+          <span asp-validation-for="ANHBH" className="text-danger"></span>
         </div>
         {showAlert && (
           <Alert
@@ -425,6 +437,9 @@ function NewSong() {
           </Button>
         </div>
       </form>
+      <Backdrop sx={{ color: "#fff", zIndex: 10 }} open={open}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }

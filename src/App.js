@@ -1,24 +1,17 @@
 import "./App.css";
 import {
-  Route,
-  BrowserRouter as Router,
   RouterProvider,
-  Routes,
   createBrowserRouter,
 } from "react-router-dom";
-import Total from "./pages/Total";
 import MUser from "./pages/MUser";
 import MArtist from "./pages/MArtist";
 import MSong from "./pages/MSong";
 import MAlbum from "./pages/MAlbum";
 import Dashboard from "./pages/Dashboard";
-import SignIn from "./pages/SignIn";
 import NewArtist from "./pages/NewArtist";
 import NewSong from "./pages/NewSong";
 import NewUser from "./pages/NewUser";
 import NewAlbum from "./pages/NewAlbum";
-import SignUp from "./components/SignUp";
-import UpLoadSong from "./components/UpLoadSong";
 import ArtistDetail from "./pages/ArtistDetail";
 import AppRoot from "./components/AppRoot";
 import EditSong from "./pages/EditSong";
@@ -41,96 +34,162 @@ function App() {
           element: <Dashboard />,
         },
         {
-          path: "total",
-          element: <Total />,
-        },
-        {
           path: "dashboard",
           element: <Dashboard />,
         },
         {
           path: "songs",
-          element: <MSong />,
+          children: [
+            {
+              index: true,
+              element: <MSong />,
+            },
+            {
+              path: "edit/:id",
+              children: [
+                {
+                  index: true,
+                  element: <EditSong />,
+                }
+              ]
+            },
+            {
+              path: "create",
+              children: [
+                {
+                  index: true,
+                  element: <NewSong />,
+                }
+              ]
+            },
+          ]
+
         },
         {
           path: "artists",
-          element: <MArtist />,
+          children: [
+            {
+              index: true,
+              element: <MArtist />,
+            },
+            {
+              path: "edit/:id",
+              children: [
+                {
+                  index: true,
+                  element: <EditArtist />,
+                }
+              ]
+            },
+            {
+              path: "detail/:id",
+              children: [
+                {
+                  index: true,
+                  element: <ArtistDetail />,
+                }
+              ]
+            },
+            {
+              path: "create",
+              children: [
+                {
+                  index: true,
+                  element: <NewArtist />,
+                }
+              ]
+            },
+          ]
         },
         {
           path: "playlists",
-          element: <MPlaylist />,
-        },
-        {
-          path: "signUp",
-          element: <SignUp />,
+          children: [
+            {
+              index: true,
+              element: <MPlaylist />,
+            },
+            {
+              path: "edit/:id",
+              children: [
+                {
+                  index: true,
+                  element: <EditPlaylist />,
+                }
+              ]
+            },
+            {
+              path: "detail/:id",
+              children: [
+                {
+                  index: true,
+                  element: <PlaylistDetail />,
+                }
+              ]
+            },
+            {
+              path: "create",
+              children: [
+                {
+                  index: true,
+                  element: <NewPlaylist />,
+                }
+              ]
+            },
+          ]
         },
         {
           path: "albums",
-          element: <MAlbum />,
+          children: [
+            {
+              index: true,
+              element: <MAlbum />,
+            },
+            {
+              path: "edit/:id",
+              children: [
+                {
+                  index: true,
+                  element: <EditAlbum />,
+                }
+              ]
+            },
+            {
+              path: "detail/:id",
+              children: [
+                {
+                  index: true,
+                  element: <AlbumDetail />,
+                }
+              ]
+            },
+            {
+              path: "create",
+              children: [
+                {
+                  index: true,
+                  element: <NewAlbum />,
+                }
+              ]
+            },
+          ]
         },
         {
           path: "users",
-          element: <MUser />,
-        },
-        {
-          path: "signIn",
-          element: <SignIn />,
-        },
-        {
-          path: "signUp",
-          element: <SignUp />,
-        },
-        {
-          path: "newArtist",
-          element: <NewArtist />,
-        },
-        {
-          path: "newSong",
-          element: <NewSong />,
-        },
-        {
-          path: "upload",
-          element: <UpLoadSong />,
-        },
-        {
-          path: "newUser",
-          element: <NewUser />,
-        },
-        {
-          path: "artistDetail/*",
-          element: <ArtistDetail />,
-        },
-        {
-          path: "albumDetail/*",
-          element: <AlbumDetail />,
-        },
-        {
-          path: "playlistDetail/*",
-          element: <PlaylistDetail />,
-        },
-        {
-          path: "newAlbum",
-          element: <NewAlbum />,
-        },
-        {
-          path: "newPlaylist",
-          element: <NewPlaylist />,
-        },
-        {
-          path: "editSong/*",
-          element: <EditSong />,
-        },
-        {
-          path: "editAlbum/*",
-          element: <EditAlbum />,
-        },
-        {
-          path: "editArtist/*",
-          element: <EditArtist />,
-        },
-        {
-          path: "editPlaylist/*",
-          element: <EditPlaylist />,
+          children: [
+            {
+              index: true,
+              element: <MUser />,
+            },
+            {
+              path: "create",
+              children: [
+                {
+                  index: true,
+                  element: <NewUser />,
+                }
+              ]
+            },
+          ]
         },
       ],
     },

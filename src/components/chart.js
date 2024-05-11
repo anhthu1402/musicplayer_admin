@@ -1,5 +1,4 @@
 import "../styles/chart.css";
-import { Card, Space, Statistic, Table, Typography } from "antd";
 import {
   LineChart,
   Line,
@@ -8,16 +7,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-function DashboardCard({ title, value, icon }) {
-  return (
-    <Card>
-      <Space direction="horizontal">
-        {icon}
-        <Statistic title={title} value={value} />
-      </Space>
-    </Card>
-  );
-}
 function Chart({ title, data, name, dataKey, grid }) {
   return (
     <div>
@@ -34,8 +23,6 @@ function Chart({ title, data, name, dataKey, grid }) {
               stroke="#483D88"
               strokeDasharray="3 4 5 2"
             />
-            {/* <Line type="monotone" dataKey={dataKey} stroke="#483D88" /> */}
-            {/* {grid && <CartesianGrid stroke="#e0dfdf" strokeDasharray="5 100000" />} */}
           </LineChart>
         </ResponsiveContainer>
       </div>

@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Error, Check } from "@mui/icons-material";
 import TextField from "@mui/material/TextField";
 import "../styles/newsong.css";
-import { Alert, Button } from "@mui/material";
+import { Alert, Backdrop, Button, CircularProgress } from "@mui/material";
 
 function EditArtist() {
   const [imageUrl, setImageUrl] = useState("");
@@ -105,6 +105,7 @@ function EditArtist() {
       setShowAlert(false);
     }
   }, [loadImage, success, showAlertSuccess, showAlert]);
+  const [open, setOpen] = useState(false);
   const artistHandle = () => {
     const artistName = artistNameRef.current.value;
     const introduce = introduceRef.current.value;
@@ -119,6 +120,7 @@ function EditArtist() {
       return setAlertError("Số người theo dõi phải là một số!");
     }
     //sign in successfully
+    setOpen(true);
     setError(null);
     setShowAlert(false);
     const artistDetail = {
@@ -127,10 +129,9 @@ function EditArtist() {
       introduce: introduce,
       numberOfFollower: artistFollowers
     }
-    axios.put("http://localhost:8080/api/artists/" + artist.id, artistDetail).then((response) => {
-      console.log(response);
-    })
-    navigate("/artists");
+    axios.put("http://localhost:9090/api/artists/" + artist.id, artistDetail).then((response) => {
+      navigate("/artists");
+    }).catch((error) => console.log(error))
   };
   return (
     <div className="newArtist">
@@ -152,7 +153,7 @@ function EditArtist() {
             inputRef={introduceRef}
             defaultValue={artist.introduce}
             multiline
-            rows={4}
+            rows={6}
           />
         </div>
         <div className="newArtistItem">
@@ -222,6 +223,9 @@ function EditArtist() {
           </Button>
         </div>
       </form>
+      <Backdrop sx={{ color: "#fff", zIndex: 10 }} open={open}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }

@@ -8,7 +8,7 @@ import FormControl from "@mui/material/FormControl";
 import { Error, Check } from "@mui/icons-material";
 import TextField from "@mui/material/TextField";
 import "../styles/newsong.css";
-import { Alert, Button, Select } from "@mui/material";
+import { Alert, Backdrop, Button, CircularProgress, Select } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
@@ -125,25 +125,34 @@ function NewAlbum() {
   const [countryData, setCountryData] = useState([]);
   const [artistData, setArtistData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/api/countries").then((response) => {
-      setCountryData(response.data);
-    });
-    axios.get("http://localhost:8080/api/artists").then((response) => {
-      setArtistData(response.data);
-    })
+    if (countryData.length === 0) {
+      axios.get("http://localhost:9090/api/countries").then((response) => {
+        setCountryData(response.data);
+      })
+        .catch((error) => console.log(error));;
+    }
+    if (artistData.length === 0) {
+      axios.get("http://localhost:9090/api/artists").then((response) => {
+        setArtistData(response.data);
+      })
+        .catch((error) => console.log(error));
+    }
   }, [countryData, artistData]);
-  const [albumId, setAlbumId] = useState();
+  const [albumId, setAlbumId] = useState(0);
   useEffect(() => {
-    if (albumId != null) {
+    if (albumId !== 0) {
       personId.map((child) => {
-        axios.put("http://localhost:8080/api/albums/" + albumId + "/artist/" + child).then((result) => {
+        axios.put("http://localhost:9090/api/albums/" + albumId + "/artist/" + child).then((result) => {
           console.log(result.data);
-        })
+        }).catch((error) => console.log(error))
       })
       navigate("/albums");
     }
-  }, [albumId])
+  }, [albumId, navigate, personId])
   const [country, setCountry] = useState();
+
+  const [open, setOpen] = useState(false);
+
   const albumHandler = () => {
     const albumName = albumNameRef.current.value;
     const albumInterestTimes = albumInterestTimesRef.current.value;
@@ -157,6 +166,7 @@ function NewAlbum() {
       return setAlertError("Số lượt quan tâm phải là một số!");
     }
     //sign in successfully
+    setOpen(true);
     setError(null);
     setShowAlert(false);
     const albumDetail = {
@@ -166,16 +176,16 @@ function NewAlbum() {
       albumImage: imageUrl,
       country: country,
     };
-    axios.post("http://localhost:8080/api/albums", albumDetail).then((response) => {
+    axios.post("http://localhost:9090/api/albums", albumDetail).then((response) => {
       setAlbumId(response.data.id);
-    })
+    }).catch((error) => console.log(error))
   };
   return (
     <div className="newAlbum">
       <h1 className="newAlbumTitle">Thêm Album mới</h1>
       <form className="newAlbumForm" id="form-id">
         <div className="newAlbumItem">
-          <label>Tên bài hát</label>
+          <label>Tên album</label>
           <TextField
             id="albumname"
             variant="outlined"
@@ -279,6 +289,9 @@ function NewAlbum() {
           </Button>
         </div>
       </form>
+      <Backdrop sx={{ color: "#fff", zIndex: 10 }} open={open}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }

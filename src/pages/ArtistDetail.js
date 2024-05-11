@@ -22,15 +22,19 @@ function ArtistDetail() {
   const [songs, setSongs] = useState([]);
   const [albums, setAlbums] = useState([]);
   const sidebar = useContext(SidebarContext);
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/songs/representation/" + artist.id).then((response) => {
-      setSongs(response.data);
-    })
-    axios.get("http://localhost:8080/api/artists/" + artist.id + "/albums").then((response) => {
-      setAlbums(response.data);
-    })
-  }, [songs, albums])
+    if (!loaded) {
+      axios.get("http://localhost:9090/api/songs/representation/" + artist.id).then((response) => {
+        setSongs(response.data);
+      }).catch((error) => console.log(error))
+      axios.get("http://localhost:9090/api/artists/" + artist.id + "/albums").then((response) => {
+        setAlbums(response.data);
+      }).catch((error) => console.log(error))
+      setLoaded(true)
+    }
+  }, [songs, albums, artist.id, loaded])
 
   const [open, setOpen] = useState(false);
   const handleDelete = () => {
@@ -40,9 +44,9 @@ function ArtistDetail() {
     setOpen(false);
   };
   const handleYes = () => {
-    axios.delete("http://localhost:8080/api/artists/" + artist.id).then((response) => {
-      console.log(response);
-    })
+    axios.delete("http://localhost:9090/api/artists/" + artist.id).then((response) => {
+      navigate("/artists")
+    }).catch((error) => console.log(error))
     setOpen(false);
     setSideBarData(navigate, sidebar);
   };
@@ -84,13 +88,13 @@ function ArtistDetail() {
                     </div>
                   </div></div>
                 <div style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Link to={"/editArtist/" + artist.artistName} state={artist}>
-                    <Button className="artistButtton edit" sx={{ marginRight: '15px' }} variant="contained">
+                  <Link to={"/artists/edit/" + artist.id} state={artist}>
+                    <Button className="artistButton edit" sx={{ marginRight: '15px' }} variant="contained">
                       Chỉnh sửa
                     </Button>
                   </Link>
                   <div>
-                    <Button onClick={handleDelete} className="artistButtton delete" variant="contained">
+                    <Button onClick={handleDelete} className="artistButton delete" variant="contained">
                       Xóa
                     </Button>
                   </div>
